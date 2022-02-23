@@ -10,6 +10,7 @@ namespace SGVE.Controllers
     {
         public IActionResult Index()
         {
+            ViewBag.Title = "SGVEC - Área de Acesso";
             return View();
         }
 

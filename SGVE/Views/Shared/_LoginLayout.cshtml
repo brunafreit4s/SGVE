@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/Login.css" />
+        <script src="https://kit.fontawesome.com/9abeffea05.js"></script>
+    </environment>
+
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-lg-8">
+                <input type="image" src="~/images/undraw_Login.svg" width="800px" class="img-fluid login-image" alt="Login" />
+            </div>
+            <div class="col-lg-4">
+                <h3 class="text-center text-primary">SGVE</h3>
+                <h4 class="text-center text-info">Sistema de Gerenciamento de Vendas e Estoques</h4>
+                <div class="form-login">
+                    <div class="input-group form-control">
+                        <i class="fas fa-envelope"></i>
+                        <input id="txtLogin" type="email" maxlength="100" placeholder="Email" />
+                    </div>
+                    <div class="input-group form-control">
+                        <i class="fas fa-lock"></i>
+                        <input id="txtPassword" type="password" maxlength="100" placeholder="Senha" />
+                    </div>
+
+                    <div class="col-md-4">
+                        <input id="btnLogin" type="button" value="Acessar" class="btn-login" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        @RenderBody()
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

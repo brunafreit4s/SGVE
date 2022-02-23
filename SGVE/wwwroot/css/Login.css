@@ -1,0 +1,87 @@
+﻿﻿:root {
+    --color-primary: #4E20A9;
+    --color-primary-hover: #8655e7;
+    --color-primary-transparent: rgba(78, 32, 169, 0.4);
+    --color-success: #2AAA19;
+    --color-success-transparent: rgba(42, 170, 25, 0.4);
+    --color-info: #136CF2;
+    --color-info-transparent: rgba(19, 108, 242, 0.4);
+    --color-warning: #FFC700;
+    --color-warning-transparent: rgba(255, 199, 0, 0.4);
+    --color-danger: #CE381A;
+    --color-danger-transparent: rgba(206, 56, 26, 0.4);
+    --color-background: #f5f5f5;
+    --color-text-gray: #767676;
+}
+
+.container {
+    margin-top: 6rem;
+}
+
+.login-image {
+    margin-top: 5rem;
+}
+
+
+.container-fluid {
+    margin: 1rem
+}
+
+h4.title-page {
+    margin-bottom: 3rem
+}
+
+.form-login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    margin: 4rem 4rem 0 4rem;
+}
+
+.input-group {
+    border-bottom: 2px solid var(--color-primary);
+    margin-bottom: 3rem;
+    align-items: center !important;
+}
+
+i.fas {
+    padding-right: 1rem;
+}
+
+input#txtLogin, input#txtPassword {
+    outline: 0;
+    border-width: 0;
+    width: 90%;
+}
+
+a {
+    text-decoration: none !important;
+    color: var(--color-primary) !important
+}
+
+    a:hover {
+        color: var(--color-info) !important
+    }
+
+
+.btn-login {
+    margin: 1rem 1rem;
+    background-color: #100de5c7;
+    border-radius: 5px;
+    color: white;
+    height: 4rem;
+    width: 10rem;
+}
+
+    .btn-login:hover {
+        background-color: #100de587;
+        color: white;
+    }
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
