@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SGVE.Models;
 
 namespace SGVE.Controllers
 {
@@ -31,6 +32,20 @@ namespace SGVE.Controllers
         public IActionResult Error()
         {
             return View();
+        }
+
+        public IActionResult Dashboard()
+        {            
+            ViewData["Message"] = "Seja bem vindo(a) ";
+
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult ValidarAcesso(USUARIO vData)
+        {
+            var teste = vData.LOGIN;
+            return RedirectToAction("Dashboard");
         }
     }
 }
