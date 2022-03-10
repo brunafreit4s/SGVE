@@ -44,7 +44,7 @@ namespace SGVE.Controllers
         [HttpPost]
         public ActionResult ValidarAcesso(USUARIO vData)
         {
-            var teste = vData.LOGIN;
+            //var teste = vData.LOGIN;
             return RedirectToAction("Dashboard");
         }
     }
