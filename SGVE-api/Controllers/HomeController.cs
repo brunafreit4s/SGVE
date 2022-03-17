@@ -6,43 +6,53 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using SGVE.Models;
+using SGVE_api.EntityStore;
 
 namespace SGVE_api.Controllers
 {
     public class HomeController : Controller
     {
-        [HttpPost("/Home/Login")]
-        public JsonResult Login(USUARIO parametros)
+        private readonly DatabaseContext _context;
+
+        public HomeController(DatabaseContext context)
         {
-            var retorno = new USUARIO();
-
-            if(parametros.email != "" && parametros.senha != "")
-            {
-                retorno.email = "";
-            }
-            else
-            {
-                retorno.email = "";
-            }
-
-            return Json(retorno);
+            _context = context;
         }
 
-        [HttpGet("/Home/DadosUsuario")]
+        [HttpGet("api/Home/DadosUsuario")]
         public JsonResult Get_DadosUsuario(USUARIO parametros)
         {
-            var retorno = new USUARIO();
+            var _retorno = 0;
 
-            if (parametros.email != "" && parametros.senha != "")
+            try
             {
-                retorno.email = "";
-            }
-            else
-            {
-                retorno.email = "";
-            }
+                _context.Funcionario.FirstOrDefault(u => u.EMAIL_FUNC == parametros.EMAIL_FUNC && u.SENHA_FUNC == parametros.SENHA_FUNC);
 
-            return Json(retorno);
+                _retorno = 1;
+
+                return Json(_retorno);
+            }
+            catch
+            {
+                throw;
+            }
+        }
+
+        [HttpPost("api/Home/AdicionaUsuario")]
+        public JsonResult Post_DadosUsuario(USUARIO parametros)
+        {
+            try
+            {
+                _context.Funcionario.Add(parametros);
+                _context.SaveChanges();
+
+                return Json(_context);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }
