@@ -20,20 +20,19 @@ namespace SGVE_api.Controllers
             _context = context;
         }
 
-        [HttpGet("api/Home/DadosUsuario")]
-        public JsonResult Get_DadosUsuario(USUARIO parametros)
+        [ProducesResponseType(typeof(List<USUARIO>), 200)]
+        [ProducesResponseType(500)]
+        [ProducesResponseType(404)]
+        [HttpPost("api/Home/DadosUsuario/")]
+        public JsonResult Get_DadosUsuario([FromBody] USUARIO vData)
         {
-            var _retorno = 0;
-
             try
             {
-                _context.Funcionario.FirstOrDefault(u => u.EMAIL_FUNC == parametros.EMAIL_FUNC && u.SENHA_FUNC == parametros.SENHA_FUNC);
+                var retorno = _context.Funcionario.FirstOrDefault(u => u.EMAIL_FUNC == vData.EMAIL_FUNC && u.SENHA_FUNC == vData.SENHA_FUNC);
 
-                _retorno = 1;
-
-                return Json(_retorno);
+                return Json(retorno);
             }
-            catch
+            catch(Exception ex)
             {
                 throw;
             }

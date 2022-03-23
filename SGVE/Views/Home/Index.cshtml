@@ -72,9 +72,11 @@
             let senha = $("#txtPassword").val();
 
             var vData = {
-                LOGIN: email,
-                SENHA: senha
+                EMAIL_FUNC: email,
+                SENHA_FUNC: senha
             };
+
+            console.log(vData)
 
             $.ajax({
                 type: 'POST'

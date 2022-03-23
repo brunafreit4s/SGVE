@@ -54,32 +54,11 @@ namespace SGVE.Controllers
                 var httpClient = new HttpClient();
                 var request = new HttpRequestMessage();
                 var content = ToRequest(vData);
-                var response = await httpClient.GetAsync(requestUri: _url + "api/Home/DadosUsuario"); ;
+                var response = await httpClient.PostAsync(requestUri: _url + "api/Home/DadosUsuario/", content); ;
 
                 var data = await response.Content.ReadAsStringAsync();
 
-                //var teste = vData.LOGIN;
-                RedirectToAction("Dashboard");
-
                 return Json(data);
-
-
-                /*
-                 * 
-                 * 
-                    var httpClient = new HttpClient();
-                    var request = new HttpRequestMessage();
-                    var response = await httpClient.GetAsync(requestUri: "/Home/DadosUsuario");
-
-                    var data = await response.Content.ReadAsStringAsync();
-
-                    //var teste = vData.LOGIN;
-                    RedirectToAction("Dashboard");
-
-                    return Json(data);
-                 * 
-                 * 
-                 */
             }
             catch(Exception ex)
             {
