@@ -6,43 +6,52 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using SGVE.Models;
+using SGVE_api.EntityStore;
 
 namespace SGVE_api.Controllers
 {
     public class HomeController : Controller
     {
-        [HttpPost("/Home/Login")]
-        public JsonResult Login(USUARIO parametros)
+        private readonly DatabaseContext _context;
+
+        public HomeController(DatabaseContext context)
         {
-            var retorno = new USUARIO();
-
-            if(parametros.email != "" && parametros.senha != "")
-            {
-                retorno.email = "";
-            }
-            else
-            {
-                retorno.email = "";
-            }
-
-            return Json(retorno);
+            _context = context;
         }
 
-        [HttpGet("/Home/DadosUsuario")]
-        public JsonResult Get_DadosUsuario(USUARIO parametros)
+        [ProducesResponseType(typeof(List<USUARIO>), 200)]
+        [ProducesResponseType(500)]
+        [ProducesResponseType(404)]
+        [HttpPost("api/Home/DadosUsuario/")]
+        public JsonResult Get_DadosUsuario([FromBody] USUARIO vData)
         {
-            var retorno = new USUARIO();
-
-            if (parametros.email != "" && parametros.senha != "")
+            try
             {
-                retorno.email = "";
-            }
-            else
-            {
-                retorno.email = "";
-            }
+                var retorno = _context.Funcionario.FirstOrDefault(u => u.EMAIL_FUNC == vData.EMAIL_FUNC && u.SENHA_FUNC == vData.SENHA_FUNC);
 
-            return Json(retorno);
+                return Json(retorno);
+            }
+            catch(Exception ex)
+            {
+                throw;
+            }
+        }
+
+        [HttpPost("api/Home/AdicionaUsuario")]
+        public JsonResult Post_DadosUsuario(USUARIO parametros)
+        {
+            try
+            {
+                _context.Funcionario.Add(parametros);
+                _context.SaveChanges();
+
+                return Json(_context);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
     }
 }

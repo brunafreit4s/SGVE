@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.OpenApi.Models;
+using SGVE_api.EntityStore;
+using Microsoft.EntityFrameworkCore;
 
 namespace SGVE_api
 {
@@ -41,6 +43,9 @@ namespace SGVE_api
                         }
                     });
             });
+
+            services.AddDbContext<DatabaseContext>(options =>
+                        options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
