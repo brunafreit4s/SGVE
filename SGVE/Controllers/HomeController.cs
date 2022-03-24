@@ -40,33 +40,47 @@ namespace SGVE.Controllers
         }
 
         public IActionResult Dashboard()
-        {            
+        {
             ViewData["Message"] = "Seja bem vindo(a) ";
 
             return View();
         }
 
         [HttpPost]
-        public async Task<JsonResult> ValidarAcesso(USUARIO vData)            
+        public async Task<JsonResult> ValidarAcesso(Usuario vData)
         {
             try
             {
+                Retorno oRetorno = new Retorno();
                 var httpClient = new HttpClient();
                 var request = new HttpRequestMessage();
-                var content = ToRequest(vData);
-                var response = await httpClient.PostAsync(requestUri: _url + "api/Home/DadosUsuario/", content); ;
+                var strContent = ToRequest(vData);
+                var response = await httpClient.PostAsync(requestUri: _url + "api/Home/DadosUsuario/", strContent);
 
-                var data = await response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode)
+                {
+                    string strRetorno = await response.Content.ReadAsStringAsync();
+                    var usuario = JsonConvert.DeserializeObject<Usuario>(strRetorno);
 
-                return Json(data);
+                    oRetorno.tbUsuario.Add(usuario);
+                }
+                else
+                {
+                    ERRO objErro = new ERRO();
+                    objErro.strErro = "E-mail ou Senha incorreta. Verifique os dados informados!";
+                    oRetorno.tbERRO.Add(objErro);
+                }
+
+                return Json(oRetorno);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw;
             }
         }
 
-        private static StringContent ToRequest(object obj) {
+        private static StringContent ToRequest(object obj)
+        {
             //Converte de json para stringContent
             var json = JsonConvert.SerializeObject(obj);
             var data = new StringContent(json, Encoding.UTF8, mediaType: "application/json");
