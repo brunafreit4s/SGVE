@@ -76,8 +76,6 @@
                 SENHA_FUNC: senha
             };
 
-            console.log(vData)
-
             $.ajax({
                 type: 'POST'
                 , url: "@Url.Action("ValidarAcesso", "Home")"
@@ -85,18 +83,27 @@
                 , dataType: 'json'
                 , data: vData
                 , async: false
-                , success: function (oDados, status) {
+                , success: function (oRetorno, status) {
+                    if (oRetorno.tbUsuario.length > 0) {
+                        $('#redirectDashboard').submit();
+                    }
+                    else if (oRetorno.tbERRO.length > 0) {
+                        fAlert(oRetorno.tbERRO[0].strErro);
+                        $(".alert").removeClass("fade");
+                    }
                     retorno = true;
                 }
                 , error: function (xmlHttpRequest, status, err) {
-                    console.log('debug:2');
+                    console.log('Erro interno debug:2');
                     return Error;
                 },
             }).fail(function () {
-                console.log('debug:1');
+                console.log('Erro interno debug:1');
             });
 
             return retorno;
         }
     });
 </script>
+
+<form asp-action="Dashboard" asp-controller="Home" method="post" id="redirectDashboard"></form>

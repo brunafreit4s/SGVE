@@ -8,7 +8,7 @@ using System.ComponentModel.DataAnnotations;
 namespace SGVE.Models
 {
     [Table("Funcionario")]
-    public class USUARIO
+    public class Usuario
     {      
         [Key]
         public int COD_FUNC { get; set; }

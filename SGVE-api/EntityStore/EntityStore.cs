@@ -11,6 +11,6 @@ namespace SGVE_api.EntityStore
         }
 
         //Funcionario é nome da tabela no banco de dados
-        public DbSet<USUARIO> Funcionario { get; set; }
+        public DbSet<Usuario> Funcionario { get; set; }
     }
 }
