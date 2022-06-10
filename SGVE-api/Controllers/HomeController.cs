@@ -1,14 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
-using SGVE_api.Models;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using SGVE.Models;
 using SGVE_api.EntityStore;
 using Microsoft.AspNetCore.Http;
+using System.Data;
+using MySql.Data.MySqlClient;
+using SGVE_api.Models;
 
 namespace SGVE_api.Controllers
 {
@@ -21,21 +20,37 @@ namespace SGVE_api.Controllers
             _context = context;
         }
 
+        [HttpPost]
         [ProducesResponseType(typeof(List<Usuario>), StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(Retorno), StatusCodes.Status400BadRequest)]
-        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(Retorno), StatusCodes.Status500InternalServerError)]
-        [HttpPost("api/Home/DadosUsuario/")]
+        [Route("api/Home/DadosUsuario/")]
         public IActionResult Get_DadosUsuario([FromBody] Usuario vData)
         {
             try
             {
-                var retorno = _context.Funcionario.FirstOrDefault(u => u.EMAIL_FUNC == vData.EMAIL_FUNC && u.SENHA_FUNC == vData.SENHA_FUNC);
+                var retorno = new List<Usuario>();
+                MySqlParameter[] oParametros = new MySqlParameter[2];
+                oParametros[0] = new MySqlParameter("EMAIL", vData.EMAIL_FUNC);
+                oParametros[1] = new MySqlParameter("SENHA", vData.SENHA_FUNC);
 
-                if (retorno != null)
+                ConnectionMySql cms = new ConnectionMySql();
+
+                var oDS = cms.ExecuteQuery(2, "PROC_LOGIN_FUNC", oParametros);
+
+                foreach (DataRow row in oDS.Tables[0].Rows)
                 {
-                    return Json(retorno);
+                    retorno.Add(new Usuario()
+                    {
+                        NOME_FUNC = RetornoDataSet.ConsultaDataRow(row, "NOME_FUNC"),
+                        COD_FUNC = int.Parse(RetornoDataSet.ConsultaDataRow(row, "FK_COD_CARGO")),
+                    });
+                }
+
+                if (retorno.Count > 0)
+                {
+                    return Ok(retorno);
                 }
                 else
                 {

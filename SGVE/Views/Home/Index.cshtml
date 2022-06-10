@@ -85,6 +85,8 @@
                 , async: false
                 , success: function (oRetorno, status) {
                     if (oRetorno.tbUsuario.length > 0) {
+                        $('#COD_FUNC').val(oRetorno.tbUsuario[0].coD_FUNC);
+                        $('#NOME_FUNC').val(oRetorno.tbUsuario[0].nomE_FUNC);
                         $('#redirectDashboard').submit();
                     }
                     else if (oRetorno.tbERRO.length > 0) {
@@ -104,6 +106,23 @@
             return retorno;
         }
     });
+
+    // Get the input field
+    var input = document.getElementById("txtPassword");
+
+    // Execute a function when the user presses a key on the keyboard
+    input.addEventListener("keypress", function (event) {
+        // If the user presses the "Enter" key on the keyboard
+        if (event.key === "Enter") {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            // Trigger the button element with a click
+            document.getElementById("btnLogin").click();
+        }
+    });
 </script>
 
-<form asp-action="Dashboard" asp-controller="Home" method="post" id="redirectDashboard"></form>
+<form asp-action="Dashboard" asp-controller="Home" method="post" id="redirectDashboard">
+    <input type="hidden" id="COD_FUNC" name="COD_FUNC" />
+    <input type="hidden" id="NOME_FUNC" name="NOME_FUNC" />
+</form>

@@ -14,5 +14,6 @@ namespace SGVE.Models
         public int COD_FUNC { get; set; }
         public string EMAIL_FUNC { get; set; }
         public string SENHA_FUNC { get; set; }
+        public string NOME_FUNC { get; set; }
     }
 }
