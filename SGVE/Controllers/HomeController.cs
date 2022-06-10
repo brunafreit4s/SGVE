@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,10 +38,10 @@ namespace SGVE.Controllers
             return View();
         }
 
-        public IActionResult Dashboard()
+        public IActionResult Dashboard(int COD_FUNC, string NOME_FUNC)
         {
-            ViewData["Message"] = "Seja bem vindo(a) ";
-
+            ViewBag.NomeLogado = NOME_FUNC;
+            ViewBag.Codigo = COD_FUNC;
             return View();
         }
 
@@ -60,20 +59,18 @@ namespace SGVE.Controllers
                 if (response.IsSuccessStatusCode)
                 {
                     string strRetorno = await response.Content.ReadAsStringAsync();
-                    var usuario = JsonConvert.DeserializeObject<Usuario>(strRetorno);
-
-                    oRetorno.tbUsuario.Add(usuario);
+                    oRetorno.tbUsuario = JsonConvert.DeserializeObject<List<Usuario>>(strRetorno);
                 }
                 else
                 {
                     ERRO objErro = new ERRO();
-                    objErro.strErro = "E-mail ou Senha incorreta. Verifique os dados informados!";
+                    objErro.strErro = "E-mail ou Senha inválidos. Verifique os dados digitados!";
                     oRetorno.tbERRO.Add(objErro);
                 }
 
                 return Json(oRetorno);
             }
-            catch (Exception ex)
+            catch
             {
                 throw;
             }

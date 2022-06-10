@@ -1,5 +1,109 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <environment names="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+        <link rel="stylesheet" href="~/css/Login.css" />
+        <script src="https://kit.fontawesome.com/9abeffea05.js"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </environment>
+
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    @{
+        ViewData["Title"] = "Painel de Acesso";
+    }
+
+    <header>
+        <div class="container">
+            <nav class="navbar bg-light fixed-top border-bottom">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#"><span class="navbar-text text-primary">SGVE - Sistema Gerenciador de Vendas e Estoque</span></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                        <div class="offcanvas-header">
+                            <h5 class="offcanvas-title text-primary h1" id="offcanvasNavbarLabel">Acessar</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                        </div>
+                        <div class="row col-lg-12 offcanvas-body">
+                            <ul class="navbar-nav justify-content-end form-group-1 pe-3">
+                                @if (ViewBag.Codigo == 3)
+                                {
+                                    <li class="row col-lg-12 nav-item dropdown">
+                                        <a class="nav-link dropdown-toggler" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Funcionário
+                                        </a>
+                                        <ul class="dropdown-menu img-responsive" aria-labelledby="offcanvasNavbarDropdown">
+                                            <li><a class="dropdown-item col-lg-12" href="@Url.Action("Cadastrar", "Funcionario")">Cadastrar<span class="text-success">+</span></a></li>
+                                            <li><hr class="dropdown-divider col-lg-12"><a class="dropdown-item" href="@Url.Action("Consultar", "Funcionario")">Consultar</a></li>
+                                            <li></li>
+                                        </ul>
+                                    </li>
+                                }
+                                <li class="row col-lg-12 nav-item dropdown">
+                                    <a class="nav-link dropdown-toggler" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Produto
+                                    </a>
+                                    <ul class="dropdown-menu img-responsive" aria-labelledby="offcanvasNavbarDropdown">
+                                        <li><a class="dropdown-item col-lg-12" href="@Url.Action("Cadastrar", "Funcionario")">Incluir<span class="text-success">+</span></a></li>
+                                        <li><hr class="dropdown-divider col-lg-12"><a class="dropdown-item" href="@Url.Action("Consultar", "Funcionario")">Pesquisar</a></li>
+                                        <li></li>
+                                    </ul>
+                                </li>
+                                <li class="row col-lg-12 nav-item dropdown">
+                                    <a class="nav-link dropdown-toggler" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Estoque
+                                    </a>
+                                    <ul class="dropdown-menu img-responsive" aria-labelledby="offcanvasNavbarDropdown">
+                                        <li><a class="dropdown-item" href="@Url.Action("Consultar", "Funcionario")">Consultar</a></li>
+                                        <li></li>
+                                    </ul>
+                                </li>
+                                <li class="row col-lg-12 nav-item dropdown">
+                                    <a class="nav-link dropdown-toggler" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Venda
+                                    </a>
+                                    <ul class="dropdown-menu img-responsive" aria-labelledby="offcanvasNavbarDropdown">
+                                        <li><a class="dropdown-item" href="@Url.Action("Consultar", "Funcionario")">Nova Venda<span class="text-success">+</span></a></li>
+                                        <li></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="col-lg-12">
+            <h1 class="display-4">Bem Vindo(a)</h1>
+            <h3>@ViewBag.NomeLogado</h3>
+            <br/>
+            <h5>@ViewBag.Title</h5>
+            <p>
+                <h5 class="text-info">Painel contendo informações gerais sobre dados no sistema.</h5>
+            </p>
+
+        </div>
+    </div>
+
+    <footer class="bg-light border-top footer text-muted">
+        <div class="container">
+            <p>
+                SGVE - Sistema Gerenciador de Vendas e Estoque
+            </p>
+        </div>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>
