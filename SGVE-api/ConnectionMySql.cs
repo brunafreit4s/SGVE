@@ -53,5 +53,41 @@ namespace SGVE_api
                 }
             }
         }
+
+        public DataSet ExecuteQuery(int TypeCommand, string CommandText)
+        {
+            try
+            {
+                cn.Open();
+
+                if (cn != null)
+                {
+                    MySqlDataAdapter da = new MySqlDataAdapter(CommandText, cn);
+
+                    if (TypeCommand == 1) da.SelectCommand.CommandType = CommandType.Text;
+                    else da.SelectCommand.CommandType = CommandType.StoredProcedure;
+
+                    da.SelectCommand.CommandText = CommandText;                   
+
+                    DataSet ds = new DataSet();
+                    da.Fill(ds);
+                    da.Dispose();
+                    return ds;
+                }
+                else return null;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                if (cn != null)
+                {
+                    cn.Close();
+                    cn.Dispose();
+                }
+            }
+        }
     }
 }

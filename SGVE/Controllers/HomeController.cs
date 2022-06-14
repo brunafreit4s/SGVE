@@ -38,8 +38,18 @@ namespace SGVE.Controllers
             return View();
         }
 
-        public IActionResult Dashboard(int COD_FUNC, string NOME_FUNC)
+        public async Task<IActionResult> Dashboard(int COD_FUNC, string NOME_FUNC)
         {
+            var httpClient = new HttpClient();
+            var request = new HttpRequestMessage();
+            var response = await httpClient.GetAsync(requestUri: _url + "api/Home/ProdutosEstoque/");
+
+            if (response.IsSuccessStatusCode)
+            {
+                string strRetorno = await response.Content.ReadAsStringAsync();
+                ViewBag.Lista_Produtos = JsonConvert.DeserializeObject<List<Produtos>>(strRetorno);
+            }            
+
             ViewBag.NomeLogado = NOME_FUNC;
             ViewBag.Codigo = COD_FUNC;
             return View();

@@ -7,11 +7,13 @@
     <environment names="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
         <link rel="stylesheet" href="~/css/Login.css" />
-        <script src="https://kit.fontawesome.com/9abeffea05.js"></script>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/4a127b145c.js" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     </environment>
 
     <title>@ViewBag.Title</title>
+
 </head>
 <body>
     @{
@@ -40,40 +42,46 @@
                                             Funcionário
                                         </a>
                                         <ul class="dropdown-menu img-responsive" aria-labelledby="offcanvasNavbarDropdown">
-                                            <li><a class="dropdown-item col-lg-12" href="@Url.Action("Cadastrar", "Funcionario")">Cadastrar<span class="text-success">+</span></a></li>
-                                            <li><hr class="dropdown-divider col-lg-12"><a class="dropdown-item" href="@Url.Action("Consultar", "Funcionario")">Consultar</a></li>
+                                            <li><a class="dropdown-item col-lg-12" href="@Url.Action("Cadastrar", "Funcionario")"><i class="fa-solid fa-folder-plus"></i> Cadastrar</a></li>
+                                            <li><hr class="dropdown-divider col-lg-12"><a class="dropdown-item" href="@Url.Action("Consultar", "Funcionario")"><i class="fa-solid fa-magnifying-glass"></i> Pesquisar</a></li>
                                             <li></li>
                                         </ul>
                                     </li>
                                 }
-                                <li class="row col-lg-12 nav-item dropdown">
-                                    <a class="nav-link dropdown-toggler" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Produto
-                                    </a>
-                                    <ul class="dropdown-menu img-responsive" aria-labelledby="offcanvasNavbarDropdown">
-                                        <li><a class="dropdown-item col-lg-12" href="@Url.Action("Cadastrar", "Funcionario")">Incluir<span class="text-success">+</span></a></li>
-                                        <li><hr class="dropdown-divider col-lg-12"><a class="dropdown-item" href="@Url.Action("Consultar", "Funcionario")">Pesquisar</a></li>
-                                        <li></li>
-                                    </ul>
-                                </li>
-                                <li class="row col-lg-12 nav-item dropdown">
-                                    <a class="nav-link dropdown-toggler" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Estoque
-                                    </a>
-                                    <ul class="dropdown-menu img-responsive" aria-labelledby="offcanvasNavbarDropdown">
-                                        <li><a class="dropdown-item" href="@Url.Action("Consultar", "Funcionario")">Consultar</a></li>
-                                        <li></li>
-                                    </ul>
-                                </li>
-                                <li class="row col-lg-12 nav-item dropdown">
-                                    <a class="nav-link dropdown-toggler" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                        Venda
-                                    </a>
-                                    <ul class="dropdown-menu img-responsive" aria-labelledby="offcanvasNavbarDropdown">
-                                        <li><a class="dropdown-item" href="@Url.Action("Consultar", "Funcionario")">Nova Venda<span class="text-success">+</span></a></li>
-                                        <li></li>
-                                    </ul>
-                                </li>
+                                @if (ViewBag.Codigo == 3 || ViewBag.Codigo == 4)
+                                {
+                                    <li class="row col-lg-12 nav-item dropdown">
+                                        <a class="nav-link dropdown-toggler" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Produto
+                                        </a>
+                                        <ul class="dropdown-menu img-responsive" aria-labelledby="offcanvasNavbarDropdown">
+                                            <li><a class="dropdown-item col-lg-12" href="@Url.Action("Cadastrar", "Produto")"><i class="fa-solid fa-file-circle-plus"></i> Incluir</a></li>
+                                            <li><hr class="dropdown-divider col-lg-12"><a class="dropdown-item" href="@Url.Action("Consultar", "Produto")"><i class="fa-solid fa-magnifying-glass"></i> Pesquisar</a></li>
+                                            <li></li>
+                                        </ul>
+                                    </li>
+                                    <li class="row col-lg-12 nav-item dropdown">
+                                        <a class="nav-link dropdown-toggler" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Estoque
+                                        </a>
+                                        <ul class="dropdown-menu img-responsive" aria-labelledby="offcanvasNavbarDropdown">
+                                            <li><a class="dropdown-item" href="@Url.Action("Consultar", "Estoque")"><i class="fa-solid fa-file-circle-check"></i> Consultar</a></li>
+                                            <li></li>
+                                        </ul>
+                                    </li>
+                                }
+                                @if (ViewBag.Codigo == 3 || ViewBag.Codigo == 4 || ViewBag.Codigo == 2)
+                                {
+                                    <li class="row col-lg-12 nav-item dropdown">
+                                        <a class="nav-link dropdown-toggler" href="#" id="offcanvasNavbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                            Venda
+                                        </a>
+                                        <ul class="dropdown-menu img-responsive" aria-labelledby="offcanvasNavbarDropdown">
+                                            <li><a class="dropdown-item" href="@Url.Action("Consultar", "Funcionario")"><i class="fa-solid fa-cart-plus"></i> Nova Venda</a></li>
+                                            <li></li>
+                                        </ul>
+                                    </li>
+                                }
                             </ul>
                         </div>
                     </div>
@@ -86,12 +94,20 @@
         <div class="col-lg-12">
             <h1 class="display-4">Bem Vindo(a)</h1>
             <h3>@ViewBag.NomeLogado</h3>
-            <br/>
-            <h5>@ViewBag.Title</h5>
+            <hr />
+            <br />
+            <h4>@ViewBag.Title</h4>
             <p>
-                <h5 class="text-info">Painel contendo informações gerais sobre dados no sistema.</h5>
+                <div class="text-info"><b>Informações gerais do sistema. </b></div>
             </p>
+            <hr />
+            <br />
+            <div class="divProdutos">
+                <h3>Produtos</h3>
 
+                <!--Div that will hold the pie chart-->
+                <div id="chart_div"></div>
+            </div>
         </div>
     </div>
 
@@ -107,3 +123,41 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
 </body>
 </html>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    var vLista_Produtos = @Html.Raw(Json.Serialize(ViewBag.Lista_Produtos));
+    // Load the Visualization API and the corechart package.
+    google.charts.load('current', { 'packages': ['corechart'] });
+
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
+
+    // Callback that creates and populates a data table,
+    // instantiates the pie chart, passes in the data and
+    // draws it.
+    function drawChart() {
+        if (vLista_Produtos != null) {
+            // Create the data table.
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Topping');
+            data.addColumn('number', 'Slices');
+            vLista_Produtos.forEach(function (item) {
+                data.addRows([
+                    [item.nomE_PROD, item.quantidadE_PROD],
+                ]);
+            });
+
+            // Set chart options
+            var options = {
+                'title': 'Quantidade de Produtos disponíveis em Estoque',
+                'width': 600,
+                'height': 500
+            };
+
+            // Instantiate and draw our chart, passing in some options.
+            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    }
+</script>

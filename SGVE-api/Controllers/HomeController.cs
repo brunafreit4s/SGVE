@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using SGVE.Models;
 using SGVE_api.EntityStore;
 using Microsoft.AspNetCore.Http;
@@ -43,8 +42,8 @@ namespace SGVE_api.Controllers
                 {
                     retorno.Add(new Usuario()
                     {
-                        NOME_FUNC = RetornoDataSet.ConsultaDataRow(row, "NOME_FUNC"),
-                        COD_FUNC = int.Parse(RetornoDataSet.ConsultaDataRow(row, "FK_COD_CARGO")),
+                        NOME_FUNC   = RetornoDataSet.ConsultaDataRow(row, "NOME_FUNC"),
+                        COD_FUNC    = int.Parse(RetornoDataSet.ConsultaDataRow(row, "FK_COD_CARGO")),
                     });
                 }
 
@@ -60,7 +59,59 @@ namespace SGVE_api.Controllers
             catch(Exception ex)
             {
                 ERRO objErro = new ERRO();
-                objErro.strErro = "Erro Interno no Servidor: " + ex.Message;
+                objErro.strErro = "Erro Interno 1.1: " + ex.Message;
+                return StatusCode((int)StatusCodes.Status500InternalServerError, objErro.strErro);
+            }
+        }
+        
+        [HttpGet]
+        [ProducesResponseType(typeof(List<Produtos>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Retorno), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(Retorno), StatusCodes.Status500InternalServerError)]
+        [Route("api/Home/ProdutosEstoque/")]
+        public IActionResult Get_ProdutosEstoque()
+        {
+            try
+            {
+                var retorno = new List<Produtos>();
+
+                ConnectionMySql cms = new ConnectionMySql();
+
+                MySqlParameter[] oParametros = new MySqlParameter[2];
+                oParametros[0] = new MySqlParameter("CODIGO", 0);
+                oParametros[1] = new MySqlParameter("NOME", "");
+
+                var oDS = cms.ExecuteQuery(2, "PROC_SELECT_PROD", oParametros);
+
+                foreach (DataRow row in oDS.Tables[0].Rows)
+                {
+                    retorno.Add(new Produtos()
+                    {
+                        COD_BARRAS          = RetornoDataSet.ConsultaDataRow(row, "COD_BARRAS"),
+                        NOME_PROD           = RetornoDataSet.ConsultaDataRow(row, "NOME_PROD"),
+                        MARCA_PROD          = RetornoDataSet.ConsultaDataRow(row, "MARCA_PROD"),
+                        PRECO_PROD          = double.Parse(RetornoDataSet.ConsultaDataRow(row, "PRECO_PROD")),
+                        CUSTO_PROD          = double.Parse(RetornoDataSet.ConsultaDataRow(row, "CUSTO_PROD")),
+                        DATA_CAD_PROD       = RetornoDataSet.ConsultaDataRow(row, "DATA_CAD_PROD"),
+                        QUANTIDADE_PROD     = int.Parse(RetornoDataSet.ConsultaDataRow(row, "QUANTIDADE_PROD")),
+                        DESC_PROD           = RetornoDataSet.ConsultaDataRow(row, "DESC_PROD"),
+                    });
+                }
+
+                if (retorno.Count > 0)
+                {
+                    return Ok(retorno);
+                }
+                else
+                {
+                    return BadRequest(retorno);
+                }
+            }
+            catch (Exception ex)
+            {
+                ERRO objErro = new ERRO();
+                objErro.strErro = "Erro Interno 1.2: " + ex.Message;
                 return StatusCode((int)StatusCodes.Status500InternalServerError, objErro.strErro);
             }
         }
