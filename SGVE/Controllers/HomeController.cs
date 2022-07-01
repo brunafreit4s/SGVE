@@ -39,27 +39,52 @@ namespace SGVE.Controllers
         }
 
         public async Task<IActionResult> Dashboard(int COD_FUNC, string NOME_FUNC)
+        {        
+            ViewBag.Lista_Produtos  = await Get_ProtudosEstoque();
+            ViewBag.Lista_Vendas    = await Get_Vendas();
+            ViewBag.NomeLogado      = NOME_FUNC;
+            ViewBag.Codigo          = COD_FUNC;
+
+            return View();
+        }
+
+        public async Task<List<Produtos>> Get_ProtudosEstoque()
         {
             var httpClient = new HttpClient();
-            var request = new HttpRequestMessage();
             var response = await httpClient.GetAsync(requestUri: _url + "api/Home/ProdutosEstoque/");
+            var oRetorno = new List<Produtos>();
 
             if (response.IsSuccessStatusCode)
             {
                 string strRetorno = await response.Content.ReadAsStringAsync();
-                ViewBag.Lista_Produtos = JsonConvert.DeserializeObject<List<Produtos>>(strRetorno);
-            }            
+                 oRetorno = JsonConvert.DeserializeObject<List<Produtos>>(strRetorno);
+            }
 
-            ViewBag.NomeLogado = NOME_FUNC;
-            ViewBag.Codigo = COD_FUNC;
-            return View();
+            return oRetorno;
+        }
+
+        public async Task<List<Vendas>> Get_Vendas()
+        {
+            var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync(requestUri: _url + "api/Home/Data_Total_Vendas/");
+            var oRetorno = new List<Vendas>();
+
+            if (response.IsSuccessStatusCode)
+            {
+                string strRetorno = await response.Content.ReadAsStringAsync();
+                oRetorno = JsonConvert.DeserializeObject<List<Vendas>>(strRetorno);
+            }
+
+            return oRetorno;
         }
 
         [HttpPost]
-        public async Task<JsonResult> ValidarAcesso(Usuario vData)
+        public async Task<IActionResult> ValidarAcesso(Usuario vData)
         {
             try
             {
+                if(string.IsNullOrEmpty(vData.EMAIL_FUNC) || string.IsNullOrEmpty(vData.SENHA_FUNC)) { return RedirectToAction("Index", "Home"); }
+
                 Retorno oRetorno = new Retorno();
                 var httpClient = new HttpClient();
                 var request = new HttpRequestMessage();

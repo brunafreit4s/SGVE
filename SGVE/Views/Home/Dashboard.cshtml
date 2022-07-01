@@ -24,13 +24,13 @@
         <div class="container">
             <nav class="navbar bg-light fixed-top border-bottom">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#"><span class="navbar-text text-primary">SGVE - Sistema Gerenciador de Vendas e Estoque</span></a>
+                    <a class="navbar-brand" href="#"><span class="navbar-text text-primary h2">SGVE - Sistema Gerenciador de Vendas e Estoque</span></a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                         <div class="offcanvas-header">
-                            <h5 class="offcanvas-title text-primary h1" id="offcanvasNavbarLabel">Acessar</h5>
+                            <h5 class="offcanvas-title text-primary h1" id="offcanvasNavbarLabel">Áreas de acesso:</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                         </div>
                         <div class="row col-lg-12 offcanvas-body">
@@ -96,26 +96,49 @@
             <h3>@ViewBag.NomeLogado</h3>
             <hr />
             <br />
-            <h4>@ViewBag.Title</h4>
+            <h3>@ViewBag.Title</h3>
             <p>
-                <div class="text-info"><b>Informações gerais do sistema. </b></div>
+                <h4 class="text-primary"><b>Informações gerais do sistema. </b></h4>
             </p>
             <hr />
             <br />
-            <div class="divProdutos">
-                <h3>Produtos</h3>
+            <div class="row col-lg-12">
+                <div class="card form-group col-lg-6 divProdutos"><h3 class="text-info text-center"><br />Produtos</h3><div id="chart_divProdutos"></div></div>
+                <div class="col-lg-1"></div>
+                <div class="card form-group col-lg-5">
+                    <br />
+                    <div class="row col-lg-12 form-group">
+                        <label class="h4 text-info">Total de Funcionários:</label>
+                        <label class="h4 text-success"></label>
+                    </div>
+                    <div class="row col-lg-12 form-group">
+                        <label class="h4 text-info">Total de Fornecedores:</label>
+                        <label class="h4 text-success"></label>
+                    </div>
+                    <div class="row col-lg-12 form-group">
+                        <label class="h4 text-info">Total de Produtos:</label>
+                        <label class="h4 text-success"></label>
+                    </div>
+                    <div class="row col-lg-12 form-group">
+                        <label class="h4 text-info">Total de Vendas:</label>
+                        <label class="h4 text-success"></label>
+                    </div>
+                </div>
+            </div>
 
-                <!--Div that will hold the pie chart-->
-                <div id="chart_div"></div>
+            <div class="row col-lg-12">
+                <div class="card form-group divVendas"><h3 class="text-info text-center"><br />Vendas</h3><div id="chart_divVendas"></div></div>
             </div>
         </div>
     </div>
 
     <footer class="bg-light border-top footer text-muted">
         <div class="container">
-            <p>
-                SGVE - Sistema Gerenciador de Vendas e Estoque
-            </p>
+            <div class="form-group">
+                <p class="h4">
+                    SGVE - Sistema Gerenciador de Vendas e Estoque
+                </p>
+            </div>
         </div>
     </footer>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -127,18 +150,12 @@
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
     var vLista_Produtos = @Html.Raw(Json.Serialize(ViewBag.Lista_Produtos));
-    // Load the Visualization API and the corechart package.
+
     google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart_Produtos);
 
-    // Set a callback to run when the Google Visualization API is loaded.
-    google.charts.setOnLoadCallback(drawChart);
-
-    // Callback that creates and populates a data table,
-    // instantiates the pie chart, passes in the data and
-    // draws it.
-    function drawChart() {
+    function drawChart_Produtos() {
         if (vLista_Produtos != null) {
-            // Create the data table.
             var data = new google.visualization.DataTable();
             data.addColumn('string', 'Topping');
             data.addColumn('number', 'Slices');
@@ -148,15 +165,41 @@
                 ]);
             });
 
-            // Set chart options
             var options = {
-                'title': 'Quantidade de Produtos disponíveis em Estoque',
-                'width': 600,
-                'height': 500
+                'title': 'Quantidade de Produtos disponíveis em Estoque:',
+                'width': 500,
+                'height': 400
             };
 
-            // Instantiate and draw our chart, passing in some options.
-            var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+            var chart = new google.visualization.PieChart(document.getElementById('chart_divProdutos'));
+            chart.draw(data, options);
+        }
+    }
+
+    var vLista_Vendas = @Html.Raw(Json.Serialize(ViewBag.Lista_Vendas));
+
+    google.charts.load('current', { 'packages': ['bar'] });
+    google.charts.setOnLoadCallback(drawChart_Vendas);
+
+    function drawChart_Vendas() {
+        if (vLista_Vendas != null) {
+        console.log(vLista_Vendas);
+            var data = new google.visualization.DataTable();
+            data.addColumn('string', 'Data da Venda');
+            data.addColumn('number', 'Total');
+            vLista_Vendas.forEach(function (item) {
+                data.addRows([
+                    [item.datA_VENDA, item.totaL_VENDA],
+                ]);
+            });
+
+            var options = {
+                'title': 'Total de Vendas realizadas até o momento:',
+                'width': 400,
+                'height': 300
+            };
+
+            var chart = new google.charts.Bar(document.getElementById('chart_divVendas'));
             chart.draw(data, options);
         }
     }

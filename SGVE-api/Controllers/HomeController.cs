@@ -116,6 +116,51 @@ namespace SGVE_api.Controllers
             }
         }
 
+        [HttpGet]
+        [ProducesResponseType(typeof(List<Vendas>), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(Retorno), StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(typeof(Retorno), StatusCodes.Status500InternalServerError)]
+        [Route("api/Home/Data_Total_Vendas/")]
+        public IActionResult Get_Data_Total_Vendas()
+        {
+            try
+            {
+                var retorno = new List<Vendas>();
+
+                ConnectionMySql cms = new ConnectionMySql();
+
+                var oDS = cms.ExecuteQuery(1, "SELECT " +
+                                                    "  DATA_VENDA        AS DATA_VENDA  " +
+                                                    ", SUM(TOTAL_VENDA)  AS TOTAL_VENDA " +
+                                              "FROM VENDA GROUP BY DATA_VENDA; ");
+
+                foreach (DataRow row in oDS.Tables[0].Rows)
+                {
+                    retorno.Add(new Vendas()
+                    {
+                        DATA_VENDA = DateTime.Parse(RetornoDataSet.ConsultaDataRow(row, "DATA_VENDA")).ToString("dd/MM/yyyy"),
+                        TOTAL_VENDA = double.Parse(RetornoDataSet.ConsultaDataRow(row, "TOTAL_VENDA")),
+                    });
+                }
+
+                if (retorno.Count > 0)
+                {
+                    return Ok(retorno);
+                }
+                else
+                {
+                    return BadRequest(retorno);
+                }
+            }
+            catch (Exception ex)
+            {
+                ERRO objErro = new ERRO();
+                objErro.strErro = "Erro Interno 1.3: " + ex.Message;
+                return StatusCode((int)StatusCodes.Status500InternalServerError, objErro.strErro);
+            }
+        }
+
         [HttpPost("api/Home/AdicionaUsuario")]
         public JsonResult Post_DadosUsuario(Usuario parametros)
         {
