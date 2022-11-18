@@ -12,7 +12,7 @@ namespace SGVE_api.Repository
         
         Task<FuncionarioVO> Update(FuncionarioVO vo);
         
-        Task DeleteById(long id);
+        Task<bool> DeleteById(long id);
 
         //Task<FuncionarioVO> FindByName(string name);
     }

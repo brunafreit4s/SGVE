@@ -1,6 +1,9 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\SGVE",
+    "\\SGVE\\SGVE-api"
   ],
+  "SelectedNode": "\\SGVE\\SGVE-api\\Program.cs",
   "PreviewInSolutionExplorer": false
 }
