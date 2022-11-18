@@ -1,21 +1,12 @@
 ﻿using SGVE_models.Base;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SGVE_models.Models
 {
     [Table("TB_FUNCIONARIO")]
     public class Funcionario : BaseEntity
     {
-        [Key]
-        [Column("ID_FUNCIONARIO")]
-        public int? Id { get; set; }
-
         [Column("V_CPF")]
         [Required]
         [StringLength(11)]
