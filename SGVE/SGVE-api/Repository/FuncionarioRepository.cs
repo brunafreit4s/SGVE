@@ -25,8 +25,7 @@ namespace SGVE_api.Repository
 
         public async Task<FuncionarioVO> FindById(long id)
         {
-            Funcionario funcionario 
-                = await _context.Funcionarios.Where(f => f.Id == id).FirstOrDefaultAsync();
+            Funcionario funcionario = await _context.Funcionarios.Where(f => f.Id == id).FirstOrDefaultAsync() ?? new Funcionario();
 
             return _mapper.Map<FuncionarioVO>(funcionario);
         }
@@ -52,17 +51,16 @@ namespace SGVE_api.Repository
         {
             try
             {
-                Funcionario funcionario =
-                    await _context.Funcionarios.Where(f => f.Id == id).FirstOrDefaultAsync();
+                Funcionario funcionario = await _context.Funcionarios.Where(f => f.Id == id).FirstOrDefaultAsync() ?? new Funcionario();
                 
-                if (funcionario == null) return false;
+                if (funcionario.Id <= 0) return false;
 
                 _context.Funcionarios.Remove(funcionario);
                 await _context.SaveChangesAsync();
 
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 return false;
             }

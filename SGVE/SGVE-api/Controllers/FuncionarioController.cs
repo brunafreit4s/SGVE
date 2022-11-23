@@ -29,8 +29,35 @@ namespace SGVE_api.Controllers
         public async Task<IActionResult> FindById(long id)
         {
             var funcionario = await _repository.FindById(id);
-            if (funcionario == null) return NotFound();
+            if (funcionario.Id <= 0) return NotFound();
             return Ok(funcionario);
+        }
+
+        [HttpPost]
+        [Route("Adicionar")]
+        public async Task<ActionResult<FuncionarioVO>> Create(FuncionarioVO vo)
+        {
+            if (vo == null) return BadRequest();
+            var funcionario = await _repository.Create(vo);
+            return Ok(funcionario);
+        }
+        
+        [HttpPut]
+        [Route("Alterar")]
+        public async Task<ActionResult<FuncionarioVO>> ActionResult(FuncionarioVO vo)
+        {
+            if (vo == null) return BadRequest();
+            var funcionario = await _repository.Update(vo);
+            return Ok(funcionario);
+        }
+
+        [HttpDelete]
+        [Route("Excluir")]
+        public async Task<ActionResult> Delete(long id)
+        {
+            var status = await _repository.DeleteById(id);
+            if (!status) return BadRequest();
+            return Ok(status);
         }
     }
 }
