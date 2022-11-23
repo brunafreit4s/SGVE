@@ -1,6 +1,9 @@
 # Build and Release Folders
 bin-debug/
 bin-release/
+ProjectEvaluation/
+SGVE/DesignTimeBuild/
+SGVE/v17
 [Oo]bj/
 [Bb]in/
 
@@ -13,6 +16,9 @@ bin-release/
 *.ipa
 *.apk
 *.sqllite
+*.suo
+*.futdcache.v1
+
 
 # Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
 # should NOT be excluded as they contain compiler settings and other important

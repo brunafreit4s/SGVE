@@ -62,7 +62,7 @@ namespace SGVEapi.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("DT_CADASTRO");
 
-                    b.Property<DateTime>("Data_Desligamento")
+                    b.Property<DateTime?>("Data_Desligamento")
                         .HasMaxLength(20)
                         .HasColumnType("datetime2")
                         .HasColumnName("DT_DESLIGAMENTO");

@@ -17,7 +17,7 @@
         public string? Email { get; set; }
         public string? Senha { get; set; }
         public DateTime Data_Cadastro { get; set; }
-        public DateTime Data_Desligamento { get; set; }
+        public DateTime? Data_Desligamento { get; set; }
         public int Id_Cargo { get; set; }
     }
 }

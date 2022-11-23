@@ -12,8 +12,8 @@ using SGVE_models.Context;
 namespace SGVEapi.Migrations
 {
     [DbContext(typeof(SqlContext))]
-    [Migration("20221118173246_AddFuncionarioDataTableOnDB")]
-    partial class AddFuncionarioDataTableOnDB
+    [Migration("20221123191744_addFuncionarioDataTableDB")]
+    partial class addFuncionarioDataTableDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,12 +27,12 @@ namespace SGVEapi.Migrations
 
             modelBuilder.Entity("SGVE_models.Models.Funcionario", b =>
                 {
-                    b.Property<int?>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
+                        .HasColumnType("bigint")
                         .HasColumnName("ID_FUNCIONARIO");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int?>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Celular")
                         .HasMaxLength(15)
@@ -65,7 +65,7 @@ namespace SGVEapi.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("DT_CADASTRO");
 
-                    b.Property<DateTime>("Data_Desligamento")
+                    b.Property<DateTime?>("Data_Desligamento")
                         .HasMaxLength(20)
                         .HasColumnType("datetime2")
                         .HasColumnName("DT_DESLIGAMENTO");

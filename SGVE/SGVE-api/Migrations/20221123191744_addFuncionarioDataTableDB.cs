@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SGVEapi.Migrations
 {
     /// <inheritdoc />
-    public partial class AddFuncionarioDataTableOnDB : Migration
+    public partial class addFuncionarioDataTableDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +15,7 @@ namespace SGVEapi.Migrations
                 name: "TB_FUNCIONARIO",
                 columns: table => new
                 {
-                    IDFUNCIONARIO = table.Column<int>(name: "ID_FUNCIONARIO", type: "int", nullable: false)
+                    IDFUNCIONARIO = table.Column<long>(name: "ID_FUNCIONARIO", type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     VCPF = table.Column<string>(name: "V_CPF", type: "nvarchar(11)", maxLength: 11, nullable: false),
                     VNOME = table.Column<string>(name: "V_NOME", type: "nvarchar(500)", maxLength: 500, nullable: false),
@@ -31,7 +31,7 @@ namespace SGVEapi.Migrations
                     VEMAIL = table.Column<string>(name: "V_EMAIL", type: "nvarchar(100)", maxLength: 100, nullable: true),
                     VSENHA = table.Column<string>(name: "V_SENHA", type: "nvarchar(20)", maxLength: 20, nullable: true),
                     DTCADASTRO = table.Column<DateTime>(name: "DT_CADASTRO", type: "datetime2", maxLength: 20, nullable: false),
-                    DTDESLIGAMENTO = table.Column<DateTime>(name: "DT_DESLIGAMENTO", type: "datetime2", maxLength: 20, nullable: false),
+                    DTDESLIGAMENTO = table.Column<DateTime>(name: "DT_DESLIGAMENTO", type: "datetime2", maxLength: 20, nullable: true),
                     FKIDCARGO = table.Column<int>(name: "FK_ID_CARGO", type: "int", maxLength: 15, nullable: false)
                 },
                 constraints: table =>

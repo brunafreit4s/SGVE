@@ -66,7 +66,7 @@ namespace SGVE_models.Models
 
         [Column("DT_DESLIGAMENTO")]
         [StringLength(20)]
-        public DateTime Data_Desligamento { get; set; }
+        public DateTime? Data_Desligamento { get; set; }
 
         [Column("FK_ID_CARGO")]
         [StringLength(15)]
