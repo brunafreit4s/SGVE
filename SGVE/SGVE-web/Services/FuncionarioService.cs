@@ -8,7 +8,7 @@ namespace SGVE_web.Services
     public class FuncionarioService : IFuncionarioService
     {
         private readonly HttpClient _client;
-        public const string BasePath = "api/Funcionario"; //caminho base
+        public const string BasePath = "api/Funcionario/Consultar"; //caminho base
 
         public FuncionarioService(HttpClient client)
         {

@@ -20,7 +20,8 @@ namespace SGVE_models.Context
             modelBuilder.Entity<Funcionario>().HasData(new Funcionario
             {
                 Id = 2,
-                Nome = "João"
+                Nome = "João",
+                Cpf = "11122233344"
                 /*
                  .
                  .
@@ -32,7 +33,8 @@ namespace SGVE_models.Context
             modelBuilder.Entity<Funcionario>().HasData(new Funcionario
             {
                 Id = 3,
-                Nome = "Pedro"
+                Nome = "Pedro",
+                Cpf = "55566677799"
                 /*
                  .
                  .

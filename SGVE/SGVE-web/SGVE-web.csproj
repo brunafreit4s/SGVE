@@ -7,8 +7,4 @@
     <RootNamespace>SGVE_web</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Util\" />
-  </ItemGroup>
-
 </Project>

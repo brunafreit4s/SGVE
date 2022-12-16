@@ -35,7 +35,7 @@ namespace SGVE_api.Controllers
 
         [HttpPost]
         [Route("Adicionar")]
-        public async Task<ActionResult<FuncionarioVO>> Create(FuncionarioVO vo)
+        public async Task<ActionResult<FuncionarioVO>> Create([FromBody]FuncionarioVO vo)
         {
             if (vo == null) return BadRequest();
             var funcionario = await _repository.Create(vo);
@@ -44,7 +44,7 @@ namespace SGVE_api.Controllers
         
         [HttpPut]
         [Route("Alterar")]
-        public async Task<ActionResult<FuncionarioVO>> ActionResult(FuncionarioVO vo)
+        public async Task<ActionResult<FuncionarioVO>> Update([FromBody] FuncionarioVO vo)
         {
             if (vo == null) return BadRequest();
             var funcionario = await _repository.Update(vo);
