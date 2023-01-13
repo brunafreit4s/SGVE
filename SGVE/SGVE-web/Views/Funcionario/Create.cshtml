@@ -1,0 +1,63 @@
+﻿@model FuncionarioModel
+
+@{
+    ViewData["Title"] = "Adicionar Funcionário";
+}
+
+<form asp-action="Create">
+    <br/>
+    <div class="container border p-3">
+        <h1 class="text-primary">Adicionar um novo Funcionário</h1>
+        <hr/>
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="col-2"><label asp-for="Cpf" class="control-label pt-2" style="font-size=20px;"></label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Cpf" class="form-control" />
+                <span asp-validation-for="Cpf" class="text-danger"></span>
+            </div>
+            
+            <div class="col-2"><label asp-for="Nome" class="control-label pt-2" style="font-size=20px;"></label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Nome" class="form-control" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+
+            <div class="col-2"><label asp-for="Rg" class="control-label pt-2" style="font-size=20px;"></label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Rg" class="form-control" />
+                <span asp-validation-for="Rg" class="text-danger"></span>
+            </div>
+
+            <div class="col-2"><label asp-for="Data_Nascimento" class="control-label pt-2" style="font-size=20px;"></label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Data_Nascimento" class="form-control" />
+                <span asp-validation-for="Data_Nascimento" class="text-danger"></span>
+            </div>
+
+            <div class="col-2"><label asp-for="DDD_Celular" class="control-label pt-2" style="font-size=20px;"></label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="DDD_Celular" class="form-control" />
+                <span asp-validation-for="DDD_Celular" class="text-danger"></span>
+            </div>
+
+            <div class="col-2"><label asp-for="Celular" class="control-label pt-2" style="font-size=20px;"></label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Celular" class="form-control" />
+                <span asp-validation-for="Celular" class="text-danger"></span>
+            </div>
+
+            <div class="col-5 offset-2">
+                <a asp-action="Index" class="btn-primary btn form-control">Voltar</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Adicionar" class="btn btn-sucess form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+     <partial name="_ValidationScriptsPartial"></partial>
+}
