@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace SGVEapi.Migrations
 {
     /// <inheritdoc />
-    public partial class addFuncionarioDataTableDB : Migration
+    public partial class addFuncionarioDataTableOnDB : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -37,6 +39,15 @@ namespace SGVEapi.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TB_FUNCIONARIO", x => x.IDFUNCIONARIO);
+                });
+
+            migrationBuilder.InsertData(
+                table: "TB_FUNCIONARIO",
+                columns: new[] { "ID_FUNCIONARIO", "V_CELULAR", "V_COMPLEMENTO", "V_CPF", "V_DDD_CELULAR", "V_DDD_TELEFONE", "DT_CADASTRO", "DT_DESLIGAMENTO", "DT_NASCIMENTO", "V_EMAIL", "FK_ID_CARGO", "FK_ID_ENDERECO", "V_NOME", "I_NUM_ENDERECO", "V_RG", "V_SENHA", "V_TELEFONE" },
+                values: new object[,]
+                {
+                    { 2L, null, null, "11122233344", null, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 0, 0, "João", null, null, null, null },
+                    { 3L, null, null, "55566677799", null, null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 0, 0, "Pedro", null, null, null, null }
                 });
         }
 

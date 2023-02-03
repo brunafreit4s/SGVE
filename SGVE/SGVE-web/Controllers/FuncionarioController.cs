@@ -35,5 +35,40 @@ namespace SGVE_web.Controllers
 
             return View(model);
         }
+
+        public async Task<ActionResult> Update(int id)
+        {
+            var funcionario = await _funcionarioService.FindByIdFuncionario(id);
+            if (funcionario != null) return View(funcionario);
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Update(FuncionarioModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var response = await _funcionarioService.UpdateFuncionario(model);
+                if (response != null) return RedirectToAction(nameof(Index));
+            }
+
+            return View(model);
+        }
+        
+        public async Task<ActionResult> Delete(int id)
+        {
+            var funcionario = await _funcionarioService.FindByIdFuncionario(id);
+            if (funcionario != null) return View(funcionario);
+            return NotFound();
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Delete(FuncionarioModel model)
+        {
+            var response = await _funcionarioService.DeleteFuncionario(model.Id);
+            if (response) return RedirectToAction(nameof(Index));
+
+            return View(model);
+        }
     }
 }

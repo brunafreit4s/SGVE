@@ -1,13 +1,16 @@
 ﻿@model FuncionarioModel
 
 @{
-    ViewData["Title"] = "Adicionar Funcionário";
+    ViewData["Title"] = "Alterar Funcionário";
 }
 
-<form asp-action="Create">
+<form asp-action="Update">
+
+    <input asp-for="Id" hidden>
+
     <br/>
     <div class="container border p-3">
-        <h1 class="text-primary">Adicionar um novo Funcionário</h1>
+        <h1 class="text-primary">Atualizar dados do Funcionário</h1>
         <hr/>
         <div class="row">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -46,7 +49,7 @@
                 <a asp-action="Index" class="btn-primary btn form-control">Voltar</a>
             </div>
             <div class="col-5">
-                <input type="submit" value="Adicionar" class="btn btn-sucess form-control" />
+                <input type="submit" value="Salvar" class="btn btn-sucess form-control" />
             </div>
         </div>
     </div>

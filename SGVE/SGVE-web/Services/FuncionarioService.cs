@@ -8,7 +8,7 @@ namespace SGVE_web.Services
     public class FuncionarioService : IFuncionarioService
     {
         private readonly HttpClient _client;
-        public const string BasePath = "api/Funcionario/Consultar"; //caminho base
+        public const string BasePath = "api/Funcionario"; //caminho base
 
         public FuncionarioService(HttpClient client)
         {
@@ -17,33 +17,33 @@ namespace SGVE_web.Services
 
         public async Task<IEnumerable<FuncionarioModel>> FindAllFuncionarios()
         {
-            var response = await _client.GetAsync(BasePath);
+            var response = await _client.GetAsync($"{BasePath}/Consultar");
             return await response.ReadContentAsync<List<FuncionarioModel>>();
         }
 
         public async Task<FuncionarioModel> FindByIdFuncionario(long id)
         {
-            var response = await _client.GetAsync($"{BasePath}/{id}");
+            var response = await _client.GetAsync($"{BasePath}/Consultar/{id}");
             return await response.ReadContentAsync<FuncionarioModel>();
         }
 
         public async Task<FuncionarioModel> CreateFuncionario(FuncionarioModel model)
         {
-            var response = await _client.PostAsJson(BasePath, model);
+            var response = await _client.PostAsJson($"{BasePath}/Adicionar", model);
             if (response.IsSuccessStatusCode) return await response.ReadContentAsync<FuncionarioModel>();
             else throw new Exception("Ocorreu algum erro na chamada da API!");
         }
 
         public async Task<FuncionarioModel> UpdateFuncionario(FuncionarioModel model)
         {
-            var response = await _client.PutAsJson(BasePath, model);
+            var response = await _client.PutAsJson($"{BasePath}/Alterar", model);
             if (response.IsSuccessStatusCode) return await response.ReadContentAsync<FuncionarioModel>();
             else throw new Exception("Ocorreu algum erro na chamada da API!");
         }
 
         public async Task<bool> DeleteFuncionario(long id)
         {
-            var response = await _client.DeleteAsync($"{BasePath}/{id}");
+            var response = await _client.DeleteAsync($"{BasePath}/Excluir/{id}");
             if(response.IsSuccessStatusCode) return await response.ReadContentAsync<bool>();
             else throw new Exception("Ocorreu algum erro na chamada da API!");
         }

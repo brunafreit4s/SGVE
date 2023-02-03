@@ -12,8 +12,8 @@ using SGVE_models.Context;
 namespace SGVEapi.Migrations
 {
     [DbContext(typeof(SqlContext))]
-    [Migration("20221123191744_addFuncionarioDataTableDB")]
-    partial class addFuncionarioDataTableDB
+    [Migration("20230203205238_addFuncionarioDataTableOnDB")]
+    partial class addFuncionarioDataTableOnDB
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -118,6 +118,28 @@ namespace SGVEapi.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("TB_FUNCIONARIO");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 2L,
+                            Cpf = "11122233344",
+                            DataCadastro = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataNascimento = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCargo = 0,
+                            IdEndereco = 0,
+                            Nome = "João"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            Cpf = "55566677799",
+                            DataCadastro = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataNascimento = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IdCargo = 0,
+                            IdEndereco = 0,
+                            Nome = "Pedro"
+                        });
                 });
 #pragma warning restore 612, 618
         }

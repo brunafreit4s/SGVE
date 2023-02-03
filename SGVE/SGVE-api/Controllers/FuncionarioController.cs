@@ -38,6 +38,9 @@ namespace SGVE_api.Controllers
         public async Task<ActionResult<FuncionarioVO>> Create([FromBody]FuncionarioVO vo)
         {
             if (vo == null) return BadRequest();
+
+            vo.Data_Cadastro = DateTime.Now;
+
             var funcionario = await _repository.Create(vo);
             return Ok(funcionario);
         }
@@ -52,7 +55,7 @@ namespace SGVE_api.Controllers
         }
 
         [HttpDelete]
-        [Route("Excluir")]
+        [Route("Excluir/{id}")]
         public async Task<ActionResult> Delete(long id)
         {
             var status = await _repository.DeleteById(id);
