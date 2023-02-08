@@ -25,3 +25,4 @@ SGVE/.vs/SGVE
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
 /SGVE/.vs/SGVE/v17/.suo
+/SGVE/.vs/SGVE/DesignTimeBuild/.dtbcache.v2
