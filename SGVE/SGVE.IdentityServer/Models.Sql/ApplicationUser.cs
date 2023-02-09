@@ -4,6 +4,6 @@ namespace SGVE.IdentityServer.Models.Sql
 {
     public class ApplicationUser : IdentityUser
     {
-        private string Nome { get; set; }
+        public string Nome { get; set; }
     }
 }
