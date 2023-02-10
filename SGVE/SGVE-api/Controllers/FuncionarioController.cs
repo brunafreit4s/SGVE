@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SGVE_api.Data.ValueObjects;
 using SGVE_api.Repository;
+using SGVE_api.Util;
 
 namespace SGVE_api.Controllers
 {
@@ -17,6 +19,7 @@ namespace SGVE_api.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("Consultar")]
         public async Task<ActionResult<IEnumerable<FuncionarioVO>>> FindAll()
         {
@@ -25,6 +28,7 @@ namespace SGVE_api.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         [Route("Consultar/{id}")]
         public async Task<IActionResult> FindById(long id)
         {
@@ -34,6 +38,7 @@ namespace SGVE_api.Controllers
         }
 
         [HttpPost]
+        [Authorize]
         [Route("Adicionar")]
         public async Task<ActionResult<FuncionarioVO>> Create([FromBody]FuncionarioVO vo)
         {
@@ -46,6 +51,7 @@ namespace SGVE_api.Controllers
         }
         
         [HttpPut]
+        [Authorize]
         [Route("Alterar")]
         public async Task<ActionResult<FuncionarioVO>> Update([FromBody] FuncionarioVO vo)
         {
@@ -56,6 +62,7 @@ namespace SGVE_api.Controllers
 
         [HttpDelete]
         [Route("Excluir/{id}")]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<ActionResult> Delete(long id)
         {
             var status = await _repository.DeleteById(id);

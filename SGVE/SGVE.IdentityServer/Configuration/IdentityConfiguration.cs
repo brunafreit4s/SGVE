@@ -16,6 +16,7 @@ namespace SGVE.IdentityServer.Configuration
             new IdentityResources.Profile(),
         };
 
+        /* Configurações de segurança (relação 1-1) */
         public static IEnumerable<ApiScope> ApiScopes => new List<ApiScope> {
             new ApiScope("SGVE", "SGVE - Server"),
             new ApiScope(name: "read", "Read data."),

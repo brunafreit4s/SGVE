@@ -10,6 +10,25 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
+/* Adiciona autenticação */ /* Configurações de segurança (relação 1-1) */
+builder.Services.AddAuthentication("Bearer")
+    .AddJwtBearer(options =>
+    {
+        options.Authority = "https://localhost:4430/";
+        options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        {
+            ValidateAudience = false
+        };
+    });
+
+/* Adiciona política de autorização */ /* Configurações de segurança (relação 1-1) */
+builder.Services.AddAuthorization(options => {
+    options.AddPolicy("ApiScope", policy => {
+        policy.RequireAuthenticatedUser();
+        policy.RequireClaim("scope", "SGVE");
+    });
+});
+
 // Add connection configurations
 builder.Services.AddDbContext<SqlContext>(options =>
                         options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerConnectionString")));
@@ -41,6 +60,10 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseHttpsRedirection();
+
+/* inicializa configurações de autenticação */
+app.UseAuthentication();
+
 app.UseAuthorization();
 
 app.MapControllers();

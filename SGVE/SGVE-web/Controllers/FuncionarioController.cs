@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SGVE_web.Models;
 using SGVE_web.Services.IServices;
+using SGVE_web.Util;
 
 namespace SGVE_web.Controllers
-{
+{    
     public class FuncionarioController : Controller
     {
         private readonly IFuncionarioService _funcionarioService;
@@ -13,6 +15,7 @@ namespace SGVE_web.Controllers
             _funcionarioService = funcionarioService ?? throw new ArgumentNullException(nameof(funcionarioService));
         }
 
+        [Authorize]
         public async Task<ActionResult> Index()
         {
             var funcionarios = await _funcionarioService.FindAllFuncionarios();
@@ -24,6 +27,7 @@ namespace SGVE_web.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> Create(FuncionarioModel model)
         {
@@ -43,6 +47,7 @@ namespace SGVE_web.Controllers
             return NotFound();
         }
 
+        [Authorize]
         [HttpPost]
         public async Task<ActionResult> Update(FuncionarioModel model)
         {
@@ -54,7 +59,8 @@ namespace SGVE_web.Controllers
 
             return View(model);
         }
-        
+
+        [Authorize]
         public async Task<ActionResult> Delete(int id)
         {
             var funcionario = await _funcionarioService.FindByIdFuncionario(id);
@@ -63,6 +69,7 @@ namespace SGVE_web.Controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = Roles.Admin)]
         public async Task<ActionResult> Delete(FuncionarioModel model)
         {
             var response = await _funcionarioService.DeleteFuncionario(model.Id);
