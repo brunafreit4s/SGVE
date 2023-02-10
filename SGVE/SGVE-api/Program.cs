@@ -20,7 +20,7 @@ builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 /* Add Injection repository */
-var teste = builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
+builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

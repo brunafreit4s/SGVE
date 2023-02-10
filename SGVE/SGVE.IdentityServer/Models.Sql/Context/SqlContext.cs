@@ -7,5 +7,6 @@ namespace SGVE.IdentityServer.Models.Sql.Context
     {
         public SqlContext(DbContextOptions<SqlContext> options) : base(options) { }
 
+        public DbSet<ApplicationUser> ApplicationUser { get; set;}
     }
 }

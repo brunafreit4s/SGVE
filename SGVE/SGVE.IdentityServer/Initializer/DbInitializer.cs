@@ -20,7 +20,7 @@ namespace SGVE.IdentityServer.Initializer
             _role = role;
         }
 
-        public void Initialise()
+        public void Initialize()
         {
             /* Verifica se no banco existe alguém com perfil de Admin */
             if(_role.FindByNameAsync(IdentityConfiguration.Admin).Result != null ) { return; } /* se já fez a carga, sai da verificação */
@@ -32,38 +32,38 @@ namespace SGVE.IdentityServer.Initializer
             {
                 UserName = "Bruna-Admin",
                 Email = "gerente@geral.com",
-                EmailConfirmed = true,
+                EmailConfirmed = true,                
                 PhoneNumber = "+55 (11) 12345-6789",
-                Nome = "Bruna Admin"
+                Name = "Bruna Admin"              
             };
 
             _user.CreateAsync(admin, "Admin123$").GetAwaiter().GetResult();
             _user.AddToRoleAsync(admin, IdentityConfiguration.Admin).GetAwaiter().GetResult();
 
             var adminClaims = _user.AddClaimsAsync(admin, new Claim[]{
-                new Claim(JwtClaimTypes.Name, admin.Nome),
-                new Claim(JwtClaimTypes.GivenName, admin.Nome),
-                new Claim(JwtClaimTypes.FamilyName, admin.Nome),
+                new Claim(JwtClaimTypes.Name, admin.Name),
+                new Claim(JwtClaimTypes.GivenName, admin.Name),
+                new Claim(JwtClaimTypes.FamilyName, admin.Name),
                 new Claim(JwtClaimTypes.Role, IdentityConfiguration.Admin)
             }).Result;
 
             /*Configurações para client*/
             ApplicationUser client = new ApplicationUser()
             {
-                UserName = "Bruna-client",
-                Email = "gerente@geral.com",
+                UserName = "Claudia-client",
+                Email = "client@geral.com",
                 EmailConfirmed = true,
                 PhoneNumber = "+55 (11) 12345-6789",
-                Nome = "Bruna client"
+                Name = "Claudia Client",
             };
 
             _user.CreateAsync(client, "Client123$").GetAwaiter().GetResult();
             _user.AddToRoleAsync(client, IdentityConfiguration.Client).GetAwaiter().GetResult();
 
             var clienteClaims = _user.AddClaimsAsync(client, new Claim[]{
-                new Claim(JwtClaimTypes.Name, client.Nome),
-                new Claim(JwtClaimTypes.GivenName, client.Nome),
-                new Claim(JwtClaimTypes.FamilyName, client.Nome),
+                new Claim(JwtClaimTypes.Name, client.Name),
+                new Claim(JwtClaimTypes.GivenName, client.Name),
+                new Claim(JwtClaimTypes.FamilyName, client.Name),
                 new Claim(JwtClaimTypes.Role, IdentityConfiguration.Client)
             }).Result;
         }
