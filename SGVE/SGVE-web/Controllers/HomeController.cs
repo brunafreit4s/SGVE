@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SGVE_web.Models;
 using System.Diagnostics;
 
@@ -27,6 +28,17 @@ namespace SGVE_web.Controllers
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        [Authorize]
+        public async Task<ActionResult> Login()
+        {
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Logout()
+        {
+            return SignOut("Cookies", "oidc"); // Remove os cookies de acesso. oidc: open id connection
         }
     }
 }

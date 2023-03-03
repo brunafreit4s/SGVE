@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.IdentityModel.Logging;
 using SGVE_web.Services;
 using SGVE_web.Services.IServices;
 
@@ -39,6 +40,7 @@ var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
+    IdentityModelEventSource.ShowPII = true;
 }
 app.UseHttpsRedirection();
 app.UseStaticFiles();

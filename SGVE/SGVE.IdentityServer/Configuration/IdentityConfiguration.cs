@@ -36,11 +36,11 @@ namespace SGVE.IdentityServer.Configuration
 
             new Client
             {
-                ClientId = "sgve",
+                ClientId = "SGVE",
                 ClientSecrets = { new Secret("my_super_scret".Sha256()) },
                 AllowedGrantTypes = GrantTypes.Code,
-                RedirectUris = { "http://localhost:4430/signin-oidc" },
-                PostLogoutRedirectUris = { "http://localhost:4430/signout-callback-oidc" },
+                RedirectUris = { "https://localhost:4430/signin-oidc" },
+                PostLogoutRedirectUris = { "https://localhost:4430/signout-callback-oidc" },
                 AllowedScopes = new List<string> { 
                     IdentityServerConstants.StandardScopes.OpenId,  
                     IdentityServerConstants.StandardScopes.Email,  

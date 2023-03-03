@@ -14,7 +14,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<SqlContext>(options =>
                         options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerConnectionString")));
 
-builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<SqlContext>().AddDefaultTokenProviders();
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<SqlContext>().AddDefaultTokenProviders(); /* Injeção de dependência que é utilizana na classe AccountController.cs */
 
 /* Configurações do Scope */
 var builderServices = builder.Services.AddIdentityServer(options =>

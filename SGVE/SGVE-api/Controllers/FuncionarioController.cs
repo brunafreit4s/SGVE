@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SGVE_api.Data.ValueObjects;
 using SGVE_api.Repository;
 using SGVE_api.Util;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace SGVE_api.Controllers
 {
@@ -20,6 +21,12 @@ namespace SGVE_api.Controllers
 
         [HttpGet]
         [Authorize]
+        [SwaggerOperation(Summary = "Retorna lista de funcionários", Description = "Retornos: <br>" +
+            "HTTP 200: Lista de funcionários existentes." + "<br>" +
+            "HTTP 400: Erro de validação." + "<br>" +
+            "HTTP 401: Acesso não autorizado." + "<br>" +
+            "HTTP 404: Nenhum registro encontrado." + "<br>" +
+            "HTTP 500: Erro de servidor.")]
         [Route("Consultar")]
         public async Task<ActionResult<IEnumerable<FuncionarioVO>>> FindAll()
         {
