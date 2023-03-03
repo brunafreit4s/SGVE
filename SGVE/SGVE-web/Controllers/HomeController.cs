@@ -31,7 +31,7 @@ namespace SGVE_web.Controllers
         }
 
         [Authorize]
-        public async Task<ActionResult> Login()
+        public async Task<IActionResult> Login()
         {
             return RedirectToAction(nameof(Index));
         }
