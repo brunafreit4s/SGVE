@@ -27,7 +27,7 @@ var builderServices = builder.Services.AddIdentityServer(options =>
 })
     .AddInMemoryIdentityResources(IdentityConfiguration.IdentityResources)
     .AddInMemoryApiScopes(IdentityConfiguration.ApiScopes)
-    .AddInMemoryClients(IdentityConfiguration.Clients)
+    .AddInMemoryClients(IdentityConfiguration.Clients)    
     .AddAspNetIdentity<ApplicationUser>();
 
 /* Adiciona independency injection */
@@ -55,12 +55,12 @@ app.UseIdentityServer();
 
 app.UseAuthorization();
 
+/* Executa o initializer */
 vInitializer.Initialize();
 
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-/* Executa o initializer */
 
 app.Run();

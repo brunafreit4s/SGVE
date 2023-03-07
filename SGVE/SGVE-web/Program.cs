@@ -18,14 +18,14 @@ builder.Services.AddAuthentication(options =>
     .AddOpenIdConnect("oidc", options => {
         options.Authority = builder.Configuration["ServicesUrls:IdentityServer"];
         options.GetClaimsFromUserInfoEndpoint = true;
-        options.ClientId = "SGVE"; /* ClientId criada em IdentityConfiguration */
+        options.ClientId = "scopeSGVE"; /* ClientId criada em IdentityConfiguration */
         options.ClientSecret = "my_super_scret"; /* ClientSecret criada em IdentityConfiguration */
         options.ResponseType = "code";
         options.ClaimActions.MapJsonKey("role", "role", "role");
         options.ClaimActions.MapJsonKey("sub", "sub", "sub");
         options.TokenValidationParameters.NameClaimType = "name";
         options.TokenValidationParameters.RoleClaimType = "role";
-        options.Scope.Add("SGVE");
+        options.Scope.Add("scopeSGVE");
         options.SaveTokens = true;
     });
 
@@ -44,12 +44,10 @@ if (!app.Environment.IsDevelopment())
 }
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
 
 /* inicializa configurações de autenticação */
 app.UseAuthentication();
-
 app.UseAuthorization();
 
 app.MapControllerRoute(

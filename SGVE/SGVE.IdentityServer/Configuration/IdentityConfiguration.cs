@@ -18,7 +18,7 @@ namespace SGVE.IdentityServer.Configuration
 
         /* Configurações de segurança (relação 1-1) */
         public static IEnumerable<ApiScope> ApiScopes => new List<ApiScope> {
-            new ApiScope("SGVE", "SGVE - Server"),
+            new ApiScope("scopeSGVE", "SGVE - Server"),
             new ApiScope(name: "read", "Read data."),
             new ApiScope(name: "write", "Write data."),
             new ApiScope(name: "delete", "Delete data."),
@@ -36,7 +36,7 @@ namespace SGVE.IdentityServer.Configuration
 
             new Client
             {
-                ClientId = "SGVE",
+                ClientId = "scopeSGVE",
                 ClientSecrets = { new Secret("my_super_scret".Sha256()) },
                 AllowedGrantTypes = GrantTypes.Code,
                 RedirectUris = { "https://localhost:4430/signin-oidc" },
@@ -44,7 +44,8 @@ namespace SGVE.IdentityServer.Configuration
                 AllowedScopes = new List<string> { 
                     IdentityServerConstants.StandardScopes.OpenId,  
                     IdentityServerConstants.StandardScopes.Email,  
-                    IdentityServerConstants.StandardScopes.Profile,  
+                    IdentityServerConstants.StandardScopes.Profile,
+                    "scopeSGVE"
                 }
             }
         };

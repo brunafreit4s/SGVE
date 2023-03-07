@@ -26,7 +26,7 @@ builder.Services.AddAuthentication("Bearer")
 builder.Services.AddAuthorization(options => {
     options.AddPolicy("ApiScope", policy => {
         policy.RequireAuthenticatedUser();
-        policy.RequireClaim("scope", "SGVE");
+        policy.RequireClaim("scope", "scopeSGVE");
     });
 });
 
