@@ -13,7 +13,7 @@ builder.Services.AddControllers();
 
 /* Adiciona autenticação */ /* Configurações de segurança (relação 1-1) */
 builder.Services.AddAuthentication("Bearer")
-    .AddJwtBearer(options =>
+    .AddJwtBearer("Bearer", options =>
     {
         options.Authority = builder.Configuration["ServicesUrls:IdentityServer"];
         options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
