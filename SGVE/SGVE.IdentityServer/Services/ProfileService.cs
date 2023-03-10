@@ -34,7 +34,7 @@ namespace SGVE.IdentityServer.Services
             /* Convert as claims em uma lista de claims */
             List<Claim> claims = userClaims.Claims.ToList();
 
-            /* Bruna ---> verificar se será isso mesmo */
+            /* Adiciona o nome do usuário junto ao token de acesso */
             claims.Add(new Claim(JwtClaimTypes.FamilyName, user.Name));
             claims.Add(new Claim(JwtClaimTypes.GivenName, user.Name));
 

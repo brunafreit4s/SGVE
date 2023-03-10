@@ -34,7 +34,7 @@ namespace SGVE_web.Controllers
         [Authorize]
         public async Task<IActionResult> Login()
         {
-            var accessToken = HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
+            var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
             return RedirectToAction(nameof(Index));
         }
 

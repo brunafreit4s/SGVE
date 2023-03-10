@@ -1,17 +1,14 @@
 ﻿using SGVE_web.Models;
-using System.Collections;
 
 namespace SGVE_web.Services.IServices
 {
     public interface IFuncionarioService
     {
-        Task<IEnumerable<FuncionarioModel>> FindAllFuncionarios();
-        Task<FuncionarioModel> FindByIdFuncionario(long id);
+        Task<IEnumerable<FuncionarioModel>> FindAllFuncionarios(string token);
+        Task<FuncionarioModel> FindByIdFuncionario(long id, string token);
         //Task<IEnumerable<FuncionarioModel>> FindByNameFuncionario(FuncionarioModel model);
-        Task<FuncionarioModel> CreateFuncionario(FuncionarioModel model);
-        Task<FuncionarioModel> UpdateFuncionario(FuncionarioModel model);
-        Task<bool> DeleteFuncionario(long id);
-
-
+        Task<FuncionarioModel> CreateFuncionario(FuncionarioModel model, string token);
+        Task<FuncionarioModel> UpdateFuncionario(FuncionarioModel model, string token);
+        Task<bool> DeleteFuncionario(long id, string token);
     }
 }

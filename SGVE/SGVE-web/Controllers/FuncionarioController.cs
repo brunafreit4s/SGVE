@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SGVE_web.Models;
 using SGVE_web.Services.IServices;
@@ -18,7 +19,8 @@ namespace SGVE_web.Controllers
         [Authorize]
         public async Task<ActionResult> Index()
         {
-            var funcionarios = await _funcionarioService.FindAllFuncionarios();
+            var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
+            var funcionarios = await _funcionarioService.FindAllFuncionarios(accessToken);
             return View(funcionarios);
         }
 
@@ -33,7 +35,8 @@ namespace SGVE_web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var response = await _funcionarioService.CreateFuncionario(model);
+                var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
+                var response = await _funcionarioService.CreateFuncionario(model, accessToken);
                 if (response != null) return RedirectToAction(nameof(Index));
             }
 
@@ -42,7 +45,8 @@ namespace SGVE_web.Controllers
 
         public async Task<ActionResult> Update(int id)
         {
-            var funcionario = await _funcionarioService.FindByIdFuncionario(id);
+            var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
+            var funcionario = await _funcionarioService.FindByIdFuncionario(id, accessToken);
             if (funcionario != null) return View(funcionario);
             return NotFound();
         }
@@ -53,7 +57,8 @@ namespace SGVE_web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var response = await _funcionarioService.UpdateFuncionario(model);
+                var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
+                var response = await _funcionarioService.UpdateFuncionario(model, accessToken);
                 if (response != null) return RedirectToAction(nameof(Index));
             }
 
@@ -63,7 +68,8 @@ namespace SGVE_web.Controllers
         [Authorize]
         public async Task<ActionResult> Delete(int id)
         {
-            var funcionario = await _funcionarioService.FindByIdFuncionario(id);
+            var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
+            var funcionario = await _funcionarioService.FindByIdFuncionario(id, accessToken);
             if (funcionario != null) return View(funcionario);
             return NotFound();
         }
@@ -72,7 +78,8 @@ namespace SGVE_web.Controllers
         [Authorize(Roles = Roles.Admin)]
         public async Task<ActionResult> Delete(FuncionarioModel model)
         {
-            var response = await _funcionarioService.DeleteFuncionario(model.Id);
+            var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
+            var response = await _funcionarioService.DeleteFuncionario(model.Id, accessToken);
             if (response) return RedirectToAction(nameof(Index));
 
             return View(model);
