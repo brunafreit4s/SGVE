@@ -1,9 +1,11 @@
+using Duende.IdentityServer.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SGVE.IdentityServer.Configuration;
 using SGVE.IdentityServer.Initializer;
 using SGVE.IdentityServer.Models.Sql;
 using SGVE.IdentityServer.Models.Sql.Context;
+using SGVE.IdentityServer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -32,6 +34,7 @@ var builderServices = builder.Services.AddIdentityServer(options =>
 
 /* Adiciona independency injection */
 builder.Services.AddScoped<IDbInitializer, DbInitializer>();
+builder.Services.AddScoped<IProfileService, ProfileService>();
 
 builderServices.AddDeveloperSigningCredential();
 

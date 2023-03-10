@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SGVE_web.Models;
 using System.Diagnostics;
@@ -33,6 +34,7 @@ namespace SGVE_web.Controllers
         [Authorize]
         public async Task<IActionResult> Login()
         {
+            var accessToken = HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
             return RedirectToAction(nameof(Index));
         }
 
