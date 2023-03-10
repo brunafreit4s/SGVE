@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SGVE_web.Models;
+using SGVE_web.Services.IServices;
 using System.Diagnostics;
 
 namespace SGVE_web.Controllers
@@ -9,15 +10,19 @@ namespace SGVE_web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IFuncionarioService _funcionarioService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IFuncionarioService funcionarioService)
         {
             _logger = logger;
+            _funcionarioService = funcionarioService;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
-            return View();
+            var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
+            var funcionarios = await _funcionarioService.FindAllFuncionarios(accessToken);
+            return View(funcionarios);
         }
 
         public IActionResult Privacy()
@@ -35,7 +40,7 @@ namespace SGVE_web.Controllers
         public async Task<IActionResult> Login()
         {
             var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(IndexAsync));
         }
 
         public IActionResult Logout()
