@@ -2,16 +2,16 @@
     @if (User.Identity.IsAuthenticated)
     {
     <li class="nav-item">
-        <a class="nav-link" href="#">@User.Identity.Name</a>
+        <a class="nav-link text-success" href="#">@User.Identity.Name</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-danger" asp-action="Logout" asp-controller="Home">Sair</a>
+        <a class="nav-link" asp-action="Logout" asp-controller="Home">Sair</a>
     </li>
     }
     else
     {
     <li class="nav-item">
-        <a class="nav-link text-success" asp-action="Login" asp-controller="Home">Login</a>
+        <a class="nav-link text-warning" asp-action="Login" asp-controller="Home">Login</a>
     </li>
     }
 </ul>

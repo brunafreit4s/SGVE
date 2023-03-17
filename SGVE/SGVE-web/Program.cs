@@ -34,6 +34,11 @@ builder.Services.AddHttpClient<IFuncionarioService, FuncionarioService>(c =>
     c.BaseAddress = new Uri(builder.Configuration["ServicesUrls:SGVEApi"])
 );
 
+//Injetando a classe Produtos
+builder.Services.AddHttpClient<IProdutosService, ProdutosService>(c =>
+    c.BaseAddress = new Uri(builder.Configuration["ServicesUrls:SGVEApi"])
+);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

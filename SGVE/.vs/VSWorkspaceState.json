@@ -1,10 +1,15 @@
 {
   "ExpandedNodes": [
     "",
+    "\\SGVE-web",
+    "\\SGVE-web\\Views",
+    "\\SGVE-web\\Views\\Home",
     "\\SGVE.IdentityServer",
+    "\\SGVE.IdentityServer\\MainModule",
+    "\\SGVE.IdentityServer\\Services",
     "\\SGVE.IdentityServer\\Views",
     "\\SGVE.IdentityServer\\Views\\Account"
   ],
-  "SelectedNode": "\\SGVE.IdentityServer\\Views\\Account\\Register.cshtml",
+  "SelectedNode": "\\SGVE-web\\Views\\Home\\Index.cshtml",
   "PreviewInSolutionExplorer": false
 }

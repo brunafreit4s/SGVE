@@ -1,0 +1,63 @@
+﻿@model ProdutosModel
+
+@{
+    ViewData["Title"] = "Adicionar Produto";
+}
+
+<form asp-action="Create">
+    <br/>
+    <div class="container border p-3">
+        <h1 class="text-primary">Adicionar um novo Produto</h1>
+        <hr/>
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="col-2"><label asp-for="Nome" class="control-label pt-2" style="font-size=20px;">Nome</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Nome" class="form-control" maxlength="500" type="text" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+            
+            <div class="col-2"><label asp-for="Descricao" class="control-label pt-2" style="font-size=20px;">Descrição sobre o Produto</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Descricao" class="form-control" maxlength="500" type="text" />
+                <span asp-validation-for="Descricao" class="text-danger"></span>
+            </div>
+
+            <div class="col-2"><label asp-for="Quantidade" class="control-label pt-2" style="font-size=20px;">Quantidade</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Quantidade" class="form-control" maxlength="10" type="number" />
+                <span asp-validation-for="Quantidade" class="text-danger"></span>
+            </div>
+
+            <div class="col-2"><label asp-for="Marca" class="control-label pt-2" style="font-size=20px;">Marca</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Marca" class="form-control" maxlength="500" type="text" />
+                <span asp-validation-for="Marca" class="text-danger"></span>
+            </div>
+
+            <div class="col-2"><label asp-for="Custo" class="control-label pt-2" style="font-size=20px;">Custo</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Custo" class="form-control" maxlength="10" type="number" />
+                <span asp-validation-for="Custo" class="text-danger"></span>
+            </div>
+
+            <div class="col-2"><label asp-for="Preco" class="control-label pt-2" style="font-size=20px;">Preço</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Preco" class="form-control" maxlength="10" type="number" />
+                <span asp-validation-for="Preco" class="text-danger"></span>
+            </div>
+
+            <div class="col-5 offset-2">
+                <a asp-action="Index" class="btn-primary btn form-control">Voltar</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Adicionar" class="btn btn-sucess form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+     <partial name="_ValidationScriptsPartial"></partial>
+}

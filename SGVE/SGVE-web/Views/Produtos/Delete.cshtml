@@ -1,0 +1,55 @@
+﻿@model FuncionarioModel
+
+@{
+    ViewData["Title"] = "Desligar Funcionário";
+}
+
+<form asp-action="Delete">
+
+    <input asp-for="Id" hidden>
+
+    <br/>
+    <div class="container border p-3">
+        <h1 class="text-primary">Desliga Funcionário</h1>
+        <hr/>
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="col-2"><label asp-for="Cpf" class="control-label pt-2" style="font-size=20px;">CPF</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Cpf" class="form-control" disabled maxlength="11" type="number" />
+            </div>
+            
+            <div class="col-2"><label asp-for="Nome" class="control-label pt-2" style="font-size=20px;">Nome</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Nome" class="form-control" disabled maxlength="500" />
+            </div>
+
+            <div class="col-2"><label asp-for="Rg" class="control-label pt-2" style="font-size=20px;">RG</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Rg" class="form-control" disabled maxlength="20" type="number" />
+            </div>
+
+            <div class="col-2"><label asp-for="Data_Nascimento" class="control-label pt-2" style="font-size=20px;">Data de Nascimento</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Data_Nascimento" class="form-control" disabled maxlength="10" type="date" />
+            </div>
+
+            <div class="col-2"><label asp-for="Celular" class="control-label pt-2" style="font-size=20px;">Celular</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Celular" class="form-control" disabled maxlength="18" type="number" />
+            </div>
+
+            <div class="col-5 offset-2">
+                <a asp-action="Index" class="btn-primary btn form-control">Voltar</a>
+            </div>
+            <div class="col-5">
+                <input type="submit" value="Desligar" class="btn btn-sucess form-control" />
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+     <partial name="_ValidationScriptsPartial"></partial>
+}

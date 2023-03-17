@@ -12,8 +12,10 @@ namespace SGVE_api.Config
             var mappingConfig = new MapperConfiguration(config => {
                 config.CreateMap<FuncionarioVO, Funcionario>();
                 config.CreateMap<Funcionario, FuncionarioVO>();
+                config.CreateMap<ProdutosVO, Produtos>();
+                config.CreateMap<Produtos, ProdutosVO>();
             });
-            return mappingConfig;
+            return mappingConfig;           
         }
     }
 }
