@@ -4,10 +4,10 @@
     ViewData["Title"] = "Funcionários";
 }
 
-<div class="container b-4 border">
-    <div class="row overflow-x-auto">
+<div class="container b-4">
+    <div class="card row overflow-x-auto">
         <div class="col-12">
-            <h1 class="text-primary border-bottom">Lista de Funcionários</h1>
+            <p><h1 class="text-primary"> - Lista de Funcionários</h1></p>
         </div>
         <div class="col text-end pt-1">
             <a asp-action="Create" class="btn btn-outline-primary">
@@ -57,7 +57,7 @@
                                 @if (User.IsInRole("Admin"))
                                 {
                                     <th>
-                                        <a asp-action="Delete" class="btn btn-outline-danger border-bottom" asp-route-id="@item.Id">
+                                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z" />
                                             </svg>
