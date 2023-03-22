@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Página Inicial";
-    @model IEnumerable<SGVE_web.Models.ProdutosModel>
+    @model IEnumerable<SGVE_web.Models.ProdutosChart>
 
 }
 
@@ -20,21 +20,26 @@
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
+    var Lista = @Html.Raw(Json.Serialize(Model));
+
     google.charts.load("current", { packages: ["corechart"] });
     google.charts.setOnLoadCallback(drawChart);
+
     function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-            ['Task', 'Hours per Day'],
-            ['Work', 11],
-            ['Eat', 2],
-            ['Commute', 2],
-            ['Watch TV', 2],
-            ['Sleep', 7]
-        ]);
+        var data = new google.visualization.DataTable();
+
+        data.addColumn('string', 'Task');
+        data.addColumn('number', 'Hours per Day');
+
+        $.each(Lista, function (key, aLista) {                          
+            data.addRows([
+                [aLista.nome, aLista.quantidade],
+            ]);
+        });
 
         var options = {
-            title: 'Funcionários cadastrados no sistema:',
-            pieHole: 0.4,
+            title: 'Produtos cadastrados no sistema:',
+            pieHole: 0.6,
         };
 
         var chart = new google.visualization.PieChart(document.getElementById('donutchart'));

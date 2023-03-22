@@ -13,4 +13,10 @@
         public int Id_Tipo { get; set; }
         public int Id_Fornecedor { get; set; }        
     }
+
+    public class ProdutosChart
+    {
+        public string Nome { get; set; }
+        public int Quantidade { get; set; }
+    }
 }

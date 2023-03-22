@@ -22,6 +22,13 @@ namespace SGVE_web.Services
             return await response.ReadContentAsync<List<ProdutosModel>>();
         }
 
+        public async Task<IEnumerable<ProdutosChart>> FindAllProdutosChart(string token)
+        {
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var response = await _client.GetAsync($"{BasePath}/Consultar");
+            return await response.ReadContentAsync<List<ProdutosChart>>();
+        }
+
         public async Task<ProdutosModel> FindByIdProdutos(long id, string token)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
