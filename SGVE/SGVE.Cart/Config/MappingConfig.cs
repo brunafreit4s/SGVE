@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-//using SGVE.Cart.Data.ValueObjects;
+using SGVE.Cart.Data.ValueObjects;
 using SGVE.Cart.Models;
 
 namespace SGVE.Cart.Config
@@ -10,10 +10,10 @@ namespace SGVE.Cart.Config
         {
             /* Configuração do VO */
             var mappingConfig = new MapperConfiguration(config => {
-                //config.CreateMap<FuncionarioVO, Funcionario>();
-                //config.CreateMap<Funcionario, FuncionarioVO>();
-                //config.CreateMap<ProdutosVO, Produtos>();
-                //config.CreateMap<Produtos, ProdutosVO>();
+                config.CreateMap<ProdutosVO, Produtos>().ReverseMap();
+                config.CreateMap<VendaVO, Venda>().ReverseMap();
+                config.CreateMap<Venda_x_ProdutoVO, Venda_x_Produto>().ReverseMap();
+                config.CreateMap<CarrinhoVO, Carrinho>().ReverseMap();
             });
             return mappingConfig;           
         }
