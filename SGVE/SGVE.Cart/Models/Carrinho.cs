@@ -2,7 +2,7 @@
 {
     public class Carrinho
     {
-        public Venda venda_x_produto { get; set; }
-        public IEnumerable<Venda_x_Produto> vendas { get; set; }
+        public Venda vendas { get; set; }
+        public IEnumerable<Venda_x_Produto> venda_x_produto { get; set; }
     }
 }

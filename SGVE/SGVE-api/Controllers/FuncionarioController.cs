@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SGVE_api.Data.ValueObjects;
 using SGVE_api.Repository;
@@ -8,8 +7,8 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace SGVE_api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class FuncionarioController : ControllerBase
     {
         private IFuncionarioRepository _repository;

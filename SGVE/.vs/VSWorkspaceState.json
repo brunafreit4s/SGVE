@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
+    "\\SGVE-api",
+    "\\SGVE-api\\Migrations",
     "\\SGVE-web",
-    "\\SGVE-web\\Controllers",
     "\\SGVE-web\\Views",
     "\\SGVE-web\\Views\\Home",
     "\\SGVE.IdentityServer",
@@ -11,6 +12,6 @@
     "\\SGVE.IdentityServer\\Views",
     "\\SGVE.IdentityServer\\Views\\Account"
   ],
-  "SelectedNode": "\\SGVE-web\\Controllers\\FuncionarioController.cs",
+  "SelectedNode": "\\SGVE-api\\Migrations\\20230203205238_addFuncionarioDataTableOnDB.Designer.cs",
   "PreviewInSolutionExplorer": false
 }

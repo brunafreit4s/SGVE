@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using SGVE.Cart.Config;
 using SGVE.Cart.Models.Context;
-using Swashbuckle.Swagger;
+using SGVE.Cart.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -39,7 +39,7 @@ builder.Services.AddSingleton(mapper);
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 /* Add Injection repository */
-//builder.Services.AddScoped<IProdutosRepository, ProdutosRepository>();
+builder.Services.AddScoped<ICarrinhoRepository, CarrinhoRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

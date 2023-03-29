@@ -7,8 +7,8 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace SGVE_api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [Route("api/[controller]")]
     public class ProdutosController : ControllerBase
     {
         private IProdutosRepository _repository;
