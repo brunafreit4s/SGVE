@@ -20,8 +20,8 @@ namespace SGVE_web.Controllers
         public async Task<ActionResult> Index()
         {
             var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
-            var Produtoss = await _ProdutosService.FindAllProdutos(accessToken);
-            return View(Produtoss);
+            var Produtos = await _ProdutosService.FindAllProdutos(accessToken);
+            return View(Produtos);
         }
 
         public async Task<ActionResult> Create()

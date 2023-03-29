@@ -1,27 +1,27 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using SGVE_web.Services;
 using SGVE_web.Services.IServices;
+using System.Web.Http;
 
 namespace SGVE_web.Controllers
 {
     public class DashboardController : Controller
     {
-        private readonly ILogger<DashboardController> _logger;
         private readonly IProdutosService _produtosService;
 
-        public DashboardController(ILogger<DashboardController> logger, IProdutosService produtosService)
+        public DashboardController(IProdutosService produtosService)
         {
-            _logger = logger;
-            _produtosService = produtosService;
+            _produtosService = produtosService ?? throw new ArgumentNullException(nameof(produtosService));
         }
-        public async Task<IActionResult> Index()
+
+        [Authorize]
+        public async Task<ActionResult> Index()
         {
             var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
-
             if (accessToken == null) { return RedirectToAction("Index", "Home"); }
-
-            var produtos = await _produtosService.FindAllProdutosChart(accessToken);
-            return View(produtos);
+            var Produtos = await _produtosService.FindAllProdutosChart(accessToken);
+            return View(Produtos);
         }
     }
 }
