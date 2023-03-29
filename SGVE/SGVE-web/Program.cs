@@ -39,6 +39,11 @@ builder.Services.AddHttpClient<IProdutosService, ProdutosService>(c =>
     c.BaseAddress = new Uri(builder.Configuration["ServicesUrls:SGVEApi"])
 );
 
+//Injetando a classe Carrinho
+builder.Services.AddHttpClient<ICarrinhoService, CarrinhoService>(c =>
+    c.BaseAddress = new Uri(builder.Configuration["ServicesUrls:CartApi"])
+);
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

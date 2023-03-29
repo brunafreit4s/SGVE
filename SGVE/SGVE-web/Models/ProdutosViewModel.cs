@@ -1,6 +1,6 @@
 ﻿namespace SGVE_web.Models
 {
-    public class ProdutosModel
+    public class ProdutosViewModel
     {
         public int Id { get; set; }
         public string Nome { get; set; }

@@ -15,33 +15,33 @@ namespace SGVE_web.Services
             _client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
-        public async Task<IEnumerable<FuncionarioModel>> FindAllFuncionarios(string token)
+        public async Task<IEnumerable<FuncionarioViewModel>> FindAllFuncionarios(string token)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await _client.GetAsync($"{BasePath}/Consultar");
-            return await response.ReadContentAsync<List<FuncionarioModel>>();
+            return await response.ReadContentAsync<List<FuncionarioViewModel>>();
         }
 
-        public async Task<FuncionarioModel> FindByIdFuncionario(long id, string token)
+        public async Task<FuncionarioViewModel> FindByIdFuncionario(long id, string token)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await _client.GetAsync($"{BasePath}/Consultar/{id}");
-            return await response.ReadContentAsync<FuncionarioModel>();
+            return await response.ReadContentAsync<FuncionarioViewModel>();
         }
 
-        public async Task<FuncionarioModel> CreateFuncionario(FuncionarioModel model, string token)
+        public async Task<FuncionarioViewModel> CreateFuncionario(FuncionarioViewModel model, string token)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await _client.PostAsJson($"{BasePath}/Adicionar", model);
-            if (response.IsSuccessStatusCode) return await response.ReadContentAsync<FuncionarioModel>();
+            if (response.IsSuccessStatusCode) return await response.ReadContentAsync<FuncionarioViewModel>();
             else throw new Exception("Ocorreu algum erro na chamada da API!");
         }
 
-        public async Task<FuncionarioModel> UpdateFuncionario(FuncionarioModel model, string token)
+        public async Task<FuncionarioViewModel> UpdateFuncionario(FuncionarioViewModel model, string token)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await _client.PutAsJson($"{BasePath}/Alterar", model);
-            if (response.IsSuccessStatusCode) return await response.ReadContentAsync<FuncionarioModel>();
+            if (response.IsSuccessStatusCode) return await response.ReadContentAsync<FuncionarioViewModel>();
             else throw new Exception("Ocorreu algum erro na chamada da API!");
         }
 

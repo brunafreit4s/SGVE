@@ -1,6 +1,6 @@
 ﻿namespace SGVE_web.Models
 {
-    public class FuncionarioModel
+    public class FuncionarioViewModel
     {
         public long Id { get; set; }
         public string Cpf { get; set; }

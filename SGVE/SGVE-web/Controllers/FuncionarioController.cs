@@ -31,7 +31,7 @@ namespace SGVE_web.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult> Create(FuncionarioModel model)
+        public async Task<ActionResult> Create(FuncionarioViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -53,7 +53,7 @@ namespace SGVE_web.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult> Update(FuncionarioModel model)
+        public async Task<ActionResult> Update(FuncionarioViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +76,7 @@ namespace SGVE_web.Controllers
 
         [HttpPost]
         [Authorize(Roles = Roles.Admin)]
-        public async Task<ActionResult> Delete(FuncionarioModel model)
+        public async Task<ActionResult> Delete(FuncionarioViewModel model)
         {
             var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
             var response = await _funcionarioService.DeleteFuncionario(model.Id, accessToken);

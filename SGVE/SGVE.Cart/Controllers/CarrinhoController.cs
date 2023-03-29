@@ -20,16 +20,16 @@ namespace SGVE.Cart.Controllers
         [HttpGet]
         //[Authorize]
         [Route("Consultar/{id}")]
-        public async Task<ActionResult<CarrinhoVO>> FindById(string UserId)
+        public async Task<ActionResult<CarrinhoVO>> FindById(string id)
         {
-            var carrinho = await _repository.FindCarrinhoByUserId(UserId);
+            var carrinho = await _repository.FindCarrinhoByUserId(id);
             if (carrinho == null) return NotFound();
             return Ok(carrinho);
         }
         
         [HttpPost]
         //[Authorize]
-        [Route("Adicionar/{id}")]
+        [Route("Adicionar")]
         public async Task<ActionResult<CarrinhoVO>> Create(CarrinhoVO vo)
         {
             var carrinho = await _repository.SaveOrUpdateCarrinho(vo);
@@ -39,7 +39,7 @@ namespace SGVE.Cart.Controllers
 
         [HttpPut]
         //[Authorize]
-        [Route("Alterar/{id}")]
+        [Route("Alterar")]
         public async Task<ActionResult<CarrinhoVO>> Update(CarrinhoVO vo)
         {
             var carrinho = await _repository.SaveOrUpdateCarrinho(vo);

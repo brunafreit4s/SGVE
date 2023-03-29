@@ -31,7 +31,7 @@ namespace SGVE_web.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult> Create(ProdutosModel model)
+        public async Task<ActionResult> Create(ProdutosViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -53,7 +53,7 @@ namespace SGVE_web.Controllers
 
         [Authorize]
         [HttpPost]
-        public async Task<ActionResult> Update(ProdutosModel model)
+        public async Task<ActionResult> Update(ProdutosViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -76,7 +76,7 @@ namespace SGVE_web.Controllers
 
         [HttpPost]
         [Authorize(Roles = Roles.Admin)]
-        public async Task<ActionResult> Delete(ProdutosModel model)
+        public async Task<ActionResult> Delete(ProdutosViewModel model)
         {
             var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
             var response = await _ProdutosService.DeleteProdutos(model.Id, accessToken);

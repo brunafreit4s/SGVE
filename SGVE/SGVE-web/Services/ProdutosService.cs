@@ -15,11 +15,11 @@ namespace SGVE_web.Services
             _client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
-        public async Task<IEnumerable<ProdutosModel>> FindAllProdutos(string token)
+        public async Task<IEnumerable<ProdutosViewModel>> FindAllProdutos(string token)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await _client.GetAsync($"{BasePath}/Consultar");
-            return await response.ReadContentAsync<List<ProdutosModel>>();
+            return await response.ReadContentAsync<List<ProdutosViewModel>>();
         }
 
         public async Task<IEnumerable<ProdutosChart>> FindAllProdutosChart(string token)
@@ -29,26 +29,26 @@ namespace SGVE_web.Services
             return await response.ReadContentAsync<List<ProdutosChart>>();
         }
 
-        public async Task<ProdutosModel> FindByIdProdutos(long id, string token)
+        public async Task<ProdutosViewModel> FindByIdProdutos(long id, string token)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await _client.GetAsync($"{BasePath}/Consultar/{id}");
-            return await response.ReadContentAsync<ProdutosModel>();
+            return await response.ReadContentAsync<ProdutosViewModel>();
         }
 
-        public async Task<ProdutosModel> CreateProdutos(ProdutosModel model, string token)
+        public async Task<ProdutosViewModel> CreateProdutos(ProdutosViewModel model, string token)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await _client.PostAsJson($"{BasePath}/Adicionar", model);
-            if (response.IsSuccessStatusCode) return await response.ReadContentAsync<ProdutosModel>();
+            if (response.IsSuccessStatusCode) return await response.ReadContentAsync<ProdutosViewModel>();
             else throw new Exception("Ocorreu algum erro na chamada da API!");
         }
 
-        public async Task<ProdutosModel> UpdateProdutos(ProdutosModel model, string token)
+        public async Task<ProdutosViewModel> UpdateProdutos(ProdutosViewModel model, string token)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await _client.PutAsJson($"{BasePath}/Alterar", model);
-            if (response.IsSuccessStatusCode) return await response.ReadContentAsync<ProdutosModel>();
+            if (response.IsSuccessStatusCode) return await response.ReadContentAsync<ProdutosViewModel>();
             else throw new Exception("Ocorreu algum erro na chamada da API!");
         }
 
