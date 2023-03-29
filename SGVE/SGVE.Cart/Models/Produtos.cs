@@ -1,14 +1,14 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SGVE_models.Models
+namespace SGVE.Cart.Models
 {
     [Table("TB_PRODUTO")]
     public class Produtos
     {
-        [Key]
-        [Column("ID_PRODUTO")]
-        public long Id { get; set; }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [Column("Id_Produto")]
+        public long Id_Produto { get; set; }
 
         [Column("V_NOME")]
         [Required]
@@ -29,11 +29,13 @@ namespace SGVE_models.Models
         public string Marca { get; set; }
 
         [Column("D_CUSTO")]
-        [Required]        
+        [Required]
+        [Range(1, 10000)]
         public float? Custo { get; set; }
 
         [Column("D_PRECO")]
         [Required]
+        [Range(1,10000)]
         public float? Preco { get; set; }
 
         [Column("DT_CADASTRO")]

@@ -2,6 +2,7 @@
   "ExpandedNodes": [
     "",
     "\\SGVE-web",
+    "\\SGVE-web\\Controllers",
     "\\SGVE-web\\Views",
     "\\SGVE-web\\Views\\Home",
     "\\SGVE.IdentityServer",
@@ -10,6 +11,6 @@
     "\\SGVE.IdentityServer\\Views",
     "\\SGVE.IdentityServer\\Views\\Account"
   ],
-  "SelectedNode": "\\SGVE-web\\Views\\Home\\Index.cshtml",
+  "SelectedNode": "\\SGVE-web\\Controllers\\FuncionarioController.cs",
   "PreviewInSolutionExplorer": false
 }
