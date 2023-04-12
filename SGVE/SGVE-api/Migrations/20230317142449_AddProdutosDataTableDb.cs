@@ -12,10 +12,10 @@ namespace SGVEapi.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "TB_PRODUTOS",
+                name: "TB_PRODUTO",
                 columns: table => new
                 {
-                    IDFUNCIONARIO = table.Column<long>(name: "ID_FUNCIONARIO", type: "bigint", nullable: false)
+                    IDFUNCIONARIO = table.Column<long>(name: "ID_PRODUTO", type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     VNOME = table.Column<string>(name: "V_NOME", type: "nvarchar(500)", maxLength: 500, nullable: false),
                     VDESCRICAO = table.Column<string>(name: "V_DESCRICAO", type: "nvarchar(500)", maxLength: 500, nullable: false),
@@ -29,12 +29,12 @@ namespace SGVEapi.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TB_PRODUTOS", x => x.IDFUNCIONARIO);
+                    table.PrimaryKey("PK_TB_PRODUTO", x => x.IDFUNCIONARIO);
                 });
 
             migrationBuilder.InsertData(
-                table: "TB_PRODUTOS",
-                columns: new[] { "ID_FUNCIONARIO", "D_CUSTO", "DT_CADASTRO", "V_DESCRICAO", "FK_ID_FORNECEDOR", "FK_ID_TIPO", "V_MARCA", "V_NOME", "D_PRECO", "I_QUANTIDADE" },
+                table: "TB_PRODUTO",
+                columns: new[] { "ID_PRODUTO", "D_CUSTO", "DT_CADASTRO", "V_DESCRICAO", "FK_ID_FORNECEDOR", "FK_ID_TIPO", "V_MARCA", "V_NOME", "D_PRECO", "I_QUANTIDADE" },
                 values: new object[] { 2L, 1.5f, new DateTime(2023, 3, 17, 11, 24, 49, 566, DateTimeKind.Local).AddTicks(7132), "Bolacha sabor Morango", 2, 2, "Trakinas", "Bolacha Trakinas", 0.5f, 10 });
         }
 
@@ -42,7 +42,7 @@ namespace SGVEapi.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "TB_PRODUTOS");
+                name: "TB_PRODUTO");
         }
     }
 }

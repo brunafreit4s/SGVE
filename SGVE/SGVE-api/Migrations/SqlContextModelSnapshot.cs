@@ -144,7 +144,7 @@ namespace SGVEapi.Migrations
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
-                        .HasColumnName("ID_FUNCIONARIO");
+                        .HasColumnName("ID_PRODUTO");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
@@ -193,14 +193,14 @@ namespace SGVEapi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TB_PRODUTOS");
+                    b.ToTable("TB_PRODUTO");
 
                     b.HasData(
                         new
                         {
                             Id = 2L,
                             Custo = 1.5f,
-                            DataCadastro = new DateTime(2023, 3, 17, 11, 24, 49, 566, DateTimeKind.Local).AddTicks(7132),
+                            DataCadastro = new DateTime(2023, 4, 4, 19, 42, 25, 660, DateTimeKind.Local).AddTicks(9755),
                             Descricao = "Bolacha sabor Morango",
                             IdFornecedor = 2,
                             IdTipo = 2,

@@ -12,8 +12,8 @@ using SGVE_models.Context;
 namespace SGVEapi.Migrations
 {
     [DbContext(typeof(SqlContext))]
-    [Migration("20230317142449_AddProdutosDataTableDb")]
-    partial class AddProdutosDataTableDb
+    [Migration("20230404224225_AddProdutosDataTableDb2")]
+    partial class AddProdutosDataTableDb2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -203,7 +203,7 @@ namespace SGVEapi.Migrations
                         {
                             Id = 2L,
                             Custo = 1.5f,
-                            DataCadastro = new DateTime(2023, 3, 17, 11, 24, 49, 566, DateTimeKind.Local).AddTicks(7132),
+                            DataCadastro = new DateTime(2023, 4, 4, 19, 42, 25, 660, DateTimeKind.Local).AddTicks(9755),
                             Descricao = "Bolacha sabor Morango",
                             IdFornecedor = 2,
                             IdTipo = 2,
