@@ -25,11 +25,6 @@ namespace SGVE_web.Controllers
             return View();//funcionarios);
         }
 
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {

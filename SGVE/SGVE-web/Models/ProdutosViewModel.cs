@@ -14,7 +14,7 @@
         public int Id_Fornecedor { get; set; }        
     }
 
-    public class ProdutosChart
+    public class ProdutosChartViewModel
     {
         public string Nome { get; set; }
         public int Quantidade { get; set; }

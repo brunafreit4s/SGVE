@@ -1,6 +1,6 @@
 ﻿@{
     ViewData["Title"] = "Página Inicial";
-    @model IEnumerable<SGVE_web.Models.ProdutosChart>
+    @model Retorno
 
 }
 
@@ -20,7 +20,7 @@
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 <script type="text/javascript">
-    var Lista = @Html.Raw(Json.Serialize(Model));
+    var vListaProd = @Html.Raw(Json.Serialize(Model.Produtos));    
 
     google.charts.load("current", { packages: ["corechart"] });
     google.charts.setOnLoadCallback(drawChart);
@@ -31,7 +31,7 @@
         data.addColumn('string', 'Task');
         data.addColumn('number', 'Hours per Day');
 
-        $.each(Lista, function (key, aLista) {                          
+        $.each(vListaProd, function (key, aLista) {
             data.addRows([
                 [aLista.nome, aLista.quantidade],
             ]);
@@ -48,6 +48,8 @@
 </script>
 
 <script type="text/javascript">
+    var vListaFunc = @Html.Raw(Json.Serialize(Model.Funcionario));
+
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(drawVisualization);
 

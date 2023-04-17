@@ -5,7 +5,7 @@ namespace SGVE_web.Services.IServices
     public interface IProdutosService
     {
         Task<IEnumerable<ProdutosViewModel>> FindAllProdutos(string token);
-        Task<IEnumerable<ProdutosChart>> FindAllProdutosChart(string token);
+        Task<List<ProdutosChartViewModel>> FindAllProdutosChart(string token);
         Task<ProdutosViewModel> FindByIdProdutos(long id, string token);
         //Task<IEnumerable<ProdutosModel>> FindByNameProdutos(ProdutosModel model);
         Task<ProdutosViewModel> CreateProdutos(ProdutosViewModel model, string token);

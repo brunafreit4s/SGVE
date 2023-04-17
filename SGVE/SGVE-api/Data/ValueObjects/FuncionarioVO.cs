@@ -20,4 +20,10 @@
         public DateTime? Data_Desligamento { get; set; }
         public int Id_Cargo { get; set; }
     }
+
+    public class FuncionarioChat
+    {
+        public string Nome { get; set; }
+        public int Quantidade { get; set; }
+    }
 }
