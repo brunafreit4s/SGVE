@@ -1,6 +1,6 @@
-﻿@using static SGVE_web.Models.CargosViewModel;
+﻿@model FuncionarioViewModel
+@using static SGVE_web.Models.CargosViewModel;
 @using static SGVE_web.Models.EnderecosViewModel;
-@model FuncionarioViewModel
 
 @{
     ViewData["Title"] = "Adicionar Funcionário";
@@ -10,85 +10,109 @@
 <form asp-action="Create">
     <br />
     <div class="container border border-4 border-secondary p-3 border-start-0 rounded-end border-opacity-10 rounded-4">
-        <h1 class="text-primary">Adicionar um novo Funcionário</h1>
+        <h3 class="text-primary p-3">Adicionar um novo Funcionário</h3>
         <hr />
-        <div class="row">
+        <div class="row col-lg-12 p-2">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-            <div class="col-2"><label asp-for="Cpf" class="control-label pt-2" style="font-size:20px;">CPF</label></div>
-            <div class="col-10 pb-3">
+            <div class="col-12">
+                <label asp-for="Nome" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Nome</label>
+                <input asp-for="Nome" class="form-control" maxlength="500" />
+                <span asp-validation-for="Nome" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row col-lg-12 p-2">
+            <div class="col-4">
+                <label asp-for="Cpf" class="control-label pt-2 h3 text-primary" style="font-size:15px;">CPF</label>
                 <input asp-for="Cpf" class="form-control" maxlength="11" type="number" />
                 <span asp-validation-for="Cpf" class="text-danger"></span>
             </div>
 
-            <div class="col-2"><label asp-for="Nome" class="control-label pt-2" style="font-size:20px;">Nome</label></div>
-            <div class="col-10 pb-3">
-                <input asp-for="Nome" class="form-control" maxlength="500" />
-                <span asp-validation-for="Nome" class="text-danger"></span>
-            </div>
-
-            <div class="col-2"><label asp-for="Rg" class="control-label pt-2" style="font-size:20px;">RG</label></div>
-            <div class="col-10 pb-3">
+            <div class="col-4">
+                <label asp-for="Rg" class="control-label pt-2 h3 text-primary" style="font-size:15px;">RG</label>
                 <input asp-for="Rg" class="form-control" maxlength="20" type="number" />
                 <span asp-validation-for="Rg" class="text-danger"></span>
             </div>
 
-            <div class="col-2"><label asp-for="Data_Nascimento" class="control-label pt-2" style="font-size:20px;">Data de Nascimento</label></div>
-            <div class="col-10 pb-3">
+            <div class="col-4">
+                <label asp-for="Data_Nascimento" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Data de Nascimento</label>
                 <input asp-for="Data_Nascimento" class="form-control" maxlength="10" type="date" />
                 <span asp-validation-for="Data_Nascimento" class="text-danger"></span>
             </div>
+        </div>
 
-            <div class="col-2"><label asp-for="Celular" class="control-label pt-2" style="font-size:20px;">Celular</label></div>
-            <div class="col-10 pb-3">
+        <div class="row col-lg-12 p-2">
+            <div class="col-2">
+                <label asp-for="DDD_Celular" class="control-label pt-2 h3 text-primary" style="font-size:15px;">DDD - Celular</label>
+                <input asp-for="DDD_Celular" class="form-control" maxlength="18" type="number" />
+                <span asp-validation-for="DDD_Celular" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Celular" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Celular</label>
                 <input asp-for="Celular" class="form-control" maxlength="18" type="number" />
                 <span asp-validation-for="Celular" class="text-danger"></span>
             </div>
 
-            <div class="col-2"><label asp-for="Telefone" class="control-label pt-2" style="font-size:20px;">Telefone</label></div>
-            <div class="col-10 pb-3">
+            <div class="col-2">
+                <label asp-for="DDD_Telefone" class="control-label pt-2 h3 text-primary" style="font-size:15px;">DDD - Telefone</label>
+                <input asp-for="DDD_Telefone" class="form-control" maxlength="18" type="number" />
+                <span asp-validation-for="DDD_Telefone" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Telefone" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Telefone</label>
                 <input asp-for="Telefone" class="form-control" maxlength="18" type="number" />
                 <span asp-validation-for="Telefone" class="text-danger"></span>
             </div>
 
-            <div class="col-2"><label asp-for="Id_Endereco" class="control-label pt-2" style="font-size:20px;">Endereço</label></div>
-            <div class="col-10 pb-3">
+            <div class="col-2">
+                <label asp-for="Id_Cargo" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Cargo</label>
+                <select asp-for="Id_Cargo" class="btn btn-secondary dropdown-toggle" asp-items="Html.GetEnumSelectList<Cargos>()" value="1">Cargo</select>
+            </div>
+        </div>
+
+        <div class="row col-lg-12 p-2">
+            <div class="col-2">
+                <label asp-for="Id_Endereco" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Município</label>
                 <select asp-for="Id_Endereco" class="btn btn-secondary dropdown-toggle" asp-items="Html.GetEnumSelectList<Enderecos>()" value="1">endereço</select>
             </div>
 
-            <div class="col-2"><label asp-for="Numero_Endereco" class="control-label pt-2" style="font-size:20px;">Número</label></div>
-            <div class="col-10 pb-3">
+            <div class="col-2">
+                <label asp-for="Numero_Endereco" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Número</label>
                 <input asp-for="Numero_Endereco" class="form-control" maxlength="3" type="number" />
                 <span asp-validation-for="Numero_Endereco" class="text-danger"></span>
             </div>
 
-            <div class="col-2"><label asp-for="Complemento_Endereco" class="control-label pt-2" style="font-size:20px;">Complemento</label></div>
-            <div class="col-10 pb-3">
+            <div class="col-6">
+                <label asp-for="Complemento_Endereco" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Complemento</label>
                 <input asp-for="Complemento_Endereco" class="form-control" maxlength="500" type="number" />
                 <span asp-validation-for="Complemento_Endereco" class="text-danger"></span>
             </div>
+        </div>
 
-            <div class="col-2"><label asp-for="Email" class="control-label pt-2" style="font-size:20px;">Email</label></div>
-            <div class="col-10 pb-3">
+        <div class="row col-lg-12 p-2">
+            <div class="col-10">
+                <label asp-for="Email" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Email</label>
                 <input asp-for="Email" class="form-control" maxlength="100" type="text" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
+        </div>
 
-            <div class="col-2"><label asp-for="Senha" class="control-label pt-2" style="font-size:20px;">Senha</label></div>
-            <div class="col-10 pb-3">
+        <div class="row col-lg-12 p-2">
+            <div class="col-10">
+                <label asp-for="Senha" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Senha</label>
                 <input asp-for="Senha" class="form-control" maxlength="20" type="text" />
                 <span asp-validation-for="Senha" class="text-danger"></span>
             </div>
+        </div>
 
-            <div class="col-2"><label asp-for="Id_Cargo" class="control-label pt-2" style="font-size:20px;">Cargo</label></div>
-            <div class="col-10 pb-3">
-                <select asp-for="Id_Cargo" class="btn btn-secondary dropdown-toggle" asp-items="Html.GetEnumSelectList<Cargos>()" value="1">Cargo</select>
-            </div>
-
-            <div class="col-5 offset-2 pb-4">
+        <div class="row col-lg-12 p-4">
+            <div class="col-2 offset-8">
                 <a asp-action="Index" class="btn-primary btn form-control">Voltar</a>
             </div>
-            <div class="col-5">
+            <div class="col-2">
                 <input type="submit" value="Adicionar" class="btn btn-success form-control" />
             </div>
         </div>

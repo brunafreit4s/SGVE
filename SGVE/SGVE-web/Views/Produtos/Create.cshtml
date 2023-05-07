@@ -14,7 +14,7 @@
 
             <div class="row">
                 <div class="col-12 pb-3">
-                    <label class="control-label pt-2" style="font-size:20px;">Nome</label>
+                    <label class="control-label pt-2" style="font-size:15px;">Nome</label>
                     <input asp-for="Nome" class="form-control" maxlength="500" type="text" />
                     <span asp-validation-for="Nome" class="text-danger"></span>
                 </div>
@@ -22,19 +22,19 @@
 
             <div class="row">
                 <div class="col-6 pb-3">
-                    <label class="control-label pt-2" style="font-size:20px;">Descrição sobre o Produto</label>
+                    <label class="control-label pt-2" style="font-size:15px;">Descrição sobre o Produto</label>
                     <textarea asp-for="Descricao" class="form-control" maxlength="500" type="text"></textarea>
                     <span asp-validation-for="Descricao" class="text-danger"></span>
                 </div>
 
                 <div class="col-2 pb-3">
-                    <label class="control-label pt-2" style="font-size:20px;">Quantidade</label>
+                    <label class="control-label pt-2" style="font-size:15px;">Quantidade</label>
                     <input asp-for="Quantidade" class="form-control" min="0" max="9999" type="number" />
                     <span asp-validation-for="Quantidade" class="text-danger"></span>
                 </div>
 
                 <div class="col-4 pb-3">
-                    <label class="control-label pt-2" style="font-size:20px;">Marca</label>
+                    <label class="control-label pt-2" style="font-size:15px;">Marca</label>
                     <input asp-for="Marca" class="form-control" maxlength="500" type="text" />
                     <span asp-validation-for="Marca" class="text-danger"></span>
                 </div>
@@ -42,7 +42,7 @@
 
             <div class="row">
                 <div class="col-3 pb-3">
-                    <label class="control-label pt-2" style="font-size:20px;">Preço</label>
+                    <label class="control-label pt-2" style="font-size:15px;">Preço</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">$</span>
@@ -53,7 +53,7 @@
                 </div>
 
                 <div class="col-3 pb-3">
-                    <label class="control-label pt-2" style="font-size:20px;">Custo</label>
+                    <label class="control-label pt-2" style="font-size:15px;">Custo</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text">$</span>
@@ -64,13 +64,13 @@
                 </div>
 
                 <div class="col-3 pb-3">
-                    <label class="control-label pt-2" style="font-size:20px;">Tipo</label>
+                    <label class="control-label pt-2" style="font-size:15px;">Tipo</label>
                     <input asp-for="Id_Tipo" class="form-control" type="text" maxlength="4" />
                     <span asp-validation-for="Id_Tipo" class="text-danger"></span>
                 </div>
             </div>
 
-            <div class="col-2"><label class="control-label pt-2" style="font-size:20px;">Fornecedor</label></div>
+            <div class="col-2"><label class="control-label pt-2" style="font-size:15px;">Fornecedor</label></div>
             <div class="col-10 pb-3">
                 <input asp-for="Id_Fornecedor" class="form-control" type="range" />
                 <span asp-validation-for="Id_Fornecedor" class="text-danger"></span>
