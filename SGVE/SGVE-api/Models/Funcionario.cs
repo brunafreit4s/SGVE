@@ -1,8 +1,8 @@
-﻿using SGVE_models.Base;
+﻿using SGVE_api.Base;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SGVE_models.Models
+namespace SGVE_api.Models
 {
     [Table("TB_FUNCIONARIO")]
     public class Funcionario : BaseEntity

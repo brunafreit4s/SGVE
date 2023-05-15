@@ -20,21 +20,24 @@ namespace SGVE_api.Controllers
 
         [HttpGet]
         [Authorize]
-        [SwaggerOperation(Summary = "Retorna lista de Produtos", Description = "Retornos: <br>" +
-            "HTTP 200: Lista de Produtos existentes." + "<br>" +
-            "HTTP 400: Erro de validação." + "<br>" +
-            "HTTP 401: Acesso não autorizado." + "<br>" +
-            "HTTP 404: Nenhum registro encontrado." + "<br>" +
-            "HTTP 500: Erro de servidor.")]
+        [SwaggerOperation(Summary = "Retorna lista de produtos", 
+            Description = "Retornos: <br>" +
+            "HTTP 200: Lista de produtos existentes." + "<br>" +
+            "HTTP 404: Nenhum registro encontrado.")]
         [Route("Consultar")]
         public async Task<ActionResult<IEnumerable<ProdutosVO>>> FindAll()
         {
-            var Produtoss = await _repository.FindAll();
-            return Ok(Produtoss);
+            var Produtos = await _repository.FindAll();
+            if(Produtos == null) { return NotFound(); }
+            return Ok(Produtos);
         }
 
         [HttpGet]
         [Authorize]
+        [SwaggerOperation(Summary = "Retorna produto",
+            Description = "Retornos: <br>" +
+            "HTTP 200: Produto existente." + "<br>" +
+            "HTTP 404: Nenhum registro encontrado.")]
         [Route("Consultar/{id}")]
         public async Task<IActionResult> FindById(long id)
         {
@@ -42,9 +45,27 @@ namespace SGVE_api.Controllers
             if (Produtos.Id <= 0) return NotFound();
             return Ok(Produtos);
         }
+        
+        [HttpGet]
+        [Authorize]
+        [SwaggerOperation(Summary = "Retorna produto",
+            Description = "Retornos: <br>" +
+            "HTTP 200: Produto existente." + "<br>" +
+            "HTTP 404: Nenhum registro encontrado.")]
+        [Route("Consultar/{name}")]
+        public async Task<IActionResult> FindByName(string name)
+        {
+            var Produtos = await _repository.FindByName(name);
+            if (Produtos.Id <= 0) return NotFound();
+            return Ok(Produtos);
+        }
 
         [HttpPost]
         [Authorize]
+        [SwaggerOperation(Summary = "Insere produto",
+            Description = "Retornos: <br>" +
+            "HTTP 200: Inserido com Sucesso." + "<br>" +
+            "HTTP 400: Erro de validação.")]
         [Route("Adicionar")]
         public async Task<ActionResult<ProdutosVO>> Create([FromBody] ProdutosVO vo)
         {
@@ -58,6 +79,10 @@ namespace SGVE_api.Controllers
 
         [HttpPut]
         [Authorize]
+        [SwaggerOperation(Summary = "Atualiza Produto",
+            Description = "Retornos: <br>" +
+            "HTTP 200: Atualizado os dados do produto com Sucesso." + "<br>" +
+            "HTTP 400: Erro de validação.")]
         [Route("Alterar")]
         public async Task<ActionResult<ProdutosVO>> Update([FromBody] ProdutosVO vo)
         {
@@ -68,6 +93,10 @@ namespace SGVE_api.Controllers
 
         [HttpDelete]
         [Route("Excluir/{id}")]
+        [SwaggerOperation(Summary = "Exclui produto",
+            Description = "Retornos: <br>" +
+            "HTTP 200: Excluído com Sucesso." + "<br>" +
+            "HTTP 400: Erro de validação.")]
         [Authorize(Roles = Roles.Admin)]
         public async Task<ActionResult> Delete(long id)
         {

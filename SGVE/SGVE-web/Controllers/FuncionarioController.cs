@@ -60,6 +60,7 @@ namespace SGVE_web.Controllers
                 funcionario.Cpf = Convert.ToUInt64(funcionario.Cpf).ToString(@"000\.000\.000\-00");
                 funcionario.Rg = Convert.ToUInt64(funcionario.Rg).ToString(@"000000000\-00");
                 funcionario.Celular = Convert.ToUInt64(funcionario.DDD_Celular + funcionario.Celular).ToString(@"(000) 00000-0000");
+                funcionario.Telefone = Convert.ToUInt64(funcionario.DDD_Telefone + funcionario.Telefone).ToString(@"(000) 0000-0000");
                 return View(funcionario);
             }
 

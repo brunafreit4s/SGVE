@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SGVE_api.Data.ValueObjects;
-using SGVE_models.Context;
-using SGVE_models.Models;
+using SGVE_api.Context;
+using SGVE_api.Models;
 
 namespace SGVE_api.Repository
 {
@@ -28,7 +28,8 @@ namespace SGVE_api.Repository
             Funcionario funcionario = await _context.Funcionarios.Where(f => f.Id == id).FirstOrDefaultAsync() ?? new Funcionario();
 
             return _mapper.Map<FuncionarioVO>(funcionario);
-        }
+        }       
+
         public async Task<FuncionarioVO> Create(FuncionarioVO vo)
         {
             Funcionario funcionario = _mapper.Map<Funcionario>(vo);

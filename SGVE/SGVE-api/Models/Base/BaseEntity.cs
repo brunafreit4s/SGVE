@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SGVE_models.Base
+namespace SGVE_api.Base
 {
     public class BaseEntity
     {

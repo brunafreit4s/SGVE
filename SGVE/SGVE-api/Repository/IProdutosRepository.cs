@@ -14,6 +14,6 @@ namespace SGVE_api.Repository
 
         Task<bool> DeleteById(long id);
 
-        //Task<ProdutosVO> FindByName(string name);
+        Task<ProdutosVO> FindByName(string name);
     }
 }

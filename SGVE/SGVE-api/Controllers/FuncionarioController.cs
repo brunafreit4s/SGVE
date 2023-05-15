@@ -20,21 +20,24 @@ namespace SGVE_api.Controllers
 
         [HttpGet]
         [Authorize]
-        [SwaggerOperation(Summary = "Retorna lista de funcionários", Description = "Retornos: <br>" +
+        [SwaggerOperation(Summary = "Retorna lista de funcionários", 
+            Description = "Retornos: <br>" +
             "HTTP 200: Lista de funcionários existentes." + "<br>" +
-            "HTTP 400: Erro de validação." + "<br>" +
-            "HTTP 401: Acesso não autorizado." + "<br>" +
-            "HTTP 404: Nenhum registro encontrado." + "<br>" +
-            "HTTP 500: Erro de servidor.")]
+            "HTTP 404: Nenhum registro encontrado.")]
         [Route("Consultar")]
         public async Task<ActionResult<IEnumerable<FuncionarioVO>>> FindAll()
         {
             var funcionarios = await _repository.FindAll();
+            if (funcionarios == null) { return NotFound(); }
             return Ok(funcionarios);
         }
 
         [HttpGet]
         [Authorize]
+        [SwaggerOperation(Summary = "Retorna funcionário", 
+            Description = "Retornos: <br>" +
+            "HTTP 200: Funcionário existente." + "<br>" +
+            "HTTP 404: Nenhum registro encontrado.")]
         [Route("Consultar/{id}")]
         public async Task<IActionResult> FindById(long id)
         {
@@ -45,6 +48,10 @@ namespace SGVE_api.Controllers
 
         [HttpPost]
         [Authorize]
+        [SwaggerOperation(Summary = "Insere funcionário", 
+            Description = "Retornos: <br>" +
+            "HTTP 200: Inserido com Sucesso." + "<br>" +
+            "HTTP 400: Erro de validação.")]
         [Route("Adicionar")]
         public async Task<ActionResult<FuncionarioVO>> Create([FromBody]FuncionarioVO vo)
         {
@@ -58,6 +65,10 @@ namespace SGVE_api.Controllers
         
         [HttpPut]
         [Authorize]
+        [SwaggerOperation(Summary = "Atualiza funcionário", 
+            Description = "Retornos: <br>" +
+            "HTTP 200: Atualizado os dados do funcionário com Sucesso." + "<br>" +
+            "HTTP 400: Erro de validação.")]
         [Route("Alterar")]
         public async Task<ActionResult<FuncionarioVO>> Update([FromBody] FuncionarioVO vo)
         {
@@ -68,6 +79,10 @@ namespace SGVE_api.Controllers
 
         [HttpDelete]
         [Route("Excluir/{id}")]
+        [SwaggerOperation(Summary = "Exclui funcionário", 
+            Description = "Retornos: <br>" +
+            "HTTP 200: Excluído com Sucesso." + "<br>" +
+            "HTTP 400: Erro de validação.")]
         [Authorize(Roles = Roles.Admin)]
         public async Task<ActionResult> Delete(long id)
         {

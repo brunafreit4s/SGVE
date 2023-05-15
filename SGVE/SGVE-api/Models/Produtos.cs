@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SGVE_models.Models
+namespace SGVE_api.Models
 {
     [Table("TB_PRODUTO")]
     public class Produtos

@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using SGVE_api.Data.ValueObjects;
-using SGVE_models.Context;
-using SGVE_models.Models;
+using SGVE_api.Context;
+using SGVE_api.Models;
 
 namespace SGVE_api.Repository
 {
@@ -29,6 +29,14 @@ namespace SGVE_api.Repository
 
             return _mapper.Map<ProdutosVO>(Produtos);
         }
+
+        public async Task<ProdutosVO> FindByName(string name)
+        {
+            Produtos Produtos = await _context.Produtos.Where(f => f.Nome == "%" + name + "%").FirstOrDefaultAsync() ?? new Produtos();
+
+            return _mapper.Map<ProdutosVO>(Produtos);
+        }
+
         public async Task<ProdutosVO> Create(ProdutosVO vo)
         {
             Produtos Produtos = _mapper.Map<Produtos>(vo);

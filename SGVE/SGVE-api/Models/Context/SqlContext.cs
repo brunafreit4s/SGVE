@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SGVE_models.Models;
+using SGVE_api.Models;
 
-namespace SGVE_models.Context
+namespace SGVE_api.Context
 {
     public class SqlContext : DbContext
     {
@@ -10,6 +10,7 @@ namespace SGVE_models.Context
 
         public DbSet<Funcionario> Funcionarios { get; set; }
         public DbSet<Produtos> Produtos { get; set; }
+        public DbSet<Endereco> Endereco { get; set; }
 
         /* Atenção !!!!!!
          * A codificação abaixo é para ser utilizada apenas como exemplo,
@@ -56,6 +57,45 @@ namespace SGVE_models.Context
                 Id_Tipo= 2,
                 Marca = "Trakinas",
                 Quantidade = 10
+            });
+
+            modelBuilder.Entity<Endereco>().HasData(new Endereco 
+            {
+                id = 1,
+                cep = 13188270,
+                tipoCep = "1",
+                uf = "SP",
+                cidade = "Hortolândia",
+                bairro = "Jardim Novo Horizonte",
+                logradouro = "Rua João de Camargo",
+                complemento = "",
+                codigoIBGE = "3519071"
+            });
+
+            modelBuilder.Entity<Endereco>().HasData(new Endereco
+            {
+                id = 2,
+                cep = 12285815,
+                tipoCep = "1",
+                uf = "SP",
+                cidade = "Caçapava",
+                bairro = "Piedade",
+                logradouro = "Rua Capitão Mário Raymundo da Silva",
+                complemento = "",
+                codigoIBGE = "3508504"
+            });
+
+            modelBuilder.Entity<Endereco>().HasData(new Endereco
+            {
+                id = 3,
+                cep = 02990250,
+                tipoCep = "1",
+                uf = "SP",
+                cidade = "São Paulo",
+                bairro = "Jardim Shangrilá (Zona Norte)",
+                logradouro = "Travessa João da Baiana",
+                complemento = "",
+                codigoIBGE = "3550308"
             });
 
             /* ... */

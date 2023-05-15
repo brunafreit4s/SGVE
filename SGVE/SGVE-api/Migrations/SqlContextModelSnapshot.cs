@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using SGVE_models.Context;
+using SGVE_api.Context;
 
 #nullable disable
 
@@ -22,7 +22,99 @@ namespace SGVEapi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("SGVE_models.Models.Funcionario", b =>
+            modelBuilder.Entity("SGVE_api.Models.Endereco", b =>
+                {
+                    b.Property<long>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("ID_ENDERECO");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("id"));
+
+                    b.Property<string>("bairro")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("V_BAIRRO");
+
+                    b.Property<int>("cep")
+                        .HasMaxLength(8)
+                        .HasColumnType("int")
+                        .HasColumnName("I_CEP");
+
+                    b.Property<string>("cidade")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("V_CIDADE");
+
+                    b.Property<string>("codigoIBGE")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("V_CD_IBGE");
+
+                    b.Property<string>("complemento")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("V_COMPLEMENTO");
+
+                    b.Property<string>("logradouro")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("V_LOGRADOURO");
+
+                    b.Property<string>("tipoCep")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("V_TIPO_CEP");
+
+                    b.Property<string>("uf")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("nvarchar(2)")
+                        .HasColumnName("V_UF");
+
+                    b.HasKey("id");
+
+                    b.ToTable("TB_ENDERECO");
+
+                    b.HasData(
+                        new
+                        {
+                            id = 1L,
+                            bairro = "Jardim Novo Horizonte",
+                            cep = 13188270,
+                            cidade = "Hortolândia",
+                            codigoIBGE = "3519071",
+                            complemento = "",
+                            logradouro = "Rua João de Camargo",
+                            tipoCep = "1",
+                            uf = "SP"
+                        },
+                        new
+                        {
+                            id = 2L,
+                            bairro = "Piedade",
+                            cep = 12285815,
+                            cidade = "Caçapava",
+                            codigoIBGE = "3508504",
+                            complemento = "",
+                            logradouro = "Rua Capitão Mário Raymundo da Silva",
+                            tipoCep = "1",
+                            uf = "SP"
+                        },
+                        new
+                        {
+                            id = 3L,
+                            bairro = "Jardim Shangrilá (Zona Norte)",
+                            cep = 2990250,
+                            cidade = "São Paulo",
+                            codigoIBGE = "3550308",
+                            complemento = "",
+                            logradouro = "Travessa João da Baiana",
+                            tipoCep = "1",
+                            uf = "SP"
+                        });
+                });
+
+            modelBuilder.Entity("SGVE_api.Models.Funcionario", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -139,7 +231,7 @@ namespace SGVEapi.Migrations
                         });
                 });
 
-            modelBuilder.Entity("SGVE_models.Models.Produtos", b =>
+            modelBuilder.Entity("SGVE_api.Models.Produtos", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -200,7 +292,7 @@ namespace SGVEapi.Migrations
                         {
                             Id = 2L,
                             Custo = 1.5f,
-                            DataCadastro = new DateTime(2023, 4, 4, 19, 42, 25, 660, DateTimeKind.Local).AddTicks(9755),
+                            DataCadastro = new DateTime(2023, 5, 15, 18, 55, 2, 560, DateTimeKind.Local).AddTicks(6682),
                             Descricao = "Bolacha sabor Morango",
                             IdFornecedor = 2,
                             IdTipo = 2,
