@@ -1,6 +1,5 @@
 ﻿@model FuncionarioViewModel
 @using static SGVE_web.Models.CargosViewModel;
-@using static SGVE_web.Models.EnderecosViewModel;
 
 @{
     ViewData["Title"] = "Adicionar Funcionário";
@@ -69,14 +68,20 @@
 
             <div class="col-2">
                 <label asp-for="Id_Cargo" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Cargo</label>
-                <select asp-for="Id_Cargo" class="btn btn-secondary dropdown-toggle" asp-items="Html.GetEnumSelectList<Cargos>()" value="1">Cargo</select>
+                <select asp-for="Id_Cargo" class="btn btn-primary dropdown-toggle" asp-items="Html.GetEnumSelectList<Cargos>()">Cargo</select>
             </div>
         </div>
 
         <div class="row col-lg-12 p-2">
             <div class="col-2">
-                <label asp-for="Id_Endereco" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Município</label>
-                <select asp-for="Id_Endereco" class="btn btn-secondary dropdown-toggle" asp-items="Html.GetEnumSelectList<Enderecos>()" value="1">endereço</select>
+                <label asp-for="Cep_Endereco" class="control-label pt-2 h3 text-primary" style="font-size:15px;">CEP</label>
+                <input asp-for="Cep_Endereco" class="form-control" maxlength="3" type="number" />
+                <span asp-validation-for="Cep_Endereco" class="text-danger"></span>
+            </div>
+
+            <div class="col-1 pt-4">
+                <!-- Arrumar funcionamento do botão de busca cep-->
+                <input class="btn btn-warning text-white form-control" title="Buscar" type="button" value="Buscar" onclick="@Url.Action("GetCEP", "Funcionario");" />
             </div>
 
             <div class="col-2">

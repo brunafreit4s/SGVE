@@ -22,5 +22,12 @@ namespace SGVE_api.Repository
             List<Endereco> enderecos = await _context.Endereco.ToListAsync();
             return _mapper.Map<List<EnderecoVO>>(enderecos);
         }
+
+        public async Task<EnderecoVO> FindById(int cep)
+        {
+            Endereco endereco = await _context.Endereco.Where(f => f.cep == cep).FirstOrDefaultAsync() ?? new Endereco();
+
+            return _mapper.Map<EnderecoVO>(endereco);
+        }
     }
 }

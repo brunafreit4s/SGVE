@@ -1,6 +1,5 @@
 ﻿@model FuncionarioViewModel
 @using static SGVE_web.Models.CargosViewModel;
-@using static SGVE_web.Models.EnderecosViewModel;
 
 @{
     ViewData["Title"] = "Alterar Funcionário";
@@ -65,8 +64,12 @@
 
         <div class="row col-lg-12 p-2">
             <div class="col-2">
-                <label asp-for="Id_Endereco" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Município</label>
-                <select asp-for="Id_Endereco" class="btn btn-secondary dropdown-toggle" asp-items="Html.GetEnumSelectList<Enderecos>()" value="1">endereço</select>
+                <label class="control-label pt-2 h3 text-primary" style="font-size:15px;">CEP</label>
+                <input class="form-control" maxlength="8" type="number" />
+            </div>
+
+            <div class="col-1 pt-4">
+                <input class="btn btn-warning text-white form-control" title="Buscar" type="button" value="Buscar" onclick="" />
             </div>
 
             <div class="col-2">

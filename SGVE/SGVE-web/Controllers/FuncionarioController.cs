@@ -10,6 +10,7 @@ namespace SGVE_web.Controllers
     public class FuncionarioController : Controller
     {
         private readonly IFuncionarioService _funcionarioService;
+        private readonly IEnderecoService _enderecoService;
 
         public FuncionarioController(IFuncionarioService funcionarioService)
         {
@@ -33,6 +34,20 @@ namespace SGVE_web.Controllers
 
         public async Task<ActionResult> Create()
         {
+            return View();
+        }
+
+        [Authorize]
+        [HttpGet]
+        public async Task<ActionResult> GetCEP(int cep)
+        {
+            if (ModelState.IsValid)
+            {
+                var accessToken = await HttpContext.GetTokenAsync("access_token");
+                var response = await _enderecoService.FindByCepEndereco(cep, accessToken);
+                if (response != null) return RedirectToAction(nameof(Index));
+            }
+
             return View();
         }
 

@@ -12,6 +12,7 @@
         public string DDD_Telefone { get; set; }
         public string Telefone { get; set; }
         public int Id_Endereco { get; set; }
+        public string Cep_Endereco { get; set; }
         public string Numero_Endereco { get; set; }
         public string Complemento_Endereco { get; set; }
         public string Email { get; set; }
@@ -19,5 +20,6 @@
         public DateTime Data_Cadastro { get; set; }
         public DateTime? Data_Desligamento { get; set; }
         public int Id_Cargo { get; set; }
+
     }
 }

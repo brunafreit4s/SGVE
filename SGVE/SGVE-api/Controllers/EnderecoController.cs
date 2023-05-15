@@ -28,5 +28,20 @@ namespace SGVE_api.Controllers
             if(enderecos == null) { return NotFound(); }
             return Ok(enderecos);
         }
+
+        [HttpGet]
+        [Authorize]
+        [SwaggerOperation(Summary = "Retorna endereço",
+            Description = "Retornos: <br>" +
+            "HTTP 200: Endereço existente." + "<br>" +
+            "HTTP 404: Nenhum registro encontrado.")]
+        [Route("Consultar/{cep}")]
+        public async Task<IActionResult> FindByCep(int cep)
+        {
+            var funcionario = await _repository.FindByCep(cep);
+            if (funcionario._id <= 0) return NotFound();
+            return Ok(funcionario);
+        }
+
     }
 }

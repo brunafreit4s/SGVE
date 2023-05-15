@@ -21,8 +21,8 @@ namespace SGVE_web.Controllers
         public async Task<IActionResult> IndexAsync()
         {
             //var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
-            //var funcionarios = await _funcionarioService.FindAllFuncionarios(accessToken);
-            return View();//funcionarios);
+            //var vendas = await _funcionarioService.FindAllVendas(accessToken);
+            return View();//vendas);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
