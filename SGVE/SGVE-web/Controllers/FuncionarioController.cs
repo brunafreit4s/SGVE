@@ -10,7 +10,6 @@ namespace SGVE_web.Controllers
     public class FuncionarioController : Controller
     {
         private readonly IFuncionarioService _funcionarioService;
-        private readonly IEnderecoService _enderecoService;
 
         public FuncionarioController(IFuncionarioService funcionarioService)
         {
@@ -25,8 +24,8 @@ namespace SGVE_web.Controllers
 
             foreach (var item in funcionarios)
             {
-                item.Cpf = Convert.ToUInt64(item.Cpf).ToString(@"000\.000\.000\-00");
-                item.Rg = Convert.ToUInt64(item.Rg).ToString(@"00000000\-00");
+                if (!string.IsNullOrEmpty(item.Cpf)) item.Cpf = Convert.ToUInt64(item.Cpf).ToString(@"000\.000\.000\-00");
+                if (!string.IsNullOrEmpty(item.Rg)) item.Rg = Convert.ToUInt64(item.Rg).ToString(@"00000000\-00");
             }
 
             return View(funcionarios);
@@ -38,20 +37,6 @@ namespace SGVE_web.Controllers
         }
 
         [Authorize]
-        [HttpGet]
-        public async Task<ActionResult> GetCEP(int cep)
-        {
-            if (ModelState.IsValid)
-            {
-                var accessToken = await HttpContext.GetTokenAsync("access_token");
-                var response = await _enderecoService.FindByCepEndereco(cep, accessToken);
-                if (response != null) return RedirectToAction(nameof(Index));
-            }
-
-            return View();
-        }
-
-        [Authorize]
         [HttpPost]
         public async Task<ActionResult> Create(FuncionarioViewModel model)
         {
@@ -59,6 +44,7 @@ namespace SGVE_web.Controllers
             {
                 var accessToken = await HttpContext.GetTokenAsync("access_token");  
                 var response = await _funcionarioService.CreateFuncionario(model, accessToken);
+
                 if (response != null) return RedirectToAction(nameof(Index));
             }
 
@@ -72,10 +58,11 @@ namespace SGVE_web.Controllers
 
             if (funcionario != null)
             {
-                funcionario.Cpf = Convert.ToUInt64(funcionario.Cpf).ToString(@"000\.000\.000\-00");
-                funcionario.Rg = Convert.ToUInt64(funcionario.Rg).ToString(@"000000000\-00");
-                funcionario.Celular = Convert.ToUInt64(funcionario.DDD_Celular + funcionario.Celular).ToString(@"(000) 00000-0000");
-                funcionario.Telefone = Convert.ToUInt64(funcionario.DDD_Telefone + funcionario.Telefone).ToString(@"(000) 0000-0000");
+                if (!string.IsNullOrEmpty(funcionario.Cpf))         funcionario.Cpf = Convert.ToUInt64(funcionario.Cpf).ToString(@"000\.000\.000\-00");
+                if (!string.IsNullOrEmpty(funcionario.Rg))          funcionario.Rg = Convert.ToUInt64(funcionario.Rg).ToString(@"00000000\-00");
+                if (!string.IsNullOrEmpty(funcionario.Celular))     funcionario.Celular = Convert.ToUInt64(funcionario.Celular).ToString(@"(000) 00000-0000");
+                if (!string.IsNullOrEmpty(funcionario.Telefone))    funcionario.Telefone = Convert.ToUInt64(funcionario.Telefone).ToString(@"(000) 0000-0000");
+
                 return View(funcionario);
             }
 
@@ -88,7 +75,7 @@ namespace SGVE_web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var accessToken = await HttpContext.GetTokenAsync("access_token"); 
+                var accessToken = await HttpContext.GetTokenAsync("access_token");
                 var response = await _funcionarioService.UpdateFuncionario(model, accessToken);
                 if (response != null) return RedirectToAction(nameof(Index));
             }
@@ -104,9 +91,11 @@ namespace SGVE_web.Controllers
 
             if (funcionario != null)
             {
-                funcionario.Cpf = Convert.ToUInt64(funcionario.Cpf).ToString(@"000\.000\.000\-00");
-                funcionario.Rg = Convert.ToUInt64(funcionario.Rg).ToString(@"000000000\-00");
-                funcionario.Celular = Convert.ToUInt64(funcionario.DDD_Celular + funcionario.Celular).ToString(@"(000) 00000-0000");
+                if (!string.IsNullOrEmpty(funcionario.Cpf)) funcionario.Cpf = Convert.ToUInt64(funcionario.Cpf).ToString(@"000\.000\.000\-00");
+                if (!string.IsNullOrEmpty(funcionario.Rg)) funcionario.Rg = Convert.ToUInt64(funcionario.Rg).ToString(@"00000000\-00");
+                if (!string.IsNullOrEmpty(funcionario.Celular)) funcionario.Celular = Convert.ToUInt64(funcionario.Celular).ToString(@"(000) 00000-0000");
+                if (!string.IsNullOrEmpty(funcionario.Telefone)) funcionario.Telefone = Convert.ToUInt64(funcionario.Telefone).ToString(@"(000) 0000-0000");
+
                 return View(funcionario);
             }
 

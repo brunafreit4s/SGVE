@@ -14,8 +14,6 @@ namespace SGVE_api.Config
                 config.CreateMap<Funcionario, FuncionarioVO>();
                 config.CreateMap<ProdutosVO, Produtos>();
                 config.CreateMap<Produtos, ProdutosVO>();
-                config.CreateMap<Endereco, EnderecoVO>();
-                config.CreateMap<EnderecoVO, Endereco>();
             });
             return mappingConfig;           
         }

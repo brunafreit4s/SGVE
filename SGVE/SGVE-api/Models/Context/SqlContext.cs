@@ -10,7 +10,6 @@ namespace SGVE_api.Context
 
         public DbSet<Funcionario> Funcionarios { get; set; }
         public DbSet<Produtos> Produtos { get; set; }
-        public DbSet<Endereco> Endereco { get; set; }
 
         /* Atenção !!!!!!
          * A codificação abaixo é para ser utilizada apenas como exemplo,
@@ -21,28 +20,46 @@ namespace SGVE_api.Context
         {
             modelBuilder.Entity<Funcionario>().HasData(new Funcionario
             {
-                Id = 2,
-                Nome = "João",
-                Cpf = "11122233344"
-                /*
-                 .
-                 .
-                 .
-                    atribuir os valores desejados em todas as colunas.
-                 */
+                Id = 1,
+                Cpf = "78134252001",
+                Nome = "João Pereira",
+                Rg = "248805253",
+                Data_Nascimento = DateTime.Parse("01/01/1991"),
+                Celular = "011998987474",
+                Telefone = "01122223333",
+                Cep_Endereco = 17800970,
+                Logradouro_Endereco = "Rua Deputado Salles Filho 469",
+                Numero_Endereco = "15",
+                Complemento_Endereco = "Próximo a banca de jornal do seu João",
+                Bairro_Endereco = "Centro",
+                Cidade_Endereco = "Adamantina",
+                UF_Endereco = "SP",
+                Email = "joao.pereira@gmail.com",
+                Senha = "123456",
+                Data_Cadastro = DateTime.Now,
+                Id_Cargo = 1,
             });
 
             modelBuilder.Entity<Funcionario>().HasData(new Funcionario
             {
-                Id = 3,
-                Nome = "Pedro",
-                Cpf = "55566677799"
-                /*
-                 .
-                 .
-                 .
-                    atribuir os valores desejados em todas as colunas.
-                 */
+                Id = 2,
+                Cpf = "16926121079",
+                Nome = "Adolfo Silva",
+                Rg = "154969552",
+                Data_Nascimento = DateTime.Parse("04/06/1987"),
+                Celular = "011998987474",
+                Telefone = "01122223333",
+                Cep_Endereco = 15230970,
+                Logradouro_Endereco = "Rua Castro Alves 984",
+                Numero_Endereco = "85",
+                Complemento_Endereco = "Próximo a casa do Pedro",
+                Bairro_Endereco = "Centro",
+                Cidade_Endereco = "Adolfo",
+                UF_Endereco = "SP",
+                Email = "joao.pereira@gmail.com",
+                Senha = "123456",
+                Data_Cadastro = DateTime.Now,
+                Id_Cargo = 1,
             });
 
             modelBuilder.Entity<Produtos>().HasData(new Produtos
@@ -57,45 +74,6 @@ namespace SGVE_api.Context
                 Id_Tipo= 2,
                 Marca = "Trakinas",
                 Quantidade = 10
-            });
-
-            modelBuilder.Entity<Endereco>().HasData(new Endereco 
-            {
-                id = 1,
-                cep = 13188270,
-                tipoCep = "1",
-                uf = "SP",
-                cidade = "Hortolândia",
-                bairro = "Jardim Novo Horizonte",
-                logradouro = "Rua João de Camargo",
-                complemento = "",
-                codigoIBGE = "3519071"
-            });
-
-            modelBuilder.Entity<Endereco>().HasData(new Endereco
-            {
-                id = 2,
-                cep = 12285815,
-                tipoCep = "1",
-                uf = "SP",
-                cidade = "Caçapava",
-                bairro = "Piedade",
-                logradouro = "Rua Capitão Mário Raymundo da Silva",
-                complemento = "",
-                codigoIBGE = "3508504"
-            });
-
-            modelBuilder.Entity<Endereco>().HasData(new Endereco
-            {
-                id = 3,
-                cep = 02990250,
-                tipoCep = "1",
-                uf = "SP",
-                cidade = "São Paulo",
-                bairro = "Jardim Shangrilá (Zona Norte)",
-                logradouro = "Travessa João da Baiana",
-                complemento = "",
-                codigoIBGE = "3550308"
             });
 
             /* ... */

@@ -24,36 +24,44 @@ namespace SGVE_api.Models
         [Column("DT_NASCIMENTO")]
         public DateTime Data_Nascimento { get; set; }
 
-        [Column("V_DDD_CELULAR")]
-        [StringLength(3)]
-        public string DDD_Celular { get; set; }
-
         [Column("V_CELULAR")]
         [StringLength(15)]
         public string Celular { get; set; }
-
-        [Column("V_DDD_TELEFONE")]
-        [StringLength(3)]
-        public string DDD_Telefone { get; set; }
 
         [Column("V_TELEFONE")]
         [StringLength(15)]
         public string Telefone { get; set; }
 
-        [Column("FK_ID_ENDERECO")]
+        [Column("I_CEP_ENDERECO")]
         [StringLength(15)]
-        public int Id_Endereco { get; set; }
+        public int Cep_Endereco { get; set; }
+
+        [Column("V_LOGRADOURO_ENDERECO")]
+        [StringLength(500)]
+        public string Logradouro_Endereco { get; set; }
 
         [Column("I_NUM_ENDERECO")]
-        [StringLength(20)]
+        [StringLength(10)]
         public string Numero_Endereco { get; set; }
 
-        [Column("V_COMPLEMENTO")]
-        [StringLength(500)]
+        [Column("V_COMPLEMENTO_ENDERECO")]
+        [StringLength(100)]
         public string Complemento_Endereco { get; set; }
 
-        [Column("V_EMAIL")]
+        [Column("V_BAIRRO_ENDERECO")]
         [StringLength(100)]
+        public string Bairro_Endereco { get; set; }
+
+        [Column("V_CIDADE_ENDERECO")]
+        [StringLength(100)]
+        public string Cidade_Endereco { get; set; }
+
+        [Column("V_UF_ENDERECO")]
+        [StringLength(2)]
+        public string UF_Endereco { get; set; }
+
+        [Column("V_EMAIL")]
+        [StringLength(50)]
         public string Email { get; set; }
 
         [Column("V_SENHA")]
@@ -64,12 +72,12 @@ namespace SGVE_api.Models
         [StringLength(20)]
         public DateTime Data_Cadastro { get; set; }
 
-        [Column("DT_DESLIGAMENTO")]
+        [Column("DT_ALTERACAO")]
         [StringLength(20)]
-        public DateTime? Data_Desligamento { get; set; }
+        public DateTime Data_Alteracao { get; set; }
 
         [Column("FK_ID_CARGO")]
-        [StringLength(15)]
+        [StringLength(1)]
         public int Id_Cargo { get; set; }
 
     }

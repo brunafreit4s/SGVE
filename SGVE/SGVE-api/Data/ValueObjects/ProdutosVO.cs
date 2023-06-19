@@ -10,6 +10,7 @@
         public float? Custo { get; set; }
         public float? Preco { get; set; }
         public DateTime Data_Cadastro { get; set; }
+        public DateTime Data_Alteracao { get; set; }
         public int Id_Tipo { get; set; }
         public int Id_Fornecedor { get; set; }
     }

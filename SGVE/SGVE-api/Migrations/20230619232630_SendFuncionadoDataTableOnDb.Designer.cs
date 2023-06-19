@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SGVE_api.Context;
 
@@ -11,9 +12,11 @@ using SGVE_api.Context;
 namespace SGVEapi.Migrations
 {
     [DbContext(typeof(SqlContext))]
-    partial class SqlContextModelSnapshot : ModelSnapshot
+    [Migration("20230619232630_SendFuncionadoDataTableOnDb")]
+    partial class SendFuncionadoDataTableOnDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -134,16 +137,14 @@ namespace SGVEapi.Migrations
                             Celular = "011998987474",
                             CepEndereco = 17800970,
                             CidadeEndereco = "Adamantina",
-                            ComplementoEndereco = "Próximo a banca de jornal do seu João",
                             Cpf = "78134252001",
                             DataAlteracao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataCadastro = new DateTime(2023, 6, 19, 20, 38, 15, 104, DateTimeKind.Local).AddTicks(1901),
+                            DataCadastro = new DateTime(2023, 6, 19, 20, 26, 30, 857, DateTimeKind.Local).AddTicks(4582),
                             DataNascimento = new DateTime(1991, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "joao.pereira@gmail.com",
                             IdCargo = 1,
                             LogradouroEndereco = "Rua Deputado Salles Filho 469",
                             Nome = "João Pereira",
-                            NumeroEndereco = "15",
                             Rg = "248805253",
                             Senha = "123456",
                             Telefone = "01122223333",
@@ -156,16 +157,14 @@ namespace SGVEapi.Migrations
                             Celular = "011998987474",
                             CepEndereco = 15230970,
                             CidadeEndereco = "Adolfo",
-                            ComplementoEndereco = "Próximo a casa do Pedro",
                             Cpf = "16926121079",
                             DataAlteracao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataCadastro = new DateTime(2023, 6, 19, 20, 38, 15, 104, DateTimeKind.Local).AddTicks(1945),
+                            DataCadastro = new DateTime(2023, 6, 19, 20, 26, 30, 857, DateTimeKind.Local).AddTicks(4620),
                             DataNascimento = new DateTime(1987, 6, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "joao.pereira@gmail.com",
                             IdCargo = 1,
                             LogradouroEndereco = "Rua Castro Alves 984",
                             Nome = "Adolfo Silva",
-                            NumeroEndereco = "85",
                             Rg = "154969552",
                             Senha = "123456",
                             Telefone = "01122223333",
@@ -234,7 +233,7 @@ namespace SGVEapi.Migrations
                         {
                             Id = 2L,
                             Custo = 1.5f,
-                            DataCadastro = new DateTime(2023, 6, 19, 20, 38, 15, 104, DateTimeKind.Local).AddTicks(1957),
+                            DataCadastro = new DateTime(2023, 6, 19, 20, 26, 30, 857, DateTimeKind.Local).AddTicks(4653),
                             Descricao = "Bolacha sabor Morango",
                             IdFornecedor = 2,
                             IdTipo = 2,

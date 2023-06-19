@@ -73,6 +73,9 @@ namespace SGVE_api.Controllers
         public async Task<ActionResult<FuncionarioVO>> Update([FromBody] FuncionarioVO vo)
         {
             if (vo == null) return BadRequest();
+
+            vo.Data_Alteracao = DateTime.Now;
+
             var funcionario = await _repository.Update(vo);
             return Ok(funcionario);
         }
