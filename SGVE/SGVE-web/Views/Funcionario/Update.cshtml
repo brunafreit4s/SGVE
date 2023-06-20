@@ -39,7 +39,7 @@
 
             <div class="col-4">
                 <label asp-for="Data_Nascimento" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Data de Nascimento</label>
-                <input asp-for="Data_Nascimento" class="form-control" maxlength="10" type="date" />
+                <input asp-for="Data_Nascimento" class="form-control" maxlength="10" type="date" value="@Model.Data_Nascimento.ToString("yyyy-MM-dd")" />
                 <span asp-validation-for="Data_Nascimento" class="text-danger"></span>
             </div>
         </div>
@@ -122,7 +122,7 @@
         <div class="row col-lg-12 p-2">
             <div class="col-10">
                 <label asp-for="Senha" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Senha</label>
-                <input asp-for="Senha" class="form-control" maxlength="20" type="password" />
+                <input asp-for="Senha" class="form-control" maxlength="20" type="password" value="@Model.Senha" />
                 <span asp-validation-for="Senha" class="text-danger"></span>
             </div>
         </div>

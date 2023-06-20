@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using SGVE_web.Models;
 using SGVE_web.Services.IServices;
 using SGVE_web.Util;
+using System.Globalization;
 
 namespace SGVE_web.Controllers
 {    
@@ -24,8 +25,10 @@ namespace SGVE_web.Controllers
 
             foreach (var item in funcionarios)
             {
-                if (!string.IsNullOrEmpty(item.Cpf)) item.Cpf = Convert.ToUInt64(item.Cpf).ToString(@"000\.000\.000\-00");
-                if (!string.IsNullOrEmpty(item.Rg)) item.Rg = Convert.ToUInt64(item.Rg).ToString(@"00000000\-00");
+                if (!string.IsNullOrEmpty(item.Cpf)) item.Cpf           = Convert.ToUInt64(item.Cpf.Replace(".", "").Replace("-", "").Replace(" ", "")).ToString(@"000\.000\.000\-00");
+                if (!string.IsNullOrEmpty(item.Rg)) item.Rg             = Convert.ToUInt64(item.Rg.Replace(".", "").Replace("-", "").Replace(" ", "")).ToString(@"00000000\-00");
+                if (!string.IsNullOrEmpty(item.Celular)) item.Celular   = Convert.ToUInt64(item.Celular.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "")).ToString(@"(00) 00000-0000");
+                if (!string.IsNullOrEmpty(item.Telefone)) item.Telefone = Convert.ToUInt64(item.Telefone.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "")).ToString(@"(00) 0000-0000");
             }
 
             return View(funcionarios);
@@ -42,7 +45,13 @@ namespace SGVE_web.Controllers
         {
             if (ModelState.IsValid)
             {
-                var accessToken = await HttpContext.GetTokenAsync("access_token");  
+                var accessToken = await HttpContext.GetTokenAsync("access_token");
+
+                model.Cpf       = model.Cpf.Replace(".", "").Replace("-", "").Trim();
+                model.Rg        = model.Rg.Replace(".", "").Replace("-", "").Trim();
+                model.Celular   = model.Celular.Replace("(", "").Replace(")", "").Replace("-", "").Trim();
+                model.Telefone  = model.Telefone.Replace("(", "").Replace(")", "").Replace("-", "").Trim();
+
                 var response = await _funcionarioService.CreateFuncionario(model, accessToken);
 
                 if (response != null) return RedirectToAction(nameof(Index));
@@ -58,10 +67,10 @@ namespace SGVE_web.Controllers
 
             if (funcionario != null)
             {
-                if (!string.IsNullOrEmpty(funcionario.Cpf))         funcionario.Cpf = Convert.ToUInt64(funcionario.Cpf).ToString(@"000\.000\.000\-00");
-                if (!string.IsNullOrEmpty(funcionario.Rg))          funcionario.Rg = Convert.ToUInt64(funcionario.Rg).ToString(@"00000000\-00");
-                if (!string.IsNullOrEmpty(funcionario.Celular))     funcionario.Celular = Convert.ToUInt64(funcionario.Celular).ToString(@"(000) 00000-0000");
-                if (!string.IsNullOrEmpty(funcionario.Telefone))    funcionario.Telefone = Convert.ToUInt64(funcionario.Telefone).ToString(@"(000) 0000-0000");
+                if (!string.IsNullOrEmpty(funcionario.Cpf)) funcionario.Cpf           = Convert.ToUInt64(funcionario.Cpf.Replace(".", "").Replace("-", "").Replace(" ", "")).ToString(@"000\.000\.000\-00");
+                if (!string.IsNullOrEmpty(funcionario.Rg)) funcionario.Rg             = Convert.ToUInt64(funcionario.Rg.Replace(".", "").Replace("-", "").Replace(" ", "")).ToString(@"00000000\-00");
+                if (!string.IsNullOrEmpty(funcionario.Celular)) funcionario.Celular   = Convert.ToUInt64(funcionario.Celular.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "")).ToString(@"(00) 00000-0000");
+                if (!string.IsNullOrEmpty(funcionario.Telefone)) funcionario.Telefone = Convert.ToUInt64(funcionario.Telefone.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "")).ToString(@"(00) 0000-0000");
 
                 return View(funcionario);
             }
@@ -73,10 +82,17 @@ namespace SGVE_web.Controllers
         [HttpPost]
         public async Task<ActionResult> Update(FuncionarioViewModel model)
         {
+
             if (ModelState.IsValid)
             {
+                model.Cpf       = model.Cpf.Replace(".", "").Replace("-", "").Replace(" ", "");
+                model.Rg        = model.Rg.Replace(".", "").Replace("-", "").Replace(" ", "");
+                model.Celular   = model.Celular.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
+                model.Telefone  = model.Telefone.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "");
+
                 var accessToken = await HttpContext.GetTokenAsync("access_token");
                 var response = await _funcionarioService.UpdateFuncionario(model, accessToken);
+
                 if (response != null) return RedirectToAction(nameof(Index));
             }
 
@@ -91,10 +107,10 @@ namespace SGVE_web.Controllers
 
             if (funcionario != null)
             {
-                if (!string.IsNullOrEmpty(funcionario.Cpf)) funcionario.Cpf = Convert.ToUInt64(funcionario.Cpf).ToString(@"000\.000\.000\-00");
-                if (!string.IsNullOrEmpty(funcionario.Rg)) funcionario.Rg = Convert.ToUInt64(funcionario.Rg).ToString(@"00000000\-00");
-                if (!string.IsNullOrEmpty(funcionario.Celular)) funcionario.Celular = Convert.ToUInt64(funcionario.Celular).ToString(@"(000) 00000-0000");
-                if (!string.IsNullOrEmpty(funcionario.Telefone)) funcionario.Telefone = Convert.ToUInt64(funcionario.Telefone).ToString(@"(000) 0000-0000");
+                if (!string.IsNullOrEmpty(funcionario.Cpf)) funcionario.Cpf           = Convert.ToUInt64(funcionario.Cpf.Replace(".", "").Replace("-", "").Replace(" ", "")).ToString(@"000\.000\.000\-00");
+                if (!string.IsNullOrEmpty(funcionario.Rg)) funcionario.Rg             = Convert.ToUInt64(funcionario.Rg.Replace(".", "").Replace("-", "").Replace(" ", "")).ToString(@"00000000\-00");
+                if (!string.IsNullOrEmpty(funcionario.Celular)) funcionario.Celular   = Convert.ToUInt64(funcionario.Celular.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "")).ToString(@"(00) 00000-0000");
+                if (!string.IsNullOrEmpty(funcionario.Telefone)) funcionario.Telefone = Convert.ToUInt64(funcionario.Telefone.Replace("(", "").Replace(")", "").Replace("-", "").Replace(" ", "")).ToString(@"(00) 0000-0000");
 
                 return View(funcionario);
             }
