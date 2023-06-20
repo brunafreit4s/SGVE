@@ -64,23 +64,47 @@ namespace SGVE_api.Context
 
             modelBuilder.Entity<Produtos>().HasData(new Produtos
             {
-                Id = 2,
-                Nome = "Bolacha Trakinas",
-                Custo = (float?)1.50,
-                Preco = (float?)0.50,
-                Data_Cadastro = DateTime.Now,
+                Id = 1,
+                Nome = "Bolacha",
                 Descricao = "Bolacha sabor Morango",
-                Id_Fornecedor= 2,
-                Id_Tipo= 2,
+                Quantidade = 15,
                 Marca = "Trakinas",
-                Quantidade = 10
+                Custo = (decimal)0.50,
+                Preco = (decimal)1.50,
+                Data_Cadastro = DateTime.Now,
+                Id_Tipo= 1
             });
 
-            /* ... */
+            modelBuilder.Entity<Produtos>().HasData(new Produtos
+            {
+                Id = 2,
+                Nome = "Coca-Cola",
+                Descricao = "Refrigerante sabor Coca-Cola",
+                Quantidade = 100,
+                Marca = "Coca-Cola",
+                Custo = (decimal)10.00,
+                Preco = (decimal)13.50,
+                Data_Cadastro = DateTime.Now,
+                Id_Tipo = 2
+            });
+
+            modelBuilder.Entity<Produtos>().HasData(new Produtos
+            {
+                Id = 4,
+                Nome = "Papel Higiênico",
+                Descricao = "Papel Higiênico Primavera",
+                Quantidade = 30,
+                Marca = "Primavera",
+                Custo = (decimal)5.00,
+                Preco = (decimal)10.00,
+                Data_Cadastro = DateTime.Now,
+                Id_Tipo = 3
+            });
+
             /*
-             * Após finalizar, executar no Console:
-             * add-migration [nomedamigration]
-             * update-database -Context SqlContext
+             * Após finalizar executar no terminal:
+             * dotnet ef migrations add [nome da migration]
+             * dotnet ef database update
              */
 
         }

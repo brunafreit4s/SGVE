@@ -1,55 +1,89 @@
-﻿@model FuncionarioViewModel
+﻿@model ProdutosViewModel
+@using static SGVE_web.Models.TiposViewModel;
 
 @{
-    ViewData["Title"] = "Alterar Funcionário";
+    ViewData["Title"] = "Alterar Produto";
 }
 
 <form asp-action="Update">
 
     <input asp-for="Id" hidden>
 
-    <br/>
-    <div class="container border p-3">
-        <h1 class="text-primary">Atualizar dados do Funcionário</h1>
-        <hr/>
-        <div class="row">
+    <br />
+    <div class="container border border-4 border-secondary p-3 border-start-0 rounded-end border-opacity-10 rounded-4">
+        <h3 class="text-primary p-3">Adicionar um novo Produto</h3>
+        <hr />
+
+        <div class="alert alert-warning" role="alert">
+            <h5>Atenção!</h5>
+            Campos marcados com (<b class="text-danger">*</b>) são de preenchimento obrigatório.
+        </div>
+
+        <div class="row col-lg-12 p-2">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            
-            <div class="col-2"><label asp-for="Cpf" class="control-label pt-2" style="font-size:15px;">CPF</label></div>
-            <div class="col-10 pb-3">
-                <input asp-for="Cpf" class="form-control" maxlength="11" type="number" />
-                <span asp-validation-for="Cpf" class="text-danger"></span>
-            </div>
-            
-            <div class="col-2"><label asp-for="Nome" class="control-label pt-2" style="font-size:15px;">Nome</label></div>
-            <div class="col-10 pb-3">
-                <input asp-for="Nome" class="form-control" maxlength="500" />
+
+            <div class="col-12">
+                <label class="control-label pt-2 h3 text-primary" style="font-size:15px;">Nome <b class="text-danger">*</b></label>
+                <input asp-for="Nome" class="form-control" maxlength="500" type="text" />
                 <span asp-validation-for="Nome" class="text-danger"></span>
             </div>
+        </div>
 
-            <div class="col-2"><label asp-for="Rg" class="control-label pt-2" style="font-size:15px;">RG</label></div>
-            <div class="col-10 pb-3">
-                <input asp-for="Rg" class="form-control" maxlength="20" type="number" />
-                <span asp-validation-for="Rg" class="text-danger"></span>
+        <div class="row col-lg-12 p-2">
+            <div class="col-6">
+                <label class="control-label pt-2 h3 text-primary" style="font-size:15px;">Descrição sobre o Produto <b class="text-danger">*</b></label>
+                <textarea asp-for="Descricao" class="form-control" maxlength="500" type="text"></textarea>
+                <span asp-validation-for="Descricao" class="text-danger"></span>
             </div>
 
-            <div class="col-2"><label asp-for="Data_Nascimento" class="control-label pt-2" style="font-size:15px;">Data de Nascimento</label></div>
-            <div class="col-10 pb-3">
-                <input asp-for="Data_Nascimento" class="form-control" maxlength="10" type="date" />
-                <span asp-validation-for="Data_Nascimento" class="text-danger"></span>
+            <div class="col-2">
+                <label class="control-label pt-2 h3 text-primary" style="font-size:15px;">Quantidade <b class="text-danger">*</b></label>
+                <input asp-for="Quantidade" class="form-control" min="0" max="9999" type="number" />
+                <span asp-validation-for="Quantidade" class="text-danger"></span>
             </div>
 
-            <div class="col-2"><label asp-for="Celular" class="control-label pt-2" style="font-size:15px;">Celular</label></div>
-            <div class="col-10 pb-3">
-                <input asp-for="Celular" class="form-control" maxlength="18" type="number" />
-                <span asp-validation-for="Celular" class="text-danger"></span>
+            <div class="col-4">
+                <label class="control-label pt-2 h3 text-primary" style="font-size:15px;">Marca</label>
+                <input asp-for="Marca" class="form-control" maxlength="500" type="text" />
+                <span asp-validation-for="Marca" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="row col-lg-12 p-2">
+            <div class="col-3">
+                <label class="control-label pt-2 h3 text-primary" style="font-size:15px;">Preço <b class="text-danger">*</b></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                    </div>
+                    <input asp-for="Preco" class="form-control" type="number" min="0" max="9999.99" value="0.01" step=".01" />
+                </div>
+                <span asp-validation-for="Preco" class="text-danger"></span>
             </div>
 
-            <div class="col-5 offset-2">
+            <div class="col-3">
+                <label class="control-label pt-2 h3 text-primary" style="font-size:15px;">Custo <b class="text-danger">*</b></label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">$</span>
+                    </div>
+                    <input asp-for="Custo" class="form-control" type="number" min="0" max="9999.99" value="0.01" step=".01" />
+                </div>
+                <span asp-validation-for="Custo" class="text-danger"></span>
+            </div>
+
+            <div class="col-2">
+                <label asp-for="Id_Tipo" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Tipo de Produto <b class="text-danger">*</b></label>
+                <select asp-for="Id_Tipo" class="btn btn-primary dropdown-toggle" asp-items="Html.GetEnumSelectList<Produtos>()">Tipo de Produto</select>
+            </div>
+        </div>
+
+        <div class="row col-lg-12 p-4">
+            <div class="col-2 offset-8">
                 <a asp-action="Index" class="btn-primary btn form-control">Voltar</a>
             </div>
-            <div class="col-5">
-                <input type="submit" value="Salvar" class="btn btn-sucess form-control" />
+            <div class="col-2">
+                <input type="submit" value="Adicionar" class="btn btn-outline-success form-control" />
             </div>
         </div>
     </div>

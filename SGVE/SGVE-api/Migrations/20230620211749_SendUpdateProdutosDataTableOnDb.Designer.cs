@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SGVE_api.Context;
 
@@ -11,9 +12,11 @@ using SGVE_api.Context;
 namespace SGVEapi.Migrations
 {
     [DbContext(typeof(SqlContext))]
-    partial class SqlContextModelSnapshot : ModelSnapshot
+    [Migration("20230620211749_SendUpdateProdutosDataTableOnDb")]
+    partial class SendUpdateProdutosDataTableOnDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -137,7 +140,7 @@ namespace SGVEapi.Migrations
                             ComplementoEndereco = "Próximo a banca de jornal do seu João",
                             Cpf = "78134252001",
                             DataAlteracao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataCadastro = new DateTime(2023, 6, 20, 18, 36, 26, 563, DateTimeKind.Local).AddTicks(125),
+                            DataCadastro = new DateTime(2023, 6, 20, 18, 17, 49, 7, DateTimeKind.Local).AddTicks(7440),
                             DataNascimento = new DateTime(1991, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "joao.pereira@gmail.com",
                             IdCargo = 1,
@@ -159,7 +162,7 @@ namespace SGVEapi.Migrations
                             ComplementoEndereco = "Próximo a casa do Pedro",
                             Cpf = "16926121079",
                             DataAlteracao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataCadastro = new DateTime(2023, 6, 20, 18, 36, 26, 563, DateTimeKind.Local).AddTicks(158),
+                            DataCadastro = new DateTime(2023, 6, 20, 18, 17, 49, 7, DateTimeKind.Local).AddTicks(7476),
                             DataNascimento = new DateTime(1987, 6, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "joao.pereira@gmail.com",
                             IdCargo = 1,
@@ -186,13 +189,7 @@ namespace SGVEapi.Migrations
                         .HasColumnType("decimal(18,2)")
                         .HasColumnName("D_CUSTO");
 
-                    b.Property<DateTime>("Data_Alteracao")
-                        .HasMaxLength(20)
-                        .HasColumnType("datetime2")
-                        .HasColumnName("DT_ALTERACAO");
-
                     b.Property<DateTime>("Data_Cadastro")
-                        .HasMaxLength(20)
                         .HasColumnType("datetime2")
                         .HasColumnName("DT_CADASTRO");
 
@@ -222,7 +219,6 @@ namespace SGVEapi.Migrations
                         .HasColumnName("D_PRECO");
 
                     b.Property<int>("Quantidade")
-                        .HasMaxLength(4)
                         .HasColumnType("int")
                         .HasColumnName("I_QUANTIDADE");
 
@@ -235,8 +231,7 @@ namespace SGVEapi.Migrations
                         {
                             Id = 1L,
                             Custo = 0.5m,
-                            DataAlteracao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataCadastro = new DateTime(2023, 6, 20, 18, 36, 26, 563, DateTimeKind.Local).AddTicks(175),
+                            DataCadastro = new DateTime(2023, 6, 20, 18, 17, 49, 7, DateTimeKind.Local).AddTicks(7491),
                             Descricao = "Bolacha sabor Morango",
                             IdTipo = 1,
                             Marca = "Trakinas",
@@ -248,8 +243,7 @@ namespace SGVEapi.Migrations
                         {
                             Id = 2L,
                             Custo = 10m,
-                            DataAlteracao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataCadastro = new DateTime(2023, 6, 20, 18, 36, 26, 563, DateTimeKind.Local).AddTicks(187),
+                            DataCadastro = new DateTime(2023, 6, 20, 18, 17, 49, 7, DateTimeKind.Local).AddTicks(7499),
                             Descricao = "Refrigerante sabor Coca-Cola",
                             IdTipo = 2,
                             Marca = "Coca-Cola",
@@ -261,8 +255,7 @@ namespace SGVEapi.Migrations
                         {
                             Id = 4L,
                             Custo = 5m,
-                            DataAlteracao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataCadastro = new DateTime(2023, 6, 20, 18, 36, 26, 563, DateTimeKind.Local).AddTicks(193),
+                            DataCadastro = new DateTime(2023, 6, 20, 18, 17, 49, 7, DateTimeKind.Local).AddTicks(7504),
                             Descricao = "Papel Higiênico Primavera",
                             IdTipo = 3,
                             Marca = "Primavera",

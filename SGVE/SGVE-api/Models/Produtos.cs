@@ -22,6 +22,7 @@ namespace SGVE_api.Models
 
         [Column("I_QUANTIDADE")]
         [Required]
+        [StringLength(4)]
         public int Quantidade { get; set; }
 
         [Column("V_MARCA")]
@@ -29,20 +30,24 @@ namespace SGVE_api.Models
         public string Marca { get; set; }
 
         [Column("D_CUSTO")]
-        [Required]        
-        public float? Custo { get; set; }
+        [Required]
+        [Range(1,10000)]
+        public decimal Custo { get; set; }
 
         [Column("D_PRECO")]
         [Required]
-        public float? Preco { get; set; }
+        [Range(1,10000)]
+        public decimal Preco { get; set; }
 
         [Column("DT_CADASTRO")]
+        [StringLength(20)]
         public DateTime Data_Cadastro { get; set; }
+
+        [Column("DT_ALTERACAO")]
+        [StringLength(20)]
+        public DateTime Data_Alteracao { get; set; }
 
         [Column("FK_ID_TIPO")]
         public int Id_Tipo { get; set; }
-
-        [Column("FK_ID_FORNECEDOR")]
-        public int Id_Fornecedor { get; set; }
     }
 }

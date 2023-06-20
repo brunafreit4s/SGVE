@@ -42,12 +42,12 @@
                                 <th><font style="vertical-align: inherit;">@item.Celular</font></th>
                                 <th><font style="vertical-align: inherit;">@item.Telefone</font></th>
                                 <th>
-                                    <a asp-action="Update" class="btn btn-outline-success" asp-route-id="@item.Id"><i class="bi bi-person-fill-gear"></i>Editar</a>
+                                    <a asp-action="Update" class="btn btn-outline-success" asp-route-id="@item.Id"><i class="bi bi-person-fill-gear"></i> Editar</a>
                                 </th>
                                 @if (User.IsInRole("Admin"))
                                 {
                                     <th>
-                                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i>Deletar</a>
+                                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i> Desligar</a>
                                     </th>
                                 }
                             </tr>

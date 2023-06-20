@@ -45,21 +45,7 @@ namespace SGVE_api.Controllers
             if (Produtos.Id <= 0) return NotFound();
             return Ok(Produtos);
         }
-        
-        [HttpGet]
-        [Authorize]
-        [SwaggerOperation(Summary = "Retorna produto",
-            Description = "Retornos: <br>" +
-            "HTTP 200: Produto existente." + "<br>" +
-            "HTTP 404: Nenhum registro encontrado.")]
-        [Route("Consultar/{name}")]
-        public async Task<IActionResult> FindByName(string name)
-        {
-            var Produtos = await _repository.FindByName(name);
-            if (Produtos.Id <= 0) return NotFound();
-            return Ok(Produtos);
-        }
-
+      
         [HttpPost]
         [Authorize]
         [SwaggerOperation(Summary = "Insere produto",
@@ -87,6 +73,9 @@ namespace SGVE_api.Controllers
         public async Task<ActionResult<ProdutosVO>> Update([FromBody] ProdutosVO vo)
         {
             if (vo == null) return BadRequest();
+
+            vo.Data_Alteracao = DateTime.Now;
+
             var Produtos = await _repository.Update(vo);
             return Ok(Produtos);
         }

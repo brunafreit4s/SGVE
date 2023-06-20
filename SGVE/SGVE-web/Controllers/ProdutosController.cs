@@ -11,9 +11,9 @@ namespace SGVE_web.Controllers
     {
         private readonly IProdutosService _ProdutosService;
 
-        public ProdutosController(IProdutosService ProdutosService)
+        public ProdutosController(IProdutosService produtosService)
         {
-            _ProdutosService = ProdutosService ?? throw new ArgumentNullException(nameof(ProdutosService));
+            _ProdutosService = produtosService ?? throw new ArgumentNullException(nameof(produtosService));
         }
 
         [Authorize]
