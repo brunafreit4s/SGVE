@@ -33,7 +33,7 @@ namespace SGVE_api.Models
         public string Telefone { get; set; }
 
         [Column("I_CEP_ENDERECO")]
-        [StringLength(15)]
+        [StringLength(8)]
         public int Cep_Endereco { get; set; }
 
         [Column("V_LOGRADOURO_ENDERECO")]

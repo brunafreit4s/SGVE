@@ -15,14 +15,14 @@
         <div class="row">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             
-            <div class="col-2"><label asp-for="Cpf" class="control-label pt-2" style="font-size:15px;">CPF</label></div>
-            <div class="col-10 pb-3">
-                <input asp-for="Cpf" class="form-control" disabled maxlength="11" />
-            </div>
-            
             <div class="col-2"><label asp-for="Nome" class="control-label pt-2" style="font-size:15px;">Nome</label></div>
             <div class="col-10 pb-3">
                 <input asp-for="Nome" class="form-control" disabled maxlength="500" />
+            </div>
+
+            <div class="col-2"><label asp-for="Cpf" class="control-label pt-2" style="font-size:15px;">CPF</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Cpf" class="form-control" disabled maxlength="11" />
             </div>
 
             <div class="col-2"><label asp-for="Rg" class="control-label pt-2" style="font-size:15px;">RG</label></div>
@@ -34,10 +34,15 @@
             <div class="col-10 pb-3">
                 <input asp-for="Data_Nascimento" class="form-control" disabled maxlength="10" type="date" />
             </div>
-
+            
             <div class="col-2"><label asp-for="Celular" class="control-label pt-2" style="font-size:15px;">Celular</label></div>
             <div class="col-10 pb-3">
-                <input asp-for="Celular" class="form-control" disabled maxlength="18" />
+                <input asp-for="Celular" class="form-control" disabled maxlength="15" />
+            </div>
+
+            <div class="col-2"><label asp-for="Telefone" class="control-label pt-2" style="font-size:15px;">Telefone</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Telefone" class="form-control" disabled maxlength="15" type="tel" />
             </div>
 
             <div class="col-5 offset-2">

@@ -9,7 +9,7 @@
         public DateTime Data_Nascimento { get; set; }
         public string Celular { get; set; }
         public string Telefone { get; set; }
-        public string Cep_Endereco { get; set; }
+        public int Cep_Endereco { get; set; }
         public string Logradouro_Endereco { get; set; }
         public string Numero_Endereco { get; set; }
         public string Complemento_Endereco { get; set; }
