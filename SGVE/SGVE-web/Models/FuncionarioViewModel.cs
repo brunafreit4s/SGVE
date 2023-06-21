@@ -1,5 +1,4 @@
-﻿using DataAnnotationsExtensions;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SGVE_web.Models
 {
@@ -18,7 +17,6 @@ namespace SGVE_web.Models
         [StringLength(20, MinimumLength = 0, ErrorMessage = "RG inválido!")]
         public string Rg { get; set; }
 
-        [Date(ErrorMessage = "Data de Nascimento inválida!")]
         [Required(ErrorMessage = "Data de nascimento é obrigatório")]
         public DateTime Data_Nascimento { get; set; }
         
@@ -29,7 +27,6 @@ namespace SGVE_web.Models
         [StringLength(15, MinimumLength = 10, ErrorMessage = "Telefone inválido!")]
         public string Telefone { get; set; }
 
-        [Integer(ErrorMessage = "CEP inválido!")]
         [Required(ErrorMessage = "CEP é obrigatório")]
         public int Cep_Endereco { get; set; }
 
