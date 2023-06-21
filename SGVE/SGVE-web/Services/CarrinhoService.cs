@@ -33,7 +33,7 @@ namespace SGVE_web.Services
         public async Task<CarrinhoViewModel> UpdateCarrinho(CarrinhoViewModel model, string token)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var response = await _client.PutAsJson($"{BasePath}/Adicionar", model);
+            var response = await _client.PutAsJson($"{BasePath}/Alterar", model);
             if (response.IsSuccessStatusCode) return await response.ReadContentAsync<CarrinhoViewModel>();
             else throw new Exception("Ocorreu algum erro na chamada da API!");
         }
@@ -41,7 +41,7 @@ namespace SGVE_web.Services
         public async Task<bool> RemoveFromCarrinho(long id, string token)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            var response = await _client.DeleteAsync($"{BasePath}/Excluir/{id}");
+            var response = await _client.DeleteAsync($"{BasePath}/Deletar/{id}");
             if (response.IsSuccessStatusCode) return await response.ReadContentAsync<bool>();
             else throw new Exception("Ocorreu algum erro na chamada da API!");
         }

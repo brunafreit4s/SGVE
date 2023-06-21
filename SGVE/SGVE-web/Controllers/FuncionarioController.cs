@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using SGVE_web.Models;
 using SGVE_web.Services.IServices;
 using SGVE_web.Util;
-using System.Globalization;
 
 namespace SGVE_web.Controllers
 {    

@@ -1,5 +1,63 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@model ProdutosViewModel
+
 @{
+    ViewData["Title"] = "Adicionar ao Carrinho";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<form asp-action="Vendas">
+
+    <input asp-for="Id" hidden>
+
+    <br />
+    <div class="container border border-4 border-secondary p-3 border-start-0 rounded-end border-opacity-10 rounded-4">
+        <h3 class="text-primary p-3">Produto Selecionado</h3>
+        <hr />
+        <div class="row">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="col-2"><label asp-for="Nome" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Nome</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Nome" class="form-control" disabled maxlength="500" />
+            </div>
+
+            <div class="col-2"><label asp-for="Descricao" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Descrição</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Descricao" class="form-control" disabled maxlength="500" />
+            </div>
+
+            <div class="col-2"><label asp-for="Quantidade" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Total em Estoque</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Quantidade" class="form-control" disabled maxlength="9999" />
+            </div>
+
+            <div class="col-2"><label asp-for="Marca" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Marca</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Marca" class="form-control" disabled maxlength="10" type="text" />
+            </div>
+
+            <div class="col-2"><label asp-for="Marca" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Marca</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Marca" class="form-control" disabled maxlength="10" type="text" />
+            </div>
+
+            <div class="col-2"><label asp-for="Count" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Quantidade</label></div>
+            <div class="col-10 pb-3">
+                <input asp-for="Count" class="form-control" maxlength="9" type="number" />
+            </div>
+
+            <div class="row col-lg-12 p-4">
+                <div class="col-2 offset-8">
+                    <a asp-action="Index" class="btn-primary btn form-control">Voltar</a>
+                </div>
+                <div class="col-2">
+                    <input type="submit" value="Adicionar" class="btn btn-outline-success form-control" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"></partial>
 }

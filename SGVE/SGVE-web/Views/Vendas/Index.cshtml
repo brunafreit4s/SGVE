@@ -1,0 +1,64 @@
+﻿@model IEnumerable<ProdutosViewModel>
+
+@{
+    ViewData["Title"] = "Produtos";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container b-4">
+    <div class="card row overflow-x-auto">
+        <div class="col-12">
+            <p><h3 class="text-primary p-3"> Lista de Produtos disponíveis</h3><hr /></p>
+        </div>
+        <div class="table-responsive-xxl">
+            <table class="table table-striped align-middle table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nome</th>
+                        <th>Marca</th>
+                        <th>Quantidade</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider">
+                    @{
+                        var count = 1;
+                        foreach (var item in Model)
+                        {
+                            <tr>
+                                <th><font style="vertical-align: inherit;">@count</font></th>
+                                <th><font style="vertical-align: inherit;">@item.Nome</font></th>
+                                <th><font style="vertical-align: inherit;">@item.Marca</font></th>
+                                <th>
+                                    <font style="vertical-align: inherit;">
+                                        @item.Quantidade
+                                        @if (@item.Quantidade > 0)
+                                        {
+                                            <b class="text-success">em Estoque</b>
+                                        }
+                                        else
+                                        {
+                                            <b class="text-danger">em Estoque</b>
+                                        }
+                                    </font>
+                                </th>
+                                <th>
+                                    <a asp-action="Vendas" class="btn btn-outline-success" asp-route-id="@item.Id"><i class="bi bi-person-fill-gear"></i> Vincular</a>
+                                </th>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <th>
+                                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i> Remover</a>
+                                    </th>
+                                }
+                            </tr>
+                            count = count + 1;
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

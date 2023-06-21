@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SGVE.Cart.Data.ValueObjects;
 using SGVE.Cart.Repository;
 
@@ -16,7 +17,7 @@ namespace SGVE.Cart.Controllers
         }
 
         [HttpGet]
-        //[Authorize]
+        [Authorize]
         [Route("Consultar/{id}")]
         public async Task<ActionResult<CarrinhoVO>> FindById(string id)
         {
@@ -26,7 +27,7 @@ namespace SGVE.Cart.Controllers
         }
         
         [HttpPost]
-        //[Authorize]
+        [Authorize]
         [Route("Adicionar")]
         public async Task<ActionResult<CarrinhoVO>> Create(CarrinhoVO vo)
         {
@@ -36,7 +37,7 @@ namespace SGVE.Cart.Controllers
         }
 
         [HttpPut]
-        //[Authorize]
+        [Authorize]
         [Route("Alterar")]
         public async Task<ActionResult<CarrinhoVO>> Update(CarrinhoVO vo)
         {
@@ -46,7 +47,7 @@ namespace SGVE.Cart.Controllers
         }
 
         [HttpDelete]
-        //[Authorize]
+        [Authorize]
         [Route("Deletar/{id}")]
         public async Task<ActionResult<CarrinhoVO>> Delete(int id)
         {

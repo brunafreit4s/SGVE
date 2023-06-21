@@ -77,41 +77,39 @@ namespace SGVE.Cart.Repository
             /* Verifica se o produto já existe no carrinho */
             var produto = await _context.Produtos.FirstOrDefaultAsync(p => p.Id_Produto == vo.venda_x_produto.FirstOrDefault().Id_Produto);
 
+            /* Se não existe salva o produto */
             if(produto == null)
-            {
                 _context.Produtos.Add(carrinho.venda_x_produto.FirstOrDefault().Produto);
                 await _context.SaveChangesAsync();
-            }
 
             var venda = await _context.Vendas.AsNoTracking().FirstOrDefaultAsync(v => v.UserId == vo.venda.UserId);
 
             /* Verifica se a venda está vazia */
             if (venda == null)
             {
-                /* se for nulo, adiciona na venda */
+                /* se for nulo, salva a venda */
                 _context.Vendas.Add(carrinho.vendas);
                 await _context.SaveChangesAsync();
 
                 AdicionaCarrinho(carrinho, venda);
             }
             else{
+
                 /* se a venda não estiver vazia, apenas atualiza as informações */
                 var vendaxproduto = await _context.Venda_x_Produto.AsNoTracking().FirstOrDefaultAsync(
                     p => p.Id_Produto == carrinho.venda_x_produto.FirstOrDefault().Id_Produto &&
                     p.Id_Venda == venda.Id_Venda);
 
-                if(vendaxproduto == null) { AdicionaCarrinho(carrinho, venda); } /* adiciona no carrinho (relação da venda e o produto) */
+                if (vendaxproduto == null) { AdicionaCarrinho(carrinho, venda); } /* adiciona no carrinho (relação da venda e o produto) */
                 else
                 {
                     /* atualiza o contador e o carrinho (relação da venda e o produto) */
                     carrinho.venda_x_produto.FirstOrDefault().Produto = null; /* limpa para não gerar conflito */
                     carrinho.venda_x_produto.FirstOrDefault().Count += vendaxproduto.Count;
-                    //carrinho.venda_x_produto.FirstOrDefault().Id = vendaxproduto.Id; 
                     carrinho.venda_x_produto.FirstOrDefault().Id_Venda_x_Produto = vendaxproduto.Id_Venda_x_Produto; 
                     carrinho.venda_x_produto.FirstOrDefault().Id_Venda = vendaxproduto.Id_Venda;
                     _context.Venda_x_Produto.Update(carrinho.venda_x_produto.FirstOrDefault());
                     await _context.SaveChangesAsync();
-
                 }
             }
 

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SGVE.Cart.Data.ValueObjects
 {
-    public class ProdutosVO
+    public class ProdutosCarrinhoVO
     {
         public long Id_Produto { get; set; }
         public string Nome { get; set; }
