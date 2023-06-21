@@ -25,7 +25,7 @@ namespace SGVE_api.Repository
 
         public async Task<ProdutosVO> FindById(long id)
         {
-            Produtos Produtos = await _context.Produtos.Where(f => f.Id == id).FirstOrDefaultAsync() ?? new Produtos();
+            Produtos Produtos = await _context.Produtos.Where(f => f.Id_Produto == id).FirstOrDefaultAsync() ?? new Produtos();
 
             return _mapper.Map<ProdutosVO>(Produtos);
         }
@@ -59,9 +59,9 @@ namespace SGVE_api.Repository
         {
             try
             {
-                Produtos Produtos = await _context.Produtos.Where(f => f.Id == id).FirstOrDefaultAsync() ?? new Produtos();
+                Produtos Produtos = await _context.Produtos.Where(f => f.Id_Produto == id).FirstOrDefaultAsync() ?? new Produtos();
 
-                if (Produtos.Id <= 0) return false;
+                if (Produtos.Id_Produto <= 0) return false;
 
                 _context.Produtos.Remove(Produtos);
                 await _context.SaveChangesAsync();

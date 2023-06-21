@@ -6,6 +6,5 @@ namespace SGVE_web.Models
         /*CartHeader*/
         public long Id_Venda { get; set; }
         public string UserId { get; set; }
-        public double Total { get; set; }
     }
 }

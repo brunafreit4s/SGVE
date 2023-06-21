@@ -9,7 +9,7 @@ namespace SGVE_api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class ProdutosController : ControllerBase
+    public class ProdutosController : Controller
     {
         private IProdutosRepository _repository;
 
@@ -42,7 +42,7 @@ namespace SGVE_api.Controllers
         public async Task<IActionResult> FindById(long id)
         {
             var Produtos = await _repository.FindById(id);
-            if (Produtos.Id <= 0) return NotFound();
+            if (Produtos.Id_Produto <= 0) return NotFound();
             return Ok(Produtos);
         }
       

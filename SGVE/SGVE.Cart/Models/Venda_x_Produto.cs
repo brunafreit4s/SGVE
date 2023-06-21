@@ -1,4 +1,4 @@
-﻿using SGVE_api.Models;
+﻿using SGVE.Cart.Data.ValueObjects;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 

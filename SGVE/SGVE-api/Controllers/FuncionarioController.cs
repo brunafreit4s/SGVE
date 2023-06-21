@@ -9,7 +9,7 @@ namespace SGVE_api.Controllers
 {
     [ApiController]
     [Route("api/[controller]")]
-    public class FuncionarioController : ControllerBase
+    public class FuncionarioController : Controller
     {
         private IFuncionarioRepository _repository;
 

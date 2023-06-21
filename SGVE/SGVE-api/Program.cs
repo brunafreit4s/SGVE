@@ -41,12 +41,11 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 /* Add Injection repository */
 builder.Services.AddScoped<IFuncionarioRepository, FuncionarioRepository>();
 builder.Services.AddScoped<IProdutosRepository, ProdutosRepository>();
-//builder.Services.AddScoped<IEnderecoRepository, EnderecoRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(c => {
-    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "SGVE - Sistema Gerenciador de Vendas e Estoque", Version = "0.1" });
+    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "SGVE - Sistema Gerenciador de Funcionários e Estoque", Version = "0.1" });
     c.EnableAnnotations();
     /* pop-up que solicita as configurações de segurança */
     c.AddSecurityDefinition("Bearer", new Microsoft.OpenApi.Models.OpenApiSecurityScheme { 
@@ -75,12 +74,9 @@ builder.Services.AddSwaggerGen(c => {
 
 var app = builder.Build();
 
-//var dbInicitializeService = app.Services.CreateScope().ServiceProvider.GetService<IFuncionarioRepository>();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-
     app.UseSwagger();
     app.UseSwaggerUI();
 }

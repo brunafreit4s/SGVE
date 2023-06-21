@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SGVE.Cart.Data.ValueObjects;
 using SGVE.Cart.Repository;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace SGVE.Cart.Controllers
 {
@@ -18,6 +19,10 @@ namespace SGVE.Cart.Controllers
 
         [HttpGet]
         [Authorize]
+        [SwaggerOperation(Summary = "Retorna lista de Vendas",
+            Description = "Retornos: <br>" +
+            "HTTP 200: Lista de funcionários existentes." + "<br>" +
+            "HTTP 404: Nenhum registro encontrado.")]
         [Route("Consultar/{id}")]
         public async Task<ActionResult<CarrinhoVO>> FindById(string id)
         {
@@ -29,8 +34,8 @@ namespace SGVE.Cart.Controllers
         [HttpPost]
         [Authorize]
         [Route("Adicionar")]
-        public async Task<ActionResult<CarrinhoVO>> Create(CarrinhoVO vo)
-        {
+        public async Task<ActionResult<CarrinhoVO>> Create([FromBody] CarrinhoVO vo)
+        {            
             var carrinho = await _repository.SaveOrUpdateCarrinho(vo);
             if (carrinho == null) return NotFound();
             return Ok(carrinho);
@@ -39,7 +44,7 @@ namespace SGVE.Cart.Controllers
         [HttpPut]
         [Authorize]
         [Route("Alterar")]
-        public async Task<ActionResult<CarrinhoVO>> Update(CarrinhoVO vo)
+        public async Task<ActionResult<CarrinhoVO>> Update([FromBody] CarrinhoVO vo)
         {
             var carrinho = await _repository.SaveOrUpdateCarrinho(vo);
             if (carrinho == null) return NotFound();

@@ -43,10 +43,10 @@ namespace SGVE_web.Controllers
             return View(model);
         }
 
-        public async Task<ActionResult> Update(int id)
+        public async Task<ActionResult> Update(int Id)
         {
             var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
-            var Produtos = await _ProdutosService.FindByIdProdutos(id, accessToken);
+            var Produtos = await _ProdutosService.FindByIdProdutos(Id, accessToken);
             if (Produtos != null) return View(Produtos);
             return NotFound();
         }
@@ -79,7 +79,7 @@ namespace SGVE_web.Controllers
         public async Task<ActionResult> Delete(ProdutosViewModel model)
         {
             var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
-            var response = await _ProdutosService.DeleteProdutos(model.Id, accessToken);
+            var response = await _ProdutosService.DeleteProdutos(model.Id_Produto, accessToken);
             if (response) return RedirectToAction(nameof(Index));
 
             return View(model);

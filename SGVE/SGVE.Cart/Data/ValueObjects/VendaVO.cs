@@ -1,5 +1,4 @@
-﻿
-namespace SGVE.Cart.Data.ValueObjects
+﻿namespace SGVE.Cart.Data.ValueObjects
 {
     public class VendaVO
     {

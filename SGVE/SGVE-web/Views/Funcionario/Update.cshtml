@@ -33,13 +33,13 @@
         <div class="row col-lg-12 p-2">
             <div class="col-4">
                 <label asp-for="Cpf" class="control-label pt-2 h3 text-primary" style="font-size:15px;">CPF <b class="text-danger">*</b></label>
-                <input asp-for="Cpf" class="form-control" maxlength="11" type="number" />
+                <input asp-for="Cpf" class="form-control" disabled maxlength="11" />
                 <span asp-validation-for="Cpf" class="text-danger"></span>
             </div>
 
             <div class="col-4">
                 <label asp-for="Rg" class="control-label pt-2 h3 text-primary" style="font-size:15px;">RG</label>
-                <input asp-for="Rg" class="form-control" maxlength="20" type="number" />
+                <input asp-for="Rg" class="form-control" maxlength="20" type="text" />
                 <span asp-validation-for="Rg" class="text-danger"></span>
             </div>
 
@@ -53,13 +53,13 @@
         <div class="row col-lg-12 p-2">
             <div class="col-2">
                 <label asp-for="Celular" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Celular <b class="text-danger">*</b></label>
-                <input asp-for="Celular" class="form-control" maxlength="15" type="number" />
+                <input asp-for="Celular" class="form-control" maxlength="15" type="text" />
                 <span asp-validation-for="Celular" class="text-danger"></span>
             </div>
 
             <div class="col-2">
                 <label asp-for="Telefone" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Telefone</label>
-                <input asp-for="Telefone" class="form-control" maxlength="15" type="number" />
+                <input asp-for="Telefone" class="form-control" maxlength="15" type="text" />
                 <span asp-validation-for="Telefone" class="text-danger"></span>
             </div>
 
@@ -110,7 +110,7 @@
                 <span asp-validation-for="Cidade_Endereco" class="text-danger"></span>
             </div>
 
-            <div class="col-3">
+            <div class="col-1">
                 <label asp-for="UF_Endereco" class="control-label pt-2 h3 text-primary" style="font-size:15px;">UF <b class="text-danger">*</b></label>
                 <input asp-for="UF_Endereco" class="form-control" maxlength="100" type="text" />
                 <span asp-validation-for="UF_Endereco" class="text-danger"></span>
@@ -120,7 +120,7 @@
         <div class="row col-lg-12 p-2">
             <div class="col-10">
                 <label asp-for="Email" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Email <b class="text-danger">*</b></label>
-                <input asp-for="Email" class="form-control" maxlength="100" type="email" />
+                <input asp-for="Email" class="form-control" maxlength="100" disabled type="email" />
                 <span asp-validation-for="Email" class="text-danger"></span>
             </div>
         </div>

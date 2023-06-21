@@ -8,7 +8,7 @@ namespace SGVE_api.Models
     {
         [Key]
         [Column("ID_PRODUTO")]
-        public long Id { get; set; }
+        public long Id_Produto { get; set; }
 
         [Column("V_NOME")]
         [Required]

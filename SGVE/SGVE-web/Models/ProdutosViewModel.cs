@@ -4,7 +4,7 @@ namespace SGVE_web.Models
 {
     public class ProdutosViewModel
     {
-        public int Id { get; set; }
+        public int Id_Produto { get; set; }
 
         [StringLength(500, MinimumLength = 5, ErrorMessage = "Nome inválido!")]
         [Required(ErrorMessage = "Nome é obrigatório")]

@@ -45,12 +45,12 @@
                                     </font>
                                 </th>
                                 <th>
-                                    <a asp-action="Vendas" class="btn btn-outline-success" asp-route-id="@item.Id"><i class="bi bi-person-fill-gear"></i> Vincular</a>
+                                    <a asp-action="Vendas" class="btn btn-outline-success" asp-route-id="@item.Id_Produto"><i class="bi bi-person-fill-gear"></i> Vincular</a>
                                 </th>
                                 @if (User.IsInRole("Admin"))
                                 {
                                     <th>
-                                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i> Remover</a>
+                                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id_Produto"><i class="bi bi-trash-fill"></i> Remover</a>
                                     </th>
                                 }
                             </tr>

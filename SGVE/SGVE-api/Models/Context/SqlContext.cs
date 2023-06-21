@@ -64,7 +64,7 @@ namespace SGVE_api.Context
 
             modelBuilder.Entity<Produtos>().HasData(new Produtos
             {
-                Id = 1,
+                Id_Produto = 1,
                 Nome = "Bolacha",
                 Descricao = "Bolacha sabor Morango",
                 Quantidade = 15,
@@ -77,7 +77,7 @@ namespace SGVE_api.Context
 
             modelBuilder.Entity<Produtos>().HasData(new Produtos
             {
-                Id = 2,
+                Id_Produto = 2,
                 Nome = "Coca-Cola",
                 Descricao = "Refrigerante sabor Coca-Cola",
                 Quantidade = 100,
@@ -90,7 +90,7 @@ namespace SGVE_api.Context
 
             modelBuilder.Entity<Produtos>().HasData(new Produtos
             {
-                Id = 4,
+                Id_Produto = 4,
                 Nome = "Papel Higiênico",
                 Descricao = "Papel Higiênico Primavera",
                 Quantidade = 30,

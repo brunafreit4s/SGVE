@@ -43,12 +43,12 @@
                                 <th><font style="vertical-align: inherit;">@item.Quantidade
                                     @if (@item.Quantidade > 0) { <b class="text-success">em Estoque</b> } else { <b class="text-danger">em Estoque</b> }</font></th>
                                 <th>
-                                    <a asp-action="Update" class="btn btn-outline-success" asp-route-id="@item.Id"><i class="bi bi-person-fill-gear"></i> Editar</a>
+                                    <a asp-action="Update" class="btn btn-outline-success" asp-route-id="@item.Id_Produto"><i class="bi bi-person-fill-gear"></i> Editar</a>
                                 </th>
                                 @if (User.IsInRole("Admin"))
                                 {
                                     <th>
-                                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id"><i class="bi bi-trash-fill"></i> Deletar</a>
+                                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id_Produto"><i class="bi bi-trash-fill"></i> Deletar</a>
                                     </th>
                                 }
                             </tr>
