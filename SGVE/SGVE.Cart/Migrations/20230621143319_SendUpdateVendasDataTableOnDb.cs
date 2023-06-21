@@ -6,42 +6,42 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SGVE.Cart.Migrations
 {
     /// <inheritdoc />
-    public partial class AddCartDataTableOnDb : Migration
+    public partial class SendUpdateVendasDataTableOnDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "TB_PRODUTO",
+                name: "TB_PRODUTO_CARRINHO",
                 columns: table => new
                 {
-                    IdProduto = table.Column<long>(name: "Id_Produto", type: "bigint", nullable: false),
+                    IDPRODUTO = table.Column<long>(name: "ID_PRODUTO", type: "bigint", nullable: false),
                     VNOME = table.Column<string>(name: "V_NOME", type: "nvarchar(500)", maxLength: 500, nullable: false),
                     VDESCRICAO = table.Column<string>(name: "V_DESCRICAO", type: "nvarchar(500)", maxLength: 500, nullable: false),
-                    IQUANTIDADE = table.Column<int>(name: "I_QUANTIDADE", type: "int", nullable: false),
+                    IQUANTIDADE = table.Column<int>(name: "I_QUANTIDADE", type: "int", maxLength: 4, nullable: false),
                     VMARCA = table.Column<string>(name: "V_MARCA", type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    DCUSTO = table.Column<float>(name: "D_CUSTO", type: "real", nullable: false),
-                    DPRECO = table.Column<float>(name: "D_PRECO", type: "real", nullable: false),
-                    DTCADASTRO = table.Column<DateTime>(name: "DT_CADASTRO", type: "datetime2", nullable: false),
-                    FKIDTIPO = table.Column<int>(name: "FK_ID_TIPO", type: "int", nullable: false),
-                    FKIDFORNECEDOR = table.Column<int>(name: "FK_ID_FORNECEDOR", type: "int", nullable: false)
+                    DCUSTO = table.Column<decimal>(name: "D_CUSTO", type: "decimal(18,2)", nullable: false),
+                    DPRECO = table.Column<decimal>(name: "D_PRECO", type: "decimal(18,2)", nullable: false),
+                    DTCADASTRO = table.Column<DateTime>(name: "DT_CADASTRO", type: "datetime2", maxLength: 20, nullable: false),
+                    DTALTERACAO = table.Column<DateTime>(name: "DT_ALTERACAO", type: "datetime2", maxLength: 20, nullable: false),
+                    FKIDTIPO = table.Column<int>(name: "FK_ID_TIPO", type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TB_PRODUTO", x => x.IdProduto);
+                    table.PrimaryKey("PK_TB_PRODUTO_CARRINHO", x => x.IDPRODUTO);
                 });
 
             migrationBuilder.CreateTable(
                 name: "TB_VENDA",
                 columns: table => new
                 {
-                    IdVenda = table.Column<long>(name: "Id_Venda", type: "bigint", nullable: false)
+                    IDVENDA = table.Column<long>(name: "ID_VENDA", type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     VUSERID = table.Column<string>(name: "V_USER_ID", type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TB_VENDA", x => x.IdVenda);
+                    table.PrimaryKey("PK_TB_VENDA", x => x.IDVENDA);
                 });
 
             migrationBuilder.CreateTable(
@@ -52,22 +52,22 @@ namespace SGVE.Cart.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     IdVenda = table.Column<long>(name: "Id_Venda", type: "bigint", nullable: false),
                     IdProduto = table.Column<long>(name: "Id_Produto", type: "bigint", nullable: false),
-                    COUNT = table.Column<int>(type: "int", nullable: false)
+                    ICOUNT = table.Column<int>(name: "I_COUNT", type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TB_VENDA_PRODUTO", x => x.IDVENDAPRODUTO);
                     table.ForeignKey(
-                        name: "FK_TB_VENDA_PRODUTO_TB_PRODUTO_Id_Produto",
+                        name: "FK_TB_VENDA_PRODUTO_TB_PRODUTO_CARRINHO_Id_Produto",
                         column: x => x.IdProduto,
-                        principalTable: "TB_PRODUTO",
-                        principalColumn: "Id_Produto",
+                        principalTable: "TB_PRODUTO_CARRINHO",
+                        principalColumn: "ID_PRODUTO",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_TB_VENDA_PRODUTO_TB_VENDA_Id_Venda",
                         column: x => x.IdVenda,
                         principalTable: "TB_VENDA",
-                        principalColumn: "Id_Venda",
+                        principalColumn: "ID_VENDA",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -89,7 +89,7 @@ namespace SGVE.Cart.Migrations
                 name: "TB_VENDA_PRODUTO");
 
             migrationBuilder.DropTable(
-                name: "TB_PRODUTO");
+                name: "TB_PRODUTO_CARRINHO");
 
             migrationBuilder.DropTable(
                 name: "TB_VENDA");

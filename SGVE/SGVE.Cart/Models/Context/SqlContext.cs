@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SGVE.Cart.Models;
 
 namespace SGVE.Cart.Models.Context
 {

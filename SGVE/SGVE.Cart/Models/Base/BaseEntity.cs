@@ -6,7 +6,7 @@ namespace SGVE.Cart.Models.Base
     public class BaseEntity
     {
         [Key]
-        [Column("ID_FUNCIONARIO")]
-        public long Id { get; set; }
+        [Column("ID_VENDA")]
+        public long Id_Venda { get; set; }
     }
 }

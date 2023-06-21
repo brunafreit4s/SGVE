@@ -74,8 +74,6 @@ builder.Services.AddSwaggerGen(c => {
 
 var app = builder.Build();
 
-//var dbInicitializeService = app.Services.CreateScope().ServiceProvider.GetService<IFuncionarioRepository>();
-
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {

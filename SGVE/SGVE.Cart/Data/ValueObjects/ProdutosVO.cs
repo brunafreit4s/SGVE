@@ -1,4 +1,7 @@
 ﻿
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
+
 namespace SGVE.Cart.Data.ValueObjects
 {
     public class ProdutosVO
@@ -8,10 +11,10 @@ namespace SGVE.Cart.Data.ValueObjects
         public string Descricao { get; set; }
         public int Quantidade { get; set; }
         public string Marca { get; set; }
-        public float? Custo { get; set; }
-        public float? Preco { get; set; }
+        public decimal Custo { get; set; }
+        public decimal Preco { get; set; }
         public DateTime Data_Cadastro { get; set; }
+        public DateTime Data_Alteracao { get; set; }
         public int Id_Tipo { get; set; }
-        public int Id_Fornecedor { get; set; }
     }
 }

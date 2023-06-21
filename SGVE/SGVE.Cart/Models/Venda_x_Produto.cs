@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SGVE_api.Models;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGVE.Cart.Models
@@ -13,14 +14,14 @@ namespace SGVE.Cart.Models
         public long Id_Venda { get; set; }
 
         [ForeignKey("Id_Venda")]
-        public virtual Venda Venda { get; set; }
+        public Venda Venda { get; set; }
 
         public long Id_Produto { get; set; }
 
         [ForeignKey("Id_Produto")]
-        public virtual Produtos Produto { get; set; }
+        public Produtos Produto { get; set; }
 
-        [Column("COUNT")]
+        [Column("I_COUNT")]
         public int Count { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿
+﻿using SGVE_api.Data.ValueObjects;
+
 namespace SGVE.Cart.Data.ValueObjects
 {
     public class Venda_x_ProdutoVO

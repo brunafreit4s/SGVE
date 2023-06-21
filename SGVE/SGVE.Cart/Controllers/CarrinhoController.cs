@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using SGVE.Cart.Data.ValueObjects;
 using SGVE.Cart.Repository;
-using Swashbuckle.AspNetCore.Annotations;
 
 namespace SGVE.Cart.Controllers
 {

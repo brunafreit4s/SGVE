@@ -26,14 +26,19 @@ namespace SGVE.Cart.Migrations
                 {
                     b.Property<long>("Id_Produto")
                         .HasColumnType("bigint")
-                        .HasColumnName("Id_Produto");
+                        .HasColumnName("ID_PRODUTO");
 
-                    b.Property<float?>("Custo")
-                        .IsRequired()
-                        .HasColumnType("real")
+                    b.Property<decimal>("Custo")
+                        .HasColumnType("decimal(18,2)")
                         .HasColumnName("D_CUSTO");
 
+                    b.Property<DateTime>("Data_Alteracao")
+                        .HasMaxLength(20)
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DT_ALTERACAO");
+
                     b.Property<DateTime>("Data_Cadastro")
+                        .HasMaxLength(20)
                         .HasColumnType("datetime2")
                         .HasColumnName("DT_CADASTRO");
 
@@ -42,10 +47,6 @@ namespace SGVE.Cart.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("V_DESCRICAO");
-
-                    b.Property<int>("Id_Fornecedor")
-                        .HasColumnType("int")
-                        .HasColumnName("FK_ID_FORNECEDOR");
 
                     b.Property<int>("Id_Tipo")
                         .HasColumnType("int")
@@ -62,18 +63,18 @@ namespace SGVE.Cart.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("V_NOME");
 
-                    b.Property<float?>("Preco")
-                        .IsRequired()
-                        .HasColumnType("real")
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(18,2)")
                         .HasColumnName("D_PRECO");
 
                     b.Property<int>("Quantidade")
+                        .HasMaxLength(4)
                         .HasColumnType("int")
                         .HasColumnName("I_QUANTIDADE");
 
                     b.HasKey("Id_Produto");
 
-                    b.ToTable("TB_PRODUTO");
+                    b.ToTable("TB_PRODUTO_CARRINHO");
                 });
 
             modelBuilder.Entity("SGVE.Cart.Models.Venda", b =>
@@ -81,7 +82,7 @@ namespace SGVE.Cart.Migrations
                     b.Property<long>("Id_Venda")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
-                        .HasColumnName("Id_Venda");
+                        .HasColumnName("ID_VENDA");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id_Venda"));
 
@@ -105,7 +106,7 @@ namespace SGVE.Cart.Migrations
 
                     b.Property<int>("Count")
                         .HasColumnType("int")
-                        .HasColumnName("COUNT");
+                        .HasColumnName("I_COUNT");
 
                     b.Property<long>("Id_Produto")
                         .HasColumnType("bigint");
