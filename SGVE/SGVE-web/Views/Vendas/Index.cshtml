@@ -45,7 +45,7 @@
                                     </font>
                                 </th>
                                 <th>
-                                    <a asp-action="Vendas" class="btn btn-outline-success" asp-route-id="@item.Id_Produto"><i class="bi bi-person-fill-gear"></i> Vincular</a>
+                                    <a asp-action="Detalhe" class="btn btn-outline-success" asp-route-id="@item.Id_Produto"><i class="bi bi-person-fill-gear"></i> Detalhar</a>
                                 </th>
                                 @if (User.IsInRole("Admin"))
                                 {

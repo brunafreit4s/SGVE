@@ -10,10 +10,10 @@ namespace SGVE.Cart.Config
         {
             /* Configuração do VO */
             var mappingConfig = new MapperConfiguration(config => {
-                config.CreateMap<ProdutosCarrinhoVO, Produtos>().ReverseMap();
-                config.CreateMap<VendaVO, Venda>().ReverseMap();
-                config.CreateMap<Venda_x_ProdutoVO, Venda_x_Produto>().ReverseMap();
-                config.CreateMap<CarrinhoVO, Carrinho>().ReverseMap();
+                config.CreateMap<ProdutosVO, Produtos>().ReverseMap();
+                config.CreateMap<CartHeaderVO, CartHeader>().ReverseMap();
+                config.CreateMap<CartDetailVO, CartDetail>().ReverseMap();
+                config.CreateMap<CartVO, Models.Cart>().ReverseMap();
             });
             return mappingConfig;           
         }

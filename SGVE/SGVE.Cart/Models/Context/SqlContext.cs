@@ -7,8 +7,8 @@ namespace SGVE.Cart.Models.Context
         public SqlContext(DbContextOptions<SqlContext> options) : base(options) { }
 
         public DbSet<Produtos> Produtos { get; set; }
-        public DbSet<Venda> Vendas { get; set; }
-        public DbSet<Venda_x_Produto> Venda_x_Produto { get; set; }
+        public DbSet<CartDetail> CartDetails { get; set; }
+        public DbSet<CartHeader> CartHeaders { get; set; }
 
     }
 }

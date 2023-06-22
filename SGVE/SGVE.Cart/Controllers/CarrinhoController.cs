@@ -24,7 +24,7 @@ namespace SGVE.Cart.Controllers
             "HTTP 200: Lista de funcionários existentes." + "<br>" +
             "HTTP 404: Nenhum registro encontrado.")]
         [Route("Consultar/{id}")]
-        public async Task<ActionResult<CarrinhoVO>> FindById(string id)
+        public async Task<ActionResult<CartVO>> FindById(string id)
         {
             var carrinho = await _repository.FindCarrinhoByUserId(id);
             if (carrinho == null) return NotFound();
@@ -34,7 +34,7 @@ namespace SGVE.Cart.Controllers
         [HttpPost]
         [Authorize]
         [Route("Adicionar")]
-        public async Task<ActionResult<CarrinhoVO>> Create([FromBody] CarrinhoVO vo)
+        public async Task<ActionResult<CartVO>> Create([FromBody] CartVO vo)
         {            
             var carrinho = await _repository.SaveOrUpdateCarrinho(vo);
             if (carrinho == null) return NotFound();
@@ -44,7 +44,7 @@ namespace SGVE.Cart.Controllers
         [HttpPut]
         [Authorize]
         [Route("Alterar")]
-        public async Task<ActionResult<CarrinhoVO>> Update([FromBody] CarrinhoVO vo)
+        public async Task<ActionResult<CartVO>> Update([FromBody] CartVO vo)
         {
             var carrinho = await _repository.SaveOrUpdateCarrinho(vo);
             if (carrinho == null) return NotFound();
@@ -54,7 +54,7 @@ namespace SGVE.Cart.Controllers
         [HttpDelete]
         [Authorize]
         [Route("Deletar/{id}")]
-        public async Task<ActionResult<CarrinhoVO>> Delete(int id)
+        public async Task<ActionResult<CartVO>> Delete(int id)
         {
             var status = await _repository.RemoveFromCarrinho(id);
             if (!status) return BadRequest();

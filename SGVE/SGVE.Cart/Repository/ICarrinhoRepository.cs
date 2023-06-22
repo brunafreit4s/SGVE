@@ -4,8 +4,8 @@ namespace SGVE.Cart.Repository
 {
     public interface ICarrinhoRepository
     {
-        Task<CarrinhoVO> FindCarrinhoByUserId(string userId);
-        Task<CarrinhoVO> SaveOrUpdateCarrinho(CarrinhoVO carrinho);
+        Task<CartVO> FindCarrinhoByUserId(string userId);
+        Task<CartVO> SaveOrUpdateCarrinho(CartVO carrinho);
         Task<bool> RemoveFromCarrinho(long idVendaxProduto);
         Task<bool> ClearCarrinho(string userId);        
     }

@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SGVE.Cart.Models
 {
-    [Table("TB_PRODUTO_CARRINHO")]
+    [Table("TB_PRODUTO_X_CARRINHO")]
     public class Produtos
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.None)]

@@ -27,47 +27,55 @@ namespace SGVE_web.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Vendas(int id)
+        public async Task<IActionResult> Remover(int id)
         {
             var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
-            var Produto = await _ProdutosService.FindByIdProdutos(id, accessToken);
-            return View(Produto);
+            var Produtos = await _CarrinhoService.RemoveFromCarrinho(id ,accessToken);
+            return View(Produtos);
         }
 
-        [HttpPost]
-        [ActionName("Vendas")]
         [Authorize]
-        public async Task<ActionResult> VendasPost(ProdutosViewModel model)
+        public async Task<IActionResult> Detalhe(int id)
+        {
+            var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
+            var model = await _ProdutosService.FindByIdProdutos(id, accessToken);
+            return View(model);
+        }
+        
+        [HttpPost]
+        [ActionName("Detalhe")]
+        [Authorize]
+        public async Task<ActionResult> DetalhePost(ProdutosViewModel model)
         {
             var token = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
 
-            CarrinhoViewModel carrinho = new();
-
-            var Venda = new VendaViewModel()
+            CartViewModel cart = new()
             {
-                UserId = User.Claims.Where(u => u.Type == "sub")?.FirstOrDefault()?.Value
+                CartHeader = new CartHeaderViewModel
+                {
+                    UserId = User.Claims.Where(u => u.Type == "sub")?.FirstOrDefault()?.Value
+                }
             };
 
-            Venda_x_ProdutoViewModel vendaxproduto = new Venda_x_ProdutoViewModel()
+            CartDetailViewModel cartDetail = new CartDetailViewModel()
             {
                 Count = model.Count,
-                Id_Produto = model.Id_Produto,
-                Produto = await _ProdutosService.FindByIdProdutos(model.Id_Produto, token),
-                Venda = Venda
+                ProdutoId = model.Id_Produto,
+                Produtos = await _ProdutosService.FindByIdProdutos(model.Id_Produto, token)
             };
 
-            List<Venda_x_ProdutoViewModel> ListVenda = new List<Venda_x_ProdutoViewModel>();
-            ListVenda.Add(vendaxproduto);
-            carrinho.venda_x_produto = ListVenda;
+            List<CartDetailViewModel> cartDetails = new List<CartDetailViewModel>();
+            cartDetails.Add(cartDetail);
+            cart.CartDetails = cartDetails;
 
-            var response = await _CarrinhoService.AddItemToCarrinho(carrinho, token);
+            var response = await _CarrinhoService.AddItemToCarrinho(cart, token);
 
             if (response != null)
             {
                 return RedirectToAction(nameof(Index));
             }
 
-            return View(ListVenda);
+            return View(model);
         }
     }
 }

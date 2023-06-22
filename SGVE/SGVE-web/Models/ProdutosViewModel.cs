@@ -29,7 +29,22 @@ namespace SGVE_web.Models
         public DateTime Data_Cadastro { get; set; }
         public DateTime Data_Alteracao { get; set; }
         public int Id_Tipo { get; set; }
-        public int Count { get; set; }
-        
+
+        [Range(1, 100)]
+        public int Count { get; set; } = 1;
+
+
+        public string SubstringName()
+        {
+            if (Nome.Length < 24) return Nome;
+            else return $"{Nome.Substring(0, 21)} ...";
+        }
+
+        public string SubstringDescription()
+        {
+            if (Descricao.Length < 24) return Descricao;
+            else return $"{Descricao.Substring(0, 21)} ...";
+        }
+
     }
 }

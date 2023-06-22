@@ -1,10 +1,6 @@
-﻿
-using System.ComponentModel.DataAnnotations.Schema;
-using System.ComponentModel.DataAnnotations;
-
-namespace SGVE.Cart.Data.ValueObjects
+﻿namespace SGVE.Cart.Data.ValueObjects
 {
-    public class ProdutosCarrinhoVO
+    public class ProdutosVO
     {
         public long Id_Produto { get; set; }
         public string Nome { get; set; }

@@ -22,6 +22,52 @@ namespace SGVE.Cart.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("SGVE.Cart.Models.CartDetail", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("ID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<long>("CartHeaderId")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int")
+                        .HasColumnName("I_COUNT");
+
+                    b.Property<long>("ProdutoId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CartHeaderId");
+
+                    b.HasIndex("ProdutoId");
+
+                    b.ToTable("TB_CART_DETAIL");
+                });
+
+            modelBuilder.Entity("SGVE.Cart.Models.CartHeader", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasColumnName("ID");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("V_USER_ID");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("TB_CART_HEADER");
+                });
+
             modelBuilder.Entity("SGVE.Cart.Models.Produtos", b =>
                 {
                     b.Property<long>("Id_Produto")
@@ -74,72 +120,26 @@ namespace SGVE.Cart.Migrations
 
                     b.HasKey("Id_Produto");
 
-                    b.ToTable("TB_PRODUTO_CARRINHO");
+                    b.ToTable("TB_PRODUTO_X_CARRINHO");
                 });
 
-            modelBuilder.Entity("SGVE.Cart.Models.Venda", b =>
+            modelBuilder.Entity("SGVE.Cart.Models.CartDetail", b =>
                 {
-                    b.Property<long>("Id_Venda")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("ID_VENDA");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id_Venda"));
-
-                    b.Property<string>("UserId")
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("V_USER_ID");
-
-                    b.HasKey("Id_Venda");
-
-                    b.ToTable("TB_VENDA");
-                });
-
-            modelBuilder.Entity("SGVE.Cart.Models.Venda_x_Produto", b =>
-                {
-                    b.Property<long>("Id_Venda_x_Produto")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasColumnName("ID_VENDA_PRODUTO");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id_Venda_x_Produto"));
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int")
-                        .HasColumnName("I_COUNT");
-
-                    b.Property<long>("Id_Produto")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("Id_Venda")
-                        .HasColumnType("bigint");
-
-                    b.HasKey("Id_Venda_x_Produto");
-
-                    b.HasIndex("Id_Produto");
-
-                    b.HasIndex("Id_Venda");
-
-                    b.ToTable("TB_VENDA_PRODUTO");
-                });
-
-            modelBuilder.Entity("SGVE.Cart.Models.Venda_x_Produto", b =>
-                {
-                    b.HasOne("SGVE.Cart.Models.Produtos", "Produto")
+                    b.HasOne("SGVE.Cart.Models.CartHeader", "CartHeader")
                         .WithMany()
-                        .HasForeignKey("Id_Produto")
+                        .HasForeignKey("CartHeaderId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("SGVE.Cart.Models.Venda", "Venda")
+                    b.HasOne("SGVE.Cart.Models.Produtos", "Produtos")
                         .WithMany()
-                        .HasForeignKey("Id_Venda")
+                        .HasForeignKey("ProdutoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Produto");
+                    b.Navigation("CartHeader");
 
-                    b.Navigation("Venda");
+                    b.Navigation("Produtos");
                 });
 #pragma warning restore 612, 618
         }

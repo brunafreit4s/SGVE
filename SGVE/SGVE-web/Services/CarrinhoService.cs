@@ -15,26 +15,26 @@ namespace SGVE_web.Services
             _client = client ?? throw new ArgumentNullException(nameof(client));
         }
 
-        public async Task<CarrinhoViewModel> FindCarrinhoById(string userId, string token)
+        public async Task<CartViewModel> FindCarrinhoById(string userId, string token)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await _client.GetAsync($"{BasePath}/Consultar/{userId}");
-            return await response.ReadContentAsync<CarrinhoViewModel>();
+            return await response.ReadContentAsync<CartViewModel>();
         }
 
-        public async Task<CarrinhoViewModel> AddItemToCarrinho(CarrinhoViewModel model, string token)
+        public async Task<CartViewModel> AddItemToCarrinho(CartViewModel model, string token)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await _client.PostAsJson($"{BasePath}/Adicionar", model);
-            if (response.IsSuccessStatusCode) return await response.ReadContentAsync<CarrinhoViewModel>();
+            if (response.IsSuccessStatusCode) return await response.ReadContentAsync<CartViewModel>();
             else throw new Exception("Ocorreu algum erro na chamada da API!");
         }
 
-        public async Task<CarrinhoViewModel> UpdateCarrinho(CarrinhoViewModel model, string token)
+        public async Task<CartViewModel> UpdateCarrinho(CartViewModel model, string token)
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await _client.PutAsJson($"{BasePath}/Alterar", model);
-            if (response.IsSuccessStatusCode) return await response.ReadContentAsync<CarrinhoViewModel>();
+            if (response.IsSuccessStatusCode) return await response.ReadContentAsync<CartViewModel>();
             else throw new Exception("Ocorreu algum erro na chamada da API!");
         }
 
@@ -46,7 +46,7 @@ namespace SGVE_web.Services
             else throw new Exception("Ocorreu algum erro na chamada da API!");
         }
 
-        public async Task<CarrinhoViewModel> Checkout(VendaViewModel venda, string token)
+        public async Task<CartViewModel> Checkout(CartHeaderViewModel venda, string token)
         {
             throw new NotImplementedException();
         }
