@@ -41,12 +41,11 @@ namespace SGVE_web.Controllers
         {
             var token = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
 
-            CarrinhoViewModel carrinho = new()
+            CarrinhoViewModel carrinho = new();
+
+            var Venda = new VendaViewModel()
             {
-                venda = new VendaViewModel()
-                {
-                    UserId = User.Claims.Where(u => u.Type == "sub")?.FirstOrDefault()?.Value
-                }
+                UserId = User.Claims.Where(u => u.Type == "sub")?.FirstOrDefault()?.Value
             };
 
             Venda_x_ProdutoViewModel vendaxproduto = new Venda_x_ProdutoViewModel()
@@ -54,6 +53,7 @@ namespace SGVE_web.Controllers
                 Count = model.Count,
                 Id_Produto = model.Id_Produto,
                 Produto = await _ProdutosService.FindByIdProdutos(model.Id_Produto, token),
+                Venda = Venda
             };
 
             List<Venda_x_ProdutoViewModel> ListVenda = new List<Venda_x_ProdutoViewModel>();

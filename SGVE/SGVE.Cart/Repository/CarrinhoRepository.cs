@@ -38,13 +38,10 @@ namespace SGVE.Cart.Repository
 
         public async Task<CarrinhoVO> FindCarrinhoByUserId(string userId)
         {
-            Carrinho carrinho = new Carrinho()
-            {
-                venda = await _context.Vendas.FirstOrDefaultAsync(c => c.UserId == userId)
-            };
+            Carrinho carrinho = new Carrinho();
 
             carrinho.venda_x_produto = _context.Venda_x_Produto
-                .Where(c => c.Id_Venda == carrinho.venda.Id_Venda)
+                .Where(c => c.Id_Venda == carrinho.venda_x_produto.FirstOrDefault(c => c.Venda.UserId == userId).Venda.Id_Venda)
                 .Include(c => c.Produto);
 
             return _mapper.Map<CarrinhoVO>(carrinho);
@@ -87,25 +84,25 @@ namespace SGVE.Cart.Repository
                     await _context.SaveChangesAsync();
                 }
 
-                var venda = await _context.Vendas.AsNoTracking().FirstOrDefaultAsync(c => c.UserId == carrinho.venda.UserId);
+                var venda = await _context.Vendas.AsNoTracking().FirstOrDefaultAsync(c => c.UserId == carrinho.venda_x_produto.FirstOrDefault().Venda.UserId);
 
                 /* Verifica se a venda está vazia */
                 if (venda == null)
                 {
                     /* se for nulo, salva a venda */
-                    _context.Vendas.Add(carrinho.venda);
+                    _context.Vendas.Add(carrinho.venda_x_produto.FirstOrDefault().Venda);
                     await _context.SaveChangesAsync();
 
-                    AdicionaCarrinho(carrinho);
+                    await AdicionaCarrinho(carrinho);
                 }
                 else
-                {
-                    /* se a venda não estiver vazia, apenas atualiza as informações */
+                {                    
+                    /* se a venda não estiver vazia, apenas atualiza as informações do carrinho */
                     var vendaxproduto = await _context.Venda_x_Produto.AsNoTracking().FirstOrDefaultAsync(
                         p => p.Id_Produto == vo.venda_x_produto.FirstOrDefault().Id_Produto && 
                         p.Id_Venda == venda.Id_Venda);
 
-                    if (vendaxproduto == null) { AdicionaCarrinho(carrinho); } /* adiciona no carrinho (relação da venda e o produto) */
+                    if (vendaxproduto == null) { await AdicionaCarrinho(carrinho); } /* adiciona no carrinho (relação da venda e o produto) */
                     else
                     {
                         /* atualiza o contador e o carrinho (relação da venda e o produto) */
@@ -126,9 +123,9 @@ namespace SGVE.Cart.Repository
             }
         }
 
-        public async void AdicionaCarrinho(Carrinho carrinho)
+        public async Task AdicionaCarrinho(Carrinho carrinho)
         {
-            carrinho.venda_x_produto.FirstOrDefault().Id_Venda = carrinho.venda.Id_Venda;
+            carrinho.venda_x_produto.FirstOrDefault().Id_Venda = carrinho.venda_x_produto.FirstOrDefault().Venda.Id_Venda;
             carrinho.venda_x_produto.FirstOrDefault().Produto = null; /* limpa para não gerar conflito */
             _context.Venda_x_Produto.Add(carrinho.venda_x_produto.FirstOrDefault());
             await _context.SaveChangesAsync();

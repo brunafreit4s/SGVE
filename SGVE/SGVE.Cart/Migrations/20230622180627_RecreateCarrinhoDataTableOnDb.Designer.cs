@@ -12,7 +12,7 @@ using SGVE.Cart.Models.Context;
 namespace SGVE.Cart.Migrations
 {
     [DbContext(typeof(SqlContext))]
-    [Migration("20230622145349_RecreateCarrinhoDataTableOnDb")]
+    [Migration("20230622180627_RecreateCarrinhoDataTableOnDb")]
     partial class RecreateCarrinhoDataTableOnDb
     {
         /// <inheritdoc />
