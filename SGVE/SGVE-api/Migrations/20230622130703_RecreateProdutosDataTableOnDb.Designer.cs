@@ -12,8 +12,8 @@ using SGVE_api.Context;
 namespace SGVEapi.Migrations
 {
     [DbContext(typeof(SqlContext))]
-    [Migration("20230619232630_SendFuncionadoDataTableOnDb")]
-    partial class SendFuncionadoDataTableOnDb
+    [Migration("20230622130703_RecreateProdutosDataTableOnDb")]
+    partial class RecreateProdutosDataTableOnDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,7 +45,7 @@ namespace SGVEapi.Migrations
                         .HasColumnName("V_CELULAR");
 
                     b.Property<int>("Cep_Endereco")
-                        .HasMaxLength(15)
+                        .HasMaxLength(8)
                         .HasColumnType("int")
                         .HasColumnName("I_CEP_ENDERECO");
 
@@ -134,59 +134,68 @@ namespace SGVEapi.Migrations
                         {
                             Id = 1L,
                             BairroEndereco = "Centro",
-                            Celular = "011998987474",
+                            Celular = "11998987474",
                             CepEndereco = 17800970,
                             CidadeEndereco = "Adamantina",
+                            ComplementoEndereco = "Próximo a banca de jornal do seu João",
                             Cpf = "78134252001",
                             DataAlteracao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataCadastro = new DateTime(2023, 6, 19, 20, 26, 30, 857, DateTimeKind.Local).AddTicks(4582),
+                            DataCadastro = new DateTime(2023, 6, 22, 10, 7, 2, 917, DateTimeKind.Local).AddTicks(3474),
                             DataNascimento = new DateTime(1991, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "joao.pereira@gmail.com",
                             IdCargo = 1,
                             LogradouroEndereco = "Rua Deputado Salles Filho 469",
                             Nome = "João Pereira",
+                            NumeroEndereco = "15",
                             Rg = "248805253",
                             Senha = "123456",
-                            Telefone = "01122223333",
+                            Telefone = "1122223333",
                             UFEndereco = "SP"
                         },
                         new
                         {
                             Id = 2L,
                             BairroEndereco = "Centro",
-                            Celular = "011998987474",
+                            Celular = "11998987474",
                             CepEndereco = 15230970,
                             CidadeEndereco = "Adolfo",
+                            ComplementoEndereco = "Próximo a casa do Pedro",
                             Cpf = "16926121079",
                             DataAlteracao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataCadastro = new DateTime(2023, 6, 19, 20, 26, 30, 857, DateTimeKind.Local).AddTicks(4620),
+                            DataCadastro = new DateTime(2023, 6, 22, 10, 7, 2, 917, DateTimeKind.Local).AddTicks(3507),
                             DataNascimento = new DateTime(1987, 6, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "joao.pereira@gmail.com",
                             IdCargo = 1,
                             LogradouroEndereco = "Rua Castro Alves 984",
                             Nome = "Adolfo Silva",
+                            NumeroEndereco = "85",
                             Rg = "154969552",
                             Senha = "123456",
-                            Telefone = "01122223333",
+                            Telefone = "1122223333",
                             UFEndereco = "SP"
                         });
                 });
 
             modelBuilder.Entity("SGVE_api.Models.Produtos", b =>
                 {
-                    b.Property<long>("Id")
+                    b.Property<long>("Id_Produto")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasColumnName("ID_PRODUTO");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id_Produto"));
 
-                    b.Property<float?>("Custo")
-                        .IsRequired()
-                        .HasColumnType("real")
+                    b.Property<decimal>("Custo")
+                        .HasColumnType("decimal(18,2)")
                         .HasColumnName("D_CUSTO");
 
+                    b.Property<DateTime>("Data_Alteracao")
+                        .HasMaxLength(20)
+                        .HasColumnType("datetime2")
+                        .HasColumnName("DT_ALTERACAO");
+
                     b.Property<DateTime>("Data_Cadastro")
+                        .HasMaxLength(20)
                         .HasColumnType("datetime2")
                         .HasColumnName("DT_CADASTRO");
 
@@ -195,10 +204,6 @@ namespace SGVEapi.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("V_DESCRICAO");
-
-                    b.Property<int>("Id_Fornecedor")
-                        .HasColumnType("int")
-                        .HasColumnName("FK_ID_FORNECEDOR");
 
                     b.Property<int>("Id_Tipo")
                         .HasColumnType("int")
@@ -215,32 +220,58 @@ namespace SGVEapi.Migrations
                         .HasColumnType("nvarchar(500)")
                         .HasColumnName("V_NOME");
 
-                    b.Property<float?>("Preco")
-                        .IsRequired()
-                        .HasColumnType("real")
+                    b.Property<decimal>("Preco")
+                        .HasColumnType("decimal(18,2)")
                         .HasColumnName("D_PRECO");
 
                     b.Property<int>("Quantidade")
+                        .HasMaxLength(4)
                         .HasColumnType("int")
                         .HasColumnName("I_QUANTIDADE");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id_Produto");
 
                     b.ToTable("TB_PRODUTO");
 
                     b.HasData(
                         new
                         {
-                            Id = 2L,
-                            Custo = 1.5f,
-                            DataCadastro = new DateTime(2023, 6, 19, 20, 26, 30, 857, DateTimeKind.Local).AddTicks(4653),
+                            IdProduto = 1L,
+                            Custo = 0.5m,
+                            DataAlteracao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataCadastro = new DateTime(2023, 6, 22, 10, 7, 2, 917, DateTimeKind.Local).AddTicks(3518),
                             Descricao = "Bolacha sabor Morango",
-                            IdFornecedor = 2,
-                            IdTipo = 2,
+                            IdTipo = 1,
                             Marca = "Trakinas",
-                            Nome = "Bolacha Trakinas",
-                            Preco = 0.5f,
-                            Quantidade = 10
+                            Nome = "Bolacha",
+                            Preco = 1.5m,
+                            Quantidade = 15
+                        },
+                        new
+                        {
+                            IdProduto = 2L,
+                            Custo = 10m,
+                            DataAlteracao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataCadastro = new DateTime(2023, 6, 22, 10, 7, 2, 917, DateTimeKind.Local).AddTicks(3527),
+                            Descricao = "Refrigerante sabor Coca-Cola",
+                            IdTipo = 2,
+                            Marca = "Coca-Cola",
+                            Nome = "Coca-Cola",
+                            Preco = 13.5m,
+                            Quantidade = 100
+                        },
+                        new
+                        {
+                            IdProduto = 3L,
+                            Custo = 5m,
+                            DataAlteracao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataCadastro = new DateTime(2023, 6, 22, 10, 7, 2, 917, DateTimeKind.Local).AddTicks(3533),
+                            Descricao = "Papel Higiênico Primavera",
+                            IdTipo = 3,
+                            Marca = "Primavera",
+                            Nome = "Papel Higiênico",
+                            Preco = 10m,
+                            Quantidade = 30
                         });
                 });
 #pragma warning restore 612, 618

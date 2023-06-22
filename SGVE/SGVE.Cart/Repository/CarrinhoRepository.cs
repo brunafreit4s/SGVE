@@ -81,10 +81,12 @@ namespace SGVE.Cart.Repository
 
                 /* Se não existe salva o produto */
                 if (produto == null)
+                {
                     _context.Produtos.Add(carrinho.venda_x_produto.FirstOrDefault().Produto);
-                await _context.SaveChangesAsync();
+                    await _context.SaveChangesAsync();
+                }
 
-                var venda = await _context.Vendas.AsNoTracking().FirstOrDefaultAsync(v => v.UserId == vo.venda.UserId);
+                var venda = await _context.Vendas.AsNoTracking().FirstOrDefaultAsync(c => c.UserId == carrinho.venda.UserId);
 
                 /* Verifica se a venda está vazia */
                 if (venda == null)
@@ -93,17 +95,16 @@ namespace SGVE.Cart.Repository
                     _context.Vendas.Add(carrinho.venda);
                     await _context.SaveChangesAsync();
 
-                    AdicionaCarrinho(carrinho, venda);
+                    AdicionaCarrinho(carrinho);
                 }
                 else
                 {
-
                     /* se a venda não estiver vazia, apenas atualiza as informações */
                     var vendaxproduto = await _context.Venda_x_Produto.AsNoTracking().FirstOrDefaultAsync(
-                        p => p.Id_Produto == carrinho.venda_x_produto.FirstOrDefault().Id_Produto &&
+                        p => p.Id_Produto == vo.venda_x_produto.FirstOrDefault().Id_Produto &&
                         p.Id_Venda == venda.Id_Venda);
 
-                    if (vendaxproduto == null) { AdicionaCarrinho(carrinho, venda); } /* adiciona no carrinho (relação da venda e o produto) */
+                    if (vendaxproduto == null) { AdicionaCarrinho(carrinho); } /* adiciona no carrinho (relação da venda e o produto) */
                     else
                     {
                         /* atualiza o contador e o carrinho (relação da venda e o produto) */
@@ -124,9 +125,9 @@ namespace SGVE.Cart.Repository
             }
         }
 
-        public async void AdicionaCarrinho(Carrinho carrinho, Venda venda)
+        public async void AdicionaCarrinho(Carrinho carrinho)
         {
-            carrinho.venda_x_produto.FirstOrDefault().Id_Venda = venda.Id_Venda;
+            carrinho.venda_x_produto.FirstOrDefault().Id_Venda = carrinho.venda.Id_Venda;
             carrinho.venda_x_produto.FirstOrDefault().Produto = null; /* limpa para não gerar conflito */
             _context.Venda_x_Produto.Add(carrinho.venda_x_produto.FirstOrDefault());
             await _context.SaveChangesAsync();

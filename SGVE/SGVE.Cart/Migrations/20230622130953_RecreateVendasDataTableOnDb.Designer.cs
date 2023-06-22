@@ -12,8 +12,8 @@ using SGVE.Cart.Models.Context;
 namespace SGVE.Cart.Migrations
 {
     [DbContext(typeof(SqlContext))]
-    [Migration("20230621143319_SendUpdateVendasDataTableOnDb")]
-    partial class SendUpdateVendasDataTableOnDb
+    [Migration("20230622130953_RecreateVendasDataTableOnDb")]
+    partial class RecreateVendasDataTableOnDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
