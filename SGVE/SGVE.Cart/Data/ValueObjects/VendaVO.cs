@@ -1,8 +1,9 @@
-﻿namespace SGVE.Cart.Data.ValueObjects
+﻿using SGVE.Cart.Models.Base;
+
+namespace SGVE.Cart.Data.ValueObjects
 {
-    public class VendaVO
+    public class VendaVO : BaseEntity
     {
-        public long Id_Venda { get; set; }
         public string UserId { get; set; }
     }
 }

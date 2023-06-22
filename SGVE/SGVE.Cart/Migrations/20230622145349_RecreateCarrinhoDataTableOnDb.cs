@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SGVE.Cart.Migrations
 {
     /// <inheritdoc />
-    public partial class RecreateVendasDataTableOnDb : Migration
+    public partial class RecreateCarrinhoDataTableOnDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

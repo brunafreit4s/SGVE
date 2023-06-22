@@ -38,7 +38,8 @@ namespace SGVE.Cart.Repository
 
         public async Task<CarrinhoVO> FindCarrinhoByUserId(string userId)
         {
-            Carrinho carrinho = new Carrinho(){
+            Carrinho carrinho = new Carrinho()
+            {
                 venda = await _context.Vendas.FirstOrDefaultAsync(c => c.UserId == userId)
             };
 
@@ -101,7 +102,7 @@ namespace SGVE.Cart.Repository
                 {
                     /* se a venda não estiver vazia, apenas atualiza as informações */
                     var vendaxproduto = await _context.Venda_x_Produto.AsNoTracking().FirstOrDefaultAsync(
-                        p => p.Id_Produto == vo.venda_x_produto.FirstOrDefault().Id_Produto &&
+                        p => p.Id_Produto == vo.venda_x_produto.FirstOrDefault().Id_Produto && 
                         p.Id_Venda == venda.Id_Venda);
 
                     if (vendaxproduto == null) { AdicionaCarrinho(carrinho); } /* adiciona no carrinho (relação da venda e o produto) */

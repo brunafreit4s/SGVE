@@ -49,14 +49,11 @@ namespace SGVE_web.Controllers
                 }
             };
 
-            VendaViewModel venda = new VendaViewModel();
-
             Venda_x_ProdutoViewModel vendaxproduto = new Venda_x_ProdutoViewModel()
             {
                 Count = model.Count,
                 Id_Produto = model.Id_Produto,
                 Produto = await _ProdutosService.FindByIdProdutos(model.Id_Produto, token),
-                Venda = venda,
             };
 
             List<Venda_x_ProdutoViewModel> ListVenda = new List<Venda_x_ProdutoViewModel>();
