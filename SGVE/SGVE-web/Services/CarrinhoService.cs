@@ -47,9 +47,12 @@ namespace SGVE_web.Services
             else throw new Exception("Ocorreu algum erro na chamada da API!");
         }
 
-        public async Task<CartViewModel> Checkout(CartHeaderViewModel venda, string token)
+        public async Task<bool> Finalizar(CartHeaderViewModel venda, string token)
         {
-            throw new NotImplementedException();
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var response = await _client.PostAsJson($"{BasePath}/Finalizar", venda);
+            if (response.IsSuccessStatusCode) return await response.ReadContentAsync<bool>();
+            else throw new Exception("Ocorreu algum erro na chamada da API!");
         }
 
         public async Task<bool> ClearCarrinho(string userId, string token)

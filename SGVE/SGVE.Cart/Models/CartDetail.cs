@@ -6,10 +6,10 @@ namespace SGVE.Cart.Models
     [Table("TB_CART_DETAIL")]
     public class CartDetail : BaseEntity
     {
-        public long CartHeaderId { get; set; }
+        public long CartHeaderId { get; set; } 
 
         [ForeignKey("CartHeaderId")]
-        public virtual CartHeader CartHeader { get; set; }
+        public virtual CartHeader CartHeader { get; set; } 
 
         public long ProdutoId { get; set; }
 

@@ -8,5 +8,6 @@ namespace SGVE.Cart.Repository
         Task<CartVO> SaveOrUpdateCarrinho(CartVO carrinho);
         Task<bool> RemoveFromCarrinho(long idVendaxProduto);
         Task<bool> ClearCarrinho(string userId);        
+        Task<bool> FinalizarVenda(CartHeaderVO venda);        
     }
 }

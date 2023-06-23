@@ -128,7 +128,7 @@
         <div class="row col-lg-12 p-2">
             <div class="col-10">
                 <label asp-for="Senha" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Senha <b class="text-danger">*</b></label>
-                <input asp-for="Senha" class="form-control" maxlength="20" type="password" />
+                <input asp-for="Senha" class="form-control" maxlength="20" value="@Model.Senha" type="password" />
                 <span asp-validation-for="Senha" class="text-danger"></span>
             </div>
         </div>

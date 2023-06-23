@@ -14,6 +14,7 @@ namespace SGVE.Cart.Config
                 config.CreateMap<CartHeaderVO, CartHeader>().ReverseMap();
                 config.CreateMap<CartDetailVO, CartDetail>().ReverseMap();
                 config.CreateMap<CartVO, Models.Cart>().ReverseMap();
+                config.CreateMap<VendaVO, Venda>().ReverseMap();
             });
             return mappingConfig;           
         }

@@ -9,6 +9,6 @@ namespace SGVE_web.Services.IServices
         Task<CartViewModel> UpdateCarrinho(CartViewModel carrinho, string token);
         Task<bool> RemoveFromCarrinho(long carrinhoId, string token);
         Task<bool> ClearCarrinho(string userId, string token);
-        Task<CartViewModel> Checkout(CartHeaderViewModel venda, string token);
+        Task<bool> Finalizar(CartHeaderViewModel venda, string token);
     }
 }

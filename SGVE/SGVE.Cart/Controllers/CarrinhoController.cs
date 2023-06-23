@@ -71,5 +71,15 @@ namespace SGVE.Cart.Controllers
             if (!status) return BadRequest();
             return Ok(status);
         }
+
+        [HttpPost]
+        [Authorize]
+        [Route("Finalizar")]
+        public async Task<ActionResult> Finalizar([FromBody] CartHeaderVO vo)
+        {
+            var venda = await _repository.FinalizarVenda(vo);
+            if (!venda) return BadRequest();
+            return Ok(venda);
+        }
     }
 }

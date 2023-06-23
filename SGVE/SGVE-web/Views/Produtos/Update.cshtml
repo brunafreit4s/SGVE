@@ -57,7 +57,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
                     </div>
-                    <input asp-for="Preco" class="form-control" type="number" min="0" max="9999.99" value="0.01" step=".01" />
+                    <input asp-for="Preco" class="form-control" type="number" value="@Model.Preco.ToString().Replace(",",".")" min="0" max="9999.99" step=".01" />
                 </div>
                 <span asp-validation-for="Preco" class="text-danger"></span>
             </div>
@@ -68,7 +68,7 @@
                     <div class="input-group-prepend">
                         <span class="input-group-text">$</span>
                     </div>
-                    <input asp-for="Custo" class="form-control" type="number" min="0" max="9999.99" value="0.01" step=".01" />
+                    <input asp-for="Custo" class="form-control" type="number" value="@Model.Custo.ToString().Replace(",",".")" min="0" max="9999.99" step=".01" />
                 </div>
                 <span asp-validation-for="Custo" class="text-danger"></span>
             </div>

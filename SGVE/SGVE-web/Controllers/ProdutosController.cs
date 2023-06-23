@@ -47,6 +47,7 @@ namespace SGVE_web.Controllers
         {
             var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
             var Produtos = await _ProdutosService.FindByIdProdutos(Id, accessToken);
+
             if (Produtos != null) return View(Produtos);
             return NotFound();
         }

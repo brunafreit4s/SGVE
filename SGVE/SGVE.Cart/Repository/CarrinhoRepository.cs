@@ -137,5 +137,25 @@ namespace SGVE.Cart.Repository
             _context.CartDetails.Add(cart.CartDetails.FirstOrDefault());
             await _context.SaveChangesAsync();
         }
+
+        public async Task<bool> FinalizarVenda(CartHeaderVO vo)
+        {
+            try
+            {
+                Venda venda = new Venda();
+                venda.UserId = vo.UserId;
+                venda.Data_Venda = DateTime.Now;
+                venda.Total = vo.PurchaseAmount;
+
+                _context.Venda.Add(venda);
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

@@ -9,6 +9,7 @@ namespace SGVE.Cart.Models.Context
         public DbSet<Produtos> Produtos { get; set; }
         public DbSet<CartDetail> CartDetails { get; set; }
         public DbSet<CartHeader> CartHeaders { get; set; }
+        public DbSet<Venda> Venda { get; set; }
 
     }
 }
