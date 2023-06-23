@@ -1,0 +1,89 @@
+﻿@model CartViewModel
+
+@if (Model.CartHeader != null && Model.CartDetails.Count() > 0)
+{
+    <form method="post">
+        <br />
+        <input asp-for="CartHeader.UserId" hidden />
+        <input asp-for="CartHeader.Id" hidden />
+        <div>
+            <div class="card border mt-4 container">
+                <div class="card-header bg-dark text-light ml-0 row">
+                    <div class="col-6">
+                        <i class="bi bi-cart3"></i> &nbsp;
+                        Carrinho de Compras
+                    </div>
+                    <div class="col-6 text-end">
+                        <a asp-action="Index" asp-controller="Vendas" class="btn btn-outline-warning btn-sm">Continuar Comprando</a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="d-none d-lg-block">
+                        <div class="row text-info">
+                            <div class="row col-lg-12">
+                                <div class="col-lg-2"> </div>
+                                <div class="col-lg-5">
+                                    Detalhe do Produto
+                                </div>
+                                <div class="col-lg-2">
+                                    Preço
+                                </div>
+                                <div class="col-lg-2">
+                                    Quantidade
+                                </div>
+                                <div class="col-lg-1">
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+
+                        @foreach (var item in Model.CartDetails)
+                        {
+                            <div class="row h-100">
+                                <div class="row text-info">
+                                    <div class="col-4 col-md-2 text-center py-2">
+                                        <img src="item.Produtos.ImageURL" class="rounded" width="100%">
+                                    </div>
+                                    <div class="col-lg-5">
+                                        <h5>@item.Produtos.Nome</h5>
+                                        <div style="font-size:11px;">@Html.Raw(item.Produtos.Descricao)</div>
+                                    </div>
+                                    <div class="col-8 col-md-2 pt-md-4" style="font-size:11px;">
+                                        <span style="font-size:17px;">@string.Format("{0:c}", item.Produtos.Preco)</span>
+                                    </div>
+                                    <div class="col-3 col-md-2 pt-md-4">
+                                        <span style="font-size:17px;">@item.Count</span>
+                                    </div>
+                                    <div class="col-2 col-md-1 pt-md-4">
+                                        <a asp-action="Remove" asp-route-id="@item.Id" class="btn btn-outline-danger"><i class="bi bi-trash"></i></a>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <hr />
+                    </div>
+                    <div class="row col-12 text-end">
+                        <span class="text-danger p-3" style="font-size:18px;">
+                            Valor Total da Compra: @string.Format("{0:c}", Model.CartHeader.PurchaseAmount)
+                            <br/>
+                        </span>
+                    </div>
+                    <div class="card-footer row">
+                        <div class="col-6 col-md-3 offset-md-6"></div>
+                        <div class="col-6 col-md-3">
+                            <a asp-action="Checkout" class="btn btn-outline-success form-control">
+                                <span>Finalizar Pedido</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+}
+else
+{
+    <div>
+        <p>Carrinho Vazio!</p>
+    </div>
+}

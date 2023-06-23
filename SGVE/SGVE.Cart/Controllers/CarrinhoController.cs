@@ -24,7 +24,7 @@ namespace SGVE.Cart.Controllers
             "HTTP 200: Lista de funcionários existentes." + "<br>" +
             "HTTP 404: Nenhum registro encontrado.")]
         [Route("Consultar/{id}")]
-        public async Task<ActionResult<CartVO>> FindById(string id)
+        public async Task<IActionResult> FindById(string id)
         {
             var carrinho = await _repository.FindCarrinhoByUserId(id);
             if (carrinho == null) return NotFound();

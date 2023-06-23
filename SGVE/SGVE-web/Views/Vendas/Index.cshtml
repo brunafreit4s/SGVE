@@ -19,7 +19,6 @@
                         <th>Marca</th>
                         <th>Quantidade</th>
                         <th></th>
-                        <th></th>
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
@@ -47,12 +46,6 @@
                                 <th>
                                     <a asp-action="Detalhe" class="btn btn-outline-success" asp-route-id="@item.Id_Produto"><i class="bi bi-person-fill-gear"></i> Detalhar</a>
                                 </th>
-                                @if (User.IsInRole("Admin"))
-                                {
-                                    <th>
-                                        <a asp-action="Delete" class="btn btn-outline-danger" asp-route-id="@item.Id_Produto"><i class="bi bi-trash-fill"></i> Remover</a>
-                                    </th>
-                                }
                             </tr>
                             count = count + 1;
                         }
