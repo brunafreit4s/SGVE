@@ -77,12 +77,21 @@ namespace SGVE_web.Controllers
         [Authorize]
         public async Task<IActionResult> Finalizar(CartViewModel Cart)
         {
-            var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
+            var token = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
             var userId = User.Claims.Where(u => u.Type == "sub")?.FirstOrDefault()?.Value;
 
-            await _CarrinhoService.Finalizar(Cart.CartHeader, accessToken);
+            await _CarrinhoService.Finalizar(Cart.CartHeader, token);
 
-            var response = await _CarrinhoService.ClearCarrinho(userId, accessToken);
+            var carrinho = await _CarrinhoService.FindCarrinhoById(userId, token);
+
+            foreach (var detail in carrinho.CartDetails)
+            {
+                ProdutosViewModel produto = await _ProdutosService.FindByIdProdutos(detail.Produtos.Id_Produto, token);
+                produto.Quantidade -= detail.Count;
+                await _ProdutosService.UpdateProdutos(produto, token);
+            }
+
+            var response = await _CarrinhoService.ClearCarrinho(userId, token);
 
             if (response) { return View(nameof(Sucesso)); }
 
