@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using SGVE.Cart.Data.ValueObjects;
 using SGVE.Cart.Models;
 using SGVE.Cart.Models.Context;
-using System.Reflection.PortableExecutable;
 
 namespace SGVE.Cart.Repository
 {
@@ -40,14 +39,15 @@ namespace SGVE.Cart.Repository
 
         public async Task<CartVO> FindCarrinhoByUserId(string userId)
         {
-            Models.Cart cart = new Models.Cart() { 
+            Models.Cart cart = new Models.Cart()
+            {
                 CartHeader = await _context.CartHeaders.FirstOrDefaultAsync(c => c.UserId == userId),
             };
 
             cart.CartDetails = _context.CartDetails
                 .Where(c => c.CartHeaderId == cart.CartHeader.Id)
                 .Include(c => c.Produtos);
-            
+
             return _mapper.Map<CartVO>(cart);
         }
 
@@ -126,8 +126,7 @@ namespace SGVE.Cart.Repository
 
                 return _mapper.Map<CartVO>(cart);
             }
-            catch(Exception ex)
-            {
+            catch {
                 throw;
             }
         }

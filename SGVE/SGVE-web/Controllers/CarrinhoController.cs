@@ -23,6 +23,30 @@ namespace SGVE_web.Controllers
         {
             return View(await FindUserCart());
         }
+        
+        public async Task<IActionResult> Remove(int id)
+        {
+            var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
+            var userId = User.Claims.Where(u => u.Type == "sub")?.FirstOrDefault()?.Value;
+
+            var response = await _CarrinhoService.RemoveFromCarrinho(id, accessToken);
+
+            if(response) { return RedirectToAction(nameof(Index)); }
+
+            return View();
+        }
+
+        public async Task<IActionResult> Limpar()
+        {
+            var accessToken = await HttpContext.GetTokenAsync("access_token");  /* Retorna access token para utilizar no swagger */
+            var userId = User.Claims.Where(u => u.Type == "sub")?.FirstOrDefault()?.Value;
+
+            var response = await _CarrinhoService.ClearCarrinho(userId, accessToken);
+
+            if (response) { return RedirectToAction("Index", "Vendas"); }
+
+            return View();
+        }
 
         private async Task<CartViewModel> FindUserCart()
         {

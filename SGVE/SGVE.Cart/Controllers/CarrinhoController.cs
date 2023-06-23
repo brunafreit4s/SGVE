@@ -23,11 +23,12 @@ namespace SGVE.Cart.Controllers
             Description = "Retornos: <br>" +
             "HTTP 200: Lista de funcionários existentes." + "<br>" +
             "HTTP 404: Nenhum registro encontrado.")]
-        [Route("Consultar/{id}")]
-        public async Task<IActionResult> FindById(string id)
+        [Route("Consultar/{userId}")]
+        public async Task<IActionResult> FindById(string userId)
         {
-            var carrinho = await _repository.FindCarrinhoByUserId(id);
+            var carrinho = await _repository.FindCarrinhoByUserId(userId);
             if (carrinho == null) return NotFound();
+            else if (carrinho.CartDetails == null) return NotFound();
             return Ok(carrinho);
         }
         
@@ -57,6 +58,16 @@ namespace SGVE.Cart.Controllers
         public async Task<ActionResult<CartVO>> Delete(int id)
         {
             var status = await _repository.RemoveFromCarrinho(id);
+            if (!status) return BadRequest();
+            return Ok(status);
+        }
+
+        [HttpGet]
+        [Authorize]
+        [Route("Limpar/{userId}")]
+        public async Task<ActionResult> Limpar(string userId)
+        {
+            var status = await _repository.ClearCarrinho(userId);
             if (!status) return BadRequest();
             return Ok(status);
         }

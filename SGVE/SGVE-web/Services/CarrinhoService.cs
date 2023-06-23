@@ -19,6 +19,7 @@ namespace SGVE_web.Services
         {
             _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
             var response = await _client.GetAsync($"{BasePath}/Consultar/{userId}");
+            if (!response.IsSuccessStatusCode) return new CartViewModel();
             return await response.ReadContentAsync<CartViewModel>();
         }
 
@@ -53,7 +54,10 @@ namespace SGVE_web.Services
 
         public async Task<bool> ClearCarrinho(string userId, string token)
         {
-            throw new NotImplementedException();
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+            var response = await _client.GetAsync($"{BasePath}/Limpar/{userId}");
+            if (response.IsSuccessStatusCode) return await response.ReadContentAsync<bool>();
+            else throw new Exception("Ocorreu algum erro na chamada da API!");
         }
     }
 }
