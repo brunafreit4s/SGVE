@@ -42,8 +42,8 @@ namespace SGVE_web.Models
 
         public string SubstringDescription()
         {
-            if (Descricao.Length < 24) return Descricao;
-            else return $"{Descricao.Substring(0, 21)} ...";
+            if (Descricao.Length < 400) return Descricao;
+            else return $"{Descricao.Substring(0, 350)} ...";
         }
 
     }

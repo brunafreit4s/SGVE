@@ -10,18 +10,18 @@
             <div class="card border mt-4 container">
                 <div class="card-header bg-dark text-light ml-0 row">
                     <div class="col-6">
-                        <i class="bi bi-cart3"></i> &nbsp;
-                        Carrinho de Compras
+                        <i class="bi bi-basket2-fill"></i> &nbsp;
+                        Cesta de Vendas
                     </div>
                     <div class="col-6 text-end">
-                        <a asp-action="Index" asp-controller="Vendas" class="btn btn-outline-warning btn-sm">Continuar Comprando</a>
+                        <a asp-action="Index" asp-controller="Vendas" class="btn btn-outline-warning btn-sm">Continuar Venda</a>
                     </div>
                 </div>
                 <div class="card-body">
                     <div class="d-none d-lg-block">
-                        <div class="row text-info">
+                        <div class="row text-info text-left">
                             <div class="row col-lg-12">
-                                <div class="col-lg-2"> </div>
+                                <div class="col-lg-2">Produto</div>
                                 <div class="col-lg-5">
                                     Detalhe do Produto
                                 </div>
@@ -40,9 +40,9 @@
                         @foreach (var item in Model.CartDetails)
                         {
                             <div class="row h-100">
-                                <div class="row text-info">
-                                    <div class="col-4 col-md-2 text-center py-2">
-                                        <img src="item.Produtos.ImageURL" class="rounded" width="100%">
+                                <div class="row text-info text-left">
+                                    <div class="col-4 col-md-2 py-2">
+                                        <h5>@item.Produtos.Marca</h5>
                                     </div>
                                     <div class="col-lg-5">
                                         <h5>@item.Produtos.Nome</h5>
@@ -64,19 +64,19 @@
                     </div>
                     <div class="row col-12 text-end">
                         <span class="text-danger p-3" style="font-size:18px;">
-                            Valor Total da Compra: @string.Format("{0:c}", Model.CartHeader.PurchaseAmount)
+                            Valor Total da Venda: @string.Format("{0:c}", Model.CartHeader.PurchaseAmount)
                             <br/>
                         </span>
                     </div>
                     <div class="card-footer row">
                         <div class="col-6 col-md-3 offset-md-6">
                             <a asp-action="Limpar" class="btn btn-outline-danger form-control">
-                                <span>Limpar Carrinho</span>
+                                <span>Limpar Cesta</span>
                             </a>
                         </div>
                         <div class="col-6 col-md-3">
                             <a asp-action="Checkout" class="btn btn-outline-success form-control">
-                                <span>Finalizar Pedido</span>
+                                <span>Finalizar Venda</span>
                             </a>
                         </div>
                     </div>
@@ -87,7 +87,11 @@
 }
 else
 {
-    <div>
-        <p>Carrinho Vazio!</p>
+    <div class="text-center p-5">
+        <p><h4>Sua cesta de vendas está vazia!</h4></p>
+        <br/>
+        <p class="text-center">
+            Gostaria de adicionar itens a sua venda? Clique em: <a asp-action="Index" asp-controller="Vendas" class="btn btn-outline-warning btn-sm">Iniciar Venda</a>
+        </p>
     </div>
 }

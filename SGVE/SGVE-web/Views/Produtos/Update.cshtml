@@ -75,7 +75,7 @@
 
             <div class="col-2">
                 <label asp-for="Id_Tipo" class="control-label pt-2 h3 text-primary" style="font-size:15px;">Tipo de Produto <b class="text-danger">*</b></label>
-                <select asp-for="Id_Tipo" class="btn btn-primary dropdown-toggle" asp-items="Html.GetEnumSelectList<Produtos>()">Tipo de Produto</select>
+                <select asp-for="Id_Tipo" class="btn btn-primary dropdown-toggle" value="@Model.Id_Tipo" asp-items="Html.GetEnumSelectList<Produtos>()">Tipo de Produto</select>
             </div>
         </div>
 
