@@ -39,3 +39,13 @@
 2. Atualiza a base de dados
   <pre>dotnet ef database update</pre>
 <p>
+
+<p>
+  <h3>Tecnologias utilizadas: </h3><hr/>
+  <p>- .Net Core 6</p>
+  <p>- Entity Framework;</p>
+  <p>- Bootstrap;</p>  
+  <p>- JavaScript;</p>
+  <p>- Google Chart;</p>
+  <p>- SQL.</p>
+</p>
