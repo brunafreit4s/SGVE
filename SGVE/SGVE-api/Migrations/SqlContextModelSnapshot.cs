@@ -124,52 +124,30 @@ namespace SGVEapi.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("TB_FUNCIONARIO");
+                    b.ToTable("TB_FUNCIONARIO", (string)null);
 
                     b.HasData(
                         new
                         {
                             Id = 1L,
-                            BairroEndereco = "Centro",
                             Celular = "11998987474",
-                            CepEndereco = 17800970,
-                            CidadeEndereco = "Adamantina",
-                            ComplementoEndereco = "Próximo a banca de jornal do seu João",
                             Cpf = "78134252001",
-                            DataAlteracao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataCadastro = new DateTime(2023, 6, 22, 10, 7, 2, 917, DateTimeKind.Local).AddTicks(3474),
-                            DataNascimento = new DateTime(1991, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "joao.pereira@gmail.com",
-                            IdCargo = 1,
-                            LogradouroEndereco = "Rua Deputado Salles Filho 469",
                             Nome = "João Pereira",
-                            NumeroEndereco = "15",
                             Rg = "248805253",
                             Senha = "123456",
-                            Telefone = "1122223333",
-                            UFEndereco = "SP"
+                            Telefone = "1122223333"
                         },
                         new
                         {
                             Id = 2L,
-                            BairroEndereco = "Centro",
                             Celular = "11998987474",
-                            CepEndereco = 15230970,
-                            CidadeEndereco = "Adolfo",
-                            ComplementoEndereco = "Próximo a casa do Pedro",
                             Cpf = "16926121079",
-                            DataAlteracao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataCadastro = new DateTime(2023, 6, 22, 10, 7, 2, 917, DateTimeKind.Local).AddTicks(3507),
-                            DataNascimento = new DateTime(1987, 6, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "joao.pereira@gmail.com",
-                            IdCargo = 1,
-                            LogradouroEndereco = "Rua Castro Alves 984",
                             Nome = "Adolfo Silva",
-                            NumeroEndereco = "85",
                             Rg = "154969552",
                             Senha = "123456",
-                            Telefone = "1122223333",
-                            UFEndereco = "SP"
+                            Telefone = "1122223333"
                         });
                 });
 
@@ -228,17 +206,13 @@ namespace SGVEapi.Migrations
 
                     b.HasKey("Id_Produto");
 
-                    b.ToTable("TB_PRODUTO");
+                    b.ToTable("TB_PRODUTO", (string)null);
 
                     b.HasData(
                         new
                         {
-                            IdProduto = 1L,
                             Custo = 0.5m,
-                            DataAlteracao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataCadastro = new DateTime(2023, 6, 22, 10, 7, 2, 917, DateTimeKind.Local).AddTicks(3518),
                             Descricao = "Bolacha sabor Morango",
-                            IdTipo = 1,
                             Marca = "Trakinas",
                             Nome = "Bolacha",
                             Preco = 1.5m,
@@ -246,12 +220,8 @@ namespace SGVEapi.Migrations
                         },
                         new
                         {
-                            IdProduto = 2L,
                             Custo = 10m,
-                            DataAlteracao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataCadastro = new DateTime(2023, 6, 22, 10, 7, 2, 917, DateTimeKind.Local).AddTicks(3527),
                             Descricao = "Refrigerante sabor Coca-Cola",
-                            IdTipo = 2,
                             Marca = "Coca-Cola",
                             Nome = "Coca-Cola",
                             Preco = 13.5m,
@@ -259,12 +229,8 @@ namespace SGVEapi.Migrations
                         },
                         new
                         {
-                            IdProduto = 3L,
                             Custo = 5m,
-                            DataAlteracao = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DataCadastro = new DateTime(2023, 6, 22, 10, 7, 2, 917, DateTimeKind.Local).AddTicks(3533),
                             Descricao = "Papel Higiênico Primavera",
-                            IdTipo = 3,
                             Marca = "Primavera",
                             Nome = "Papel Higiênico",
                             Preco = 10m,

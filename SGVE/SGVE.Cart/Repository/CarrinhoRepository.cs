@@ -98,7 +98,7 @@ namespace SGVE.Cart.Repository
                     _context.CartHeaders.Add(cart.CartHeader);
                     await _context.SaveChangesAsync();
 
-                    cart.CartDetails.FirstOrDefault().CartHeaderId = cartHeader.Id;
+                    cart.CartDetails.FirstOrDefault().CartHeaderId = _context.CartHeaders.FirstOrDefault().Id;
                     await AdicionaCarrinho(cart);
                 }
                 else
@@ -142,12 +142,12 @@ namespace SGVE.Cart.Repository
         {
             try
             {
-                Venda venda = new Venda();
+                Vendas venda = new Vendas();
                 venda.UserId = vo.UserId;
                 venda.Data_Venda = DateTime.Now;
                 venda.Total = vo.PurchaseAmount;
 
-                _context.Venda.Add(venda);
+                _context.Vendas.Add(venda);
                 await _context.SaveChangesAsync();
 
                 return true;

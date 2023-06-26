@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SGVE.Cart.Data.ValueObjects
 {
-    public class VendaVO
+    public class VendasVO
     {
         public long Id_Venda { get; set; }
         public decimal Total { get; set; }

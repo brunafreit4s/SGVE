@@ -123,7 +123,7 @@ namespace SGVE.Cart.Migrations
                     b.ToTable("TB_PRODUTO_X_CARRINHO");
                 });
 
-            modelBuilder.Entity("SGVE.Cart.Models.Venda", b =>
+            modelBuilder.Entity("SGVE.Cart.Models.Vendas", b =>
                 {
                     b.Property<long>("Id_Venda")
                         .ValueGeneratedOnAdd()
@@ -144,7 +144,7 @@ namespace SGVE.Cart.Migrations
                     b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
-                        .HasColumnName("USER_ID");
+                        .HasColumnName("V_USER_ID");
 
                     b.HasKey("Id_Venda");
 

@@ -12,11 +12,11 @@
 
     <div class="row col-12">
         <div class="col-lg-6"><h4 class="text-black-50">Produtos cadastrados no sistema:</h4><div id="donutchart" style="width: 800px; height: 400px"></div></div>
-        <div class="col-lg-6"><h4 class="text-black-50">Vendas:</h4><div id="chart_div" style="width: 800px; height: 400px;"></div></div>
+        <div class="col-lg-6"><h4 class="text-black-50">Vendas:</h4><div id="curve_chart" style="width: 800px; height: 400px;"></div></div>
     </div>
-    <div class="row col-12">
+    <div class="row col-12 align-items-center">
+        <div class="col-lg-6"><h4 class="text-black-50">Vendas:</h4><div id="columnchart_material" style="width: 800px; height: 400px;"></div></div>
     </div>
-    <hr/>
 </div>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -48,30 +48,37 @@
 </script>
 
 <script type="text/javascript">
-    var vListaFunc = @Html.Raw(Json.Serialize(Model.Funcionario));
+    var vListaVendas = @Html.Raw(Json.Serialize(Model.Vendas));
 
     google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawVisualization);
+    google.charts.setOnLoadCallback(drawChart);
 
-    function drawVisualization() {
-        // Some raw data (not necessarily accurate)
-        var data = google.visualization.arrayToDataTable([
-            ['Mês', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
-            ['2023/05', 165, 938, 522, 998, 450, 614.6],
-            ['2023/06', 135, 1120, 599, 1268, 288, 682],
-            ['2023/07', 157, 1167, 587, 807, 397, 623],
-            ['2023/08', 139, 1110, 615, 968, 215, 609.4],
-            ['2023/09', 136, 691, 629, 1026, 366, 569.6]
-        ]);
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+
+        data.addColumn('date', 'Time of Day');
+        data.addColumn('number', 'Total');
+        
+        $.each(vListaVendas, function (key, aLista) {
+            const d = new Date(aLista.data_Venda);
+
+            data.addRows([
+                [d, aLista.total],
+            ]);
+        });
 
         var options = {
-            vAxis: { title: 'Quantidade' },
-            hAxis: { title: 'Mês' },
-            seriesType: 'bars',
-            series: { 5: { type: 'line' } }
+            title: 'Vendas',
+            curveType: 'function',
+            legend: { position: 'bottom' },
+            hAxis: {
+                format: 'dd/MM/yyyy hh:mm',
+                gridlines: { count: 15 }
+            }
         };
 
-        var chart = new google.visualization.ComboChart(document.getElementById('chart_div'));
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
         chart.draw(data, options);
     }
 </script>

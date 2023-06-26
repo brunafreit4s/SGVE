@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace SGVE.Cart.Migrations
 {
     /// <inheritdoc />
-    public partial class CreateCarrinhoDataTableOnDb : Migration
+    public partial class RecreateVendasDataTableOnDb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -42,6 +42,21 @@ namespace SGVE.Cart.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_TB_PRODUTO_X_CARRINHO", x => x.IDPRODUTO);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "TB_VENDAS",
+                columns: table => new
+                {
+                    IDVENDA = table.Column<long>(name: "ID_VENDA", type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    VUSERID = table.Column<string>(name: "V_USER_ID", type: "nvarchar(max)", nullable: false),
+                    DTOTAL = table.Column<decimal>(name: "D_TOTAL", type: "decimal(18,2)", nullable: false),
+                    DTVENDA = table.Column<DateTime>(name: "DT_VENDA", type: "datetime2", maxLength: 20, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TB_VENDAS", x => x.IDVENDA);
                 });
 
             migrationBuilder.CreateTable(
@@ -87,6 +102,9 @@ namespace SGVE.Cart.Migrations
         {
             migrationBuilder.DropTable(
                 name: "TB_CART_DETAIL");
+
+            migrationBuilder.DropTable(
+                name: "TB_VENDAS");
 
             migrationBuilder.DropTable(
                 name: "TB_CART_HEADER");
