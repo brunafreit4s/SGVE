@@ -23,7 +23,7 @@
 <p>
 
 <p>
-  Para rodar o projeto, é necessário que já tenha criado um bando de dados com o nome: "SGVE" (conforme imagem abaixo):
+  Para rodar o projeto, é necessário que já tenha criado um banco de dados com o nome: "SGVE" (conforme imagem abaixo):
   
   ![image](https://github.com/brunafreit4s/SGVE/assets/32462617/220536ed-0d45-4c41-ac61-920176abad7d)
 
