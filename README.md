@@ -1,10 +1,10 @@
 # SGVE
 
-<p>
-  Projeto de Conclusão de Curso migrado para .Net Core 6.0. 
+>  Projeto de Conclusão de Curso migrado para .Net Core 6.0. 
   Anteriormente foi apresentado em .Net Framework em 2022 à banca da Faculdade de Tecnologia - FATEC.
-</p>
+<hr>
 
+<h4> Como Usar:</h4>
 <p>
   Execute os comandos abaixo na ferramenta PowerShell (Ferramenta encontrada na área de tarefas do Windowns):
   </br>
@@ -14,14 +14,12 @@
   2. Atualiza para a versão mais recente:
 <pre>dotnet tool update --global dotnet-ef</pre>
 </p>
-
-
+<hr>
 <p>
-  Ferramentas necessárias:
-  </br>
+ <h4> Ferramentas necessárias:</h4>
   <pre>- Visual Studio 2022;<br/>- Sql Server 2019 ou versão recente;</pre>
 <p>
-
+<hr>
 <p>
   Para rodar o projeto, é necessário que já tenha criado um banco de dados com o nome: "SGVE" (conforme imagem abaixo):
   
