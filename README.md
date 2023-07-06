@@ -4,7 +4,7 @@
   Anteriormente foi apresentado em .Net Framework em 2022 à banca da Faculdade de Tecnologia - FATEC.
 <hr>
 
-<h4> Como Usar:</h4>
+<h3> Como Usar:</h3>
 <p>
   Execute os comandos abaixo na ferramenta PowerShell (Ferramenta encontrada na área de tarefas do Windowns):
   </br>
@@ -16,7 +16,7 @@
 </p>
 <hr>
 <p>
- <h4> Ferramentas necessárias:</h4>
+ <h3> Ferramentas necessárias:</h3>
   <pre>- Visual Studio 2022;<br/>- Sql Server 2019 ou versão recente;</pre>
 <p>
 <hr>
