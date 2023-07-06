@@ -42,10 +42,12 @@
 
 <p>
   <h3>Tecnologias utilizadas: </h3><hr/>
-  <p>- .Net Core 6</p>
-  <p>- Entity Framework;</p>
-  <p>- Bootstrap;</p>  
-  <p>- JavaScript;</p>
-  <p>- Google Chart;</p>
-  <p>- SQL.</p>
+  
+  ![image](https://github.com/brunafreit4s/SGVE/assets/32462617/3a93cc5d-f56f-4218-92b5-a20a2c622cc0)
+  ![image](https://github.com/brunafreit4s/SGVE/assets/32462617/75c036bf-ce10-4880-b3d9-b895124a0b85)
+  ![image](https://github.com/brunafreit4s/SGVE/assets/32462617/cf151ad7-8bb3-4ec9-a72d-eb3739fd489e)
+  
+  ![image](https://github.com/brunafreit4s/SGVE/assets/32462617/8b9d997d-9afa-40b9-ae57-be2e815597a4)
+  ![image](https://github.com/brunafreit4s/SGVE/assets/32462617/de34452c-3fcc-4354-a02f-07704680e234)
+  ![image](https://github.com/brunafreit4s/SGVE/assets/32462617/ad33cd9a-8afb-43cf-8dfb-82b17cfa2e7f)
 </p>
